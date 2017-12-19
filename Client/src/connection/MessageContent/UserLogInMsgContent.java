@@ -1,12 +1,10 @@
 package connection.MessageContent;
 
-public class UserLogInMsgContent {
+import java.io.Serializable;
+
+public class UserLogInMsgContent implements Serializable {
     private String username;
-    private String pass;
-    private String nickname;
-    private String state;
-    private String email;
-    private Integer isActived;
+    private String pass;;
 
     public UserLogInMsgContent(String username, String pass){
         this.username=username;
@@ -27,39 +25,5 @@ public class UserLogInMsgContent {
 
     public void setPass(String pass) {
         this.pass = pass;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-
-    public Integer getIsActived() {
-        return isActived;
-    }
-
-    public void setIsActived(Integer isActived) {
-        this.isActived = isActived;
     }
 }

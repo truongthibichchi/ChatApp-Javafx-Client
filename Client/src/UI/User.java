@@ -1,8 +1,8 @@
-package connection.MessageContent;
+package UI;
 
 import java.io.Serializable;
 
-public class UserContent implements Serializable {
+public class User implements Serializable {
     private String username;
     private String pass;
     private String nickname;
@@ -10,7 +10,7 @@ public class UserContent implements Serializable {
     private String email;
     private Integer isActived;
 
-    public UserContent(String username, String pass){
+    public User(String username, String pass){
         this.username=username;
         this.pass=pass;
     }

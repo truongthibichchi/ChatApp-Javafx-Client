@@ -1,7 +1,6 @@
 package UI;
 
 import com.jfoenix.controls.JFXComboBox;
-import connection.MessageContent.UserContent;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -16,14 +15,14 @@ public class ChatWindowController extends StageSceneController{
     @FXML private Button btnSend;
     @FXML private JFXComboBox ccbState;
 
-    private UserContent user;
+    private User user;
 
     public void btnCloseAction (){
         Platform.exit();
         System.exit(0);
     }
 
-    public void setUser(UserContent user){
+    public void setUser(User user){
         this.user=user;
     }
 

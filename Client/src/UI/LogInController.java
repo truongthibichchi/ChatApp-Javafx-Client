@@ -1,8 +1,6 @@
 package UI;
 
 
-import connection.Listener;
-import connection.MessageContent.UserContent;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -73,21 +71,22 @@ public class LogInController extends StageSceneController {
             int port = Integer.parseInt(txtPort.getText());
             String username = txtUsername.getText();
             String password = txtPassword.getText();
-            listener= new Listener();
-            listener.LogIn(hostname, port, username, password);
+            User user= new User(username, password);
+            Listener listener= new Listener(hostname, port, user);
+            Thread thread= new Thread(listener);
+            thread.start();
         }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
 
     public void showErrorDialog (String message){
-        Platform.runLater(()->{
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning!");
             alert.setHeaderText(message);
             alert.setContentText("Please check for firewall issues and check if the server is running.");
             alert.showAndWait();
-        });
     }
     public void showScene() throws IOException{
         Platform.runLater(()-> {
@@ -101,7 +100,7 @@ public class LogInController extends StageSceneController {
     public void LoadChatForm(String username, String pass){
         try{
 
-            UserContent user = new UserContent(username, pass);
+            User user = new User(username, pass);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ChatWindow.fxml"));
             Parent root = loader.load();
             chatController =loader.getController();
