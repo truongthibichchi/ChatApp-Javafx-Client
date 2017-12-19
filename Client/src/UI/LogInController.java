@@ -1,6 +1,8 @@
 package UI;
 
 
+import connection.Listener;
+import connection.MessageContent.UserContent;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import pojo.*;
 import java.io.IOException;
 
 
@@ -33,6 +34,7 @@ public class LogInController extends StageSceneController {
     @FXML
     private ImageView imgClose;
 
+    private  Listener listener;
     public static ChatWindowController chatController;
     private Scene scene;
     public void closeApp() {
@@ -71,13 +73,8 @@ public class LogInController extends StageSceneController {
             int port = Integer.parseInt(txtPort.getText());
             String username = txtUsername.getText();
             String password = txtPassword.getText();
-
-            Users user = new Users(username, password);
-
-            Listener listener = new Listener(hostname,port, user);
-            Thread thread = new Thread( listener);
-            thread.start();
-
+            listener= new Listener();
+            listener.LogIn(hostname, port, username, password);
         }catch (Exception e){
         }
     }
@@ -101,10 +98,10 @@ public class LogInController extends StageSceneController {
         );
     }
 
-    public void LogIn(String username, String pass){
+    public void LoadChatForm(String username, String pass){
         try{
 
-            Users user = new Users(username, pass);
+            UserContent user = new UserContent(username, pass);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ChatWindow.fxml"));
             Parent root = loader.load();
             chatController =loader.getController();
