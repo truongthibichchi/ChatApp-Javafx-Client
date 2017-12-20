@@ -33,7 +33,7 @@ public class LogInController extends StageSceneController {
     private ImageView imgClose;
 
     private  Listener listener;
-    public static ChatWindowController chatController;
+
     private Scene scene;
     public void closeApp() {
         Platform.exit();
@@ -44,27 +44,6 @@ public class LogInController extends StageSceneController {
     public LogInController(){instance=this;}
     public  static LogInController getInstance(){return instance; }
 
-
-    public void lblSignUpAction() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("SignUp.fxml"));
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            SignUpController controller = loader.getController();
-            controller.setStage(stage);
-
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("Log In");
-            stage.setResizable(false);
-            stage.setScene(new Scene(root));
-            stage.centerOnScreen();
-
-            stage.show();
-        } catch (Exception e) {
-            lblNoti.setText("Can not load Sign Up Form");
-        }
-    }
-
     public void btnLogInAction() {
         try {
             String hostname = txtHostname.getText();
@@ -72,13 +51,36 @@ public class LogInController extends StageSceneController {
             String username = txtUsername.getText();
             String password = txtPassword.getText();
             User user= new User(username, password);
-            Listener listener= new Listener(hostname, port, user);
+            listener= new Listener(hostname, port, user, this);
             Thread thread= new Thread(listener);
             thread.start();
         }catch (Exception e){
             e.printStackTrace();
         }
     }
+    public void lblSignUpAction() {
+        Platform.runLater(()-> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("SignUp.fxml"));
+                Parent root = loader.load();
+                SignUpController controller = loader.getController();
+
+                Stage stageSignUp = new Stage();
+                controller.setStage(stageSignUp);
+                stageSignUp.initStyle(StageStyle.UNDECORATED);
+                stageSignUp.setTitle("Log In");
+                stageSignUp.setResizable(false);
+                stageSignUp.setScene(new Scene(root));
+                stageSignUp.centerOnScreen();
+                this.stage.hide();
+                stageSignUp.show();
+            } catch (Exception e) {
+                lblNoti.setText("Can not load Sign Up Form");
+            }
+        });
+    }
+
+
 
 
     public void showErrorDialog (String message){
@@ -97,22 +99,25 @@ public class LogInController extends StageSceneController {
         );
     }
 
-    public void LoadChatForm(String username, String pass){
-        try{
+    public void LoadChatForm(){
+        Platform.runLater(()-> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("ChatWindow.fxml"));
+                Parent root = loader.load();
+                ChatWindowController chatController = loader.getController();
+                chatController.setListener(listener);
+                Stage stageChat = new Stage();
+                chatController.setStage(stageChat);
+                stageChat.setScene(new Scene(root));
+                stageChat.setResizable(false);
+                stageChat.initStyle(StageStyle.UNDECORATED);
+                stageChat.centerOnScreen();
 
-            User user = new User(username, pass);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ChatWindow.fxml"));
-            Parent root = loader.load();
-            chatController =loader.getController();
-            chatController.setUser(user);
-
-            stage.setResizable(false);
-            stage.setScene(new Scene(root));
-            stage.centerOnScreen();
-            stage.show();
-            // this.scene= new Scene(root);
-        }catch (Exception e){
-            lblNoti.setText("Can not load Chat Window Form");
-        }
+                this.stage.close();
+                stageChat.show();
+            } catch (Exception e) {
+                lblNoti.setText("Can not load Chat Window Form");
+            }
+        });
     }
 }

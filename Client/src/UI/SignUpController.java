@@ -26,25 +26,24 @@ public class SignUpController extends StageSceneController{
     ImageView imgClose;
 
     public void closeApp () {
-        Platform.exit();
-        //System.exit(0);
+        stage.close();
     }
 
     public void lblLogInAction(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("LogIn.fxml"));
             Parent root = loader.load();
-            Stage stage = new Stage();
+            Stage stageLogIn = new Stage();
             LogInController controller = loader.getController();
-            controller.setStage(stage);
+            controller.setStage(stageLogIn);
 
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("Log In");
-            stage.setResizable(false);
-            stage.setScene(new Scene(root));
-            stage.centerOnScreen();
+            stageLogIn.initStyle(StageStyle.UNDECORATED);
+            stageLogIn.setResizable(false);
+            stageLogIn.setScene(new Scene(root));
+            stageLogIn.centerOnScreen();
 
-            stage.show();
+            stageLogIn.show();
+            this.stage.close();
         }
         catch (Exception e)
         {
