@@ -1,22 +1,14 @@
-package UI;
+package connection.MessageContent;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class UserSignUpMsgContent implements Serializable{
     private String username;
     private String pass;
     private String nickname;
-    private String state;
     private String email;
-    private Integer isActived;
 
-    public User(String username, String pass){
-        this.username=username;
-        this.pass=pass;
-    }
-
-
-    public User(String username, String pass, String nickname, String email){
+    public UserSignUpMsgContent(String username, String pass, String nickname, String email){
         this.username=username;
         this.pass=pass;
         this.nickname=nickname;
@@ -47,15 +39,6 @@ public class User implements Serializable {
         this.nickname = nickname;
     }
 
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-
     public String getEmail() {
         return email;
     }
@@ -64,12 +47,4 @@ public class User implements Serializable {
         this.email = email;
     }
 
-
-    public Integer getIsActived() {
-        return isActived;
-    }
-
-    public void setIsActived(Integer isActived) {
-        this.isActived = isActived;
-    }
 }

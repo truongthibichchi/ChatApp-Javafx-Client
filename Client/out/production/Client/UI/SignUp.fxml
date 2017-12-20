@@ -8,12 +8,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="257.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.SignUpController">
+<AnchorPane prefHeight="400.0" prefWidth="257.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.SignUpController">
    <children>
       <AnchorPane prefHeight="622.0" prefWidth="337.0" style="-fx-background-color: #24313c;">
          <children>
-            <Button fx:id="btnSignUp" layoutX="140.0" layoutY="545.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="97.0" style="-fx-background-color: #1ab188; -fx-cursor: hand;" text="Sign Up" textFill="WHITE" />
-            <JFXTextField fx:id="txtUername" layoutX="83.0" layoutY="118.0" prefHeight="25.0" prefWidth="207.0" promptText="Username" stylesheets="@../resource/styles/TextFieldStyle.css" unFocusColor="#bcb1b1" />
+            <Button fx:id="btnSignUp" layoutX="140.0" layoutY="545.0" mnemonicParsing="false" onAction="#btnSignUpAction" prefHeight="36.0" prefWidth="97.0" style="-fx-background-color: #1ab188; -fx-cursor: hand;" text="Sign Up" textFill="WHITE" />
+            <JFXTextField fx:id="txtUsername" layoutX="83.0" layoutY="118.0" prefHeight="25.0" prefWidth="207.0" promptText="Username" stylesheets="@../resource/styles/TextFieldStyle.css" unFocusColor="#bcb1b1" />
             <JFXTextField fx:id="txtNickname" layoutX="83.0" layoutY="185.0" prefHeight="25.0" prefWidth="207.0" promptText="Nickname" stylesheets="@../resource/styles/TextFieldStyle.css" unFocusColor="#bcb1b1" />
             <JFXTextField fx:id="txtEmail" layoutX="83.0" layoutY="248.0" prefHeight="25.0" prefWidth="207.0" promptText="Email" stylesheets="@../resource/styles/TextFieldStyle.css" unFocusColor="#bcb1b1" />
             <JFXTextField fx:id="txtPassword" layoutX="83.0" layoutY="320.0" prefHeight="25.0" prefWidth="207.0" promptText="Password" stylesheets="@../resource/styles/TextFieldStyle.css" unFocusColor="#bcb1b1" />

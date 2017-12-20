@@ -51,9 +51,10 @@ public class LogInController extends StageSceneController {
             String username = txtUsername.getText();
             String password = txtPassword.getText();
             User user= new User(username, password);
-            listener= new Listener(hostname, port, user, this);
-            Thread thread= new Thread(listener);
-            thread.start();
+//            listener= new Listener(hostname, port, user);
+//            listener.logIncontroller =this;
+//            Thread thread= new Thread(listener);
+//            thread.start();
         }catch (Exception e){
             e.printStackTrace();
         }
