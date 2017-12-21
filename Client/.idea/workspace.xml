@@ -61,36 +61,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SignUpController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/UI/SignUpController.java">
+      <file leaf-file-name="ChatWindowController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UI/ChatWindowController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="63" column="49" lean-forward="false" selection-start-line="63" selection-start-column="49" selection-end-line="63" selection-end-column="49" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="85">
+              <caret line="14" column="58" lean-forward="false" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="58" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Listener.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Listener.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/UI/Listener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="799">
-              <caret line="87" column="29" lean-forward="true" selection-start-line="87" selection-start-column="29" selection-end-line="87" selection-end-column="29" />
+            <state relative-caret-position="-127">
+              <caret line="75" column="75" lean-forward="true" selection-start-line="75" selection-start-column="75" selection-end-line="75" selection-end-column="75" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LogInController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/UI/LogInController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="122" column="5" lean-forward="true" selection-start-line="102" selection-start-column="3" selection-end-line="122" selection-end-column="5" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -132,14 +120,15 @@
         <option value="$PROJECT_DIR$/src/connection/MessageContent/UserLogInMsgContent.java" />
         <option value="$PROJECT_DIR$/src/connection/NetworkMessage.java" />
         <option value="$PROJECT_DIR$/src/connection/Listener.java" />
-        <option value="$PROJECT_DIR$/src/connection/MessageType.java" />
         <option value="$PROJECT_DIR$/src/MainLauncher.java" />
         <option value="$PROJECT_DIR$/src/UI/ChatWindowController.java" />
         <option value="$PROJECT_DIR$/src/UI/User.java" />
         <option value="$PROJECT_DIR$/src/connection/MessageContent/UserSignUpMsgContent.java" />
-        <option value="$PROJECT_DIR$/src/UI/LogInController.java" />
-        <option value="$PROJECT_DIR$/src/UI/Listener.java" />
         <option value="$PROJECT_DIR$/src/UI/SignUpController.java" />
+        <option value="$PROJECT_DIR$/src/UI/LogInController.java" />
+        <option value="$PROJECT_DIR$/src/connection/MessageType.java" />
+        <option value="$PROJECT_DIR$/src/UI/Listener.java" />
+        <option value="$PROJECT_DIR$/src/UI/SignUp.fxml" />
       </list>
     </option>
   </component>
@@ -151,6 +140,7 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="683" />
     <option name="width" value="683" />
     <option name="height" value="738" />
   </component>
@@ -172,6 +162,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -218,9 +211,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -235,25 +225,25 @@
     <property name="dynamic.classpath" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="D:/1. STUDY/kì 5/java/Khánh/BT4/1412204-1412207-1412243/Source/HeartsOnline" />
+    <property name="last_opened_file_path" value="D:/1. STUDY/kì 5/java/Khánh/BT3/1412243_BTHibernate_10/Source/QuanLyMonHoc" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\Downloads\Chat Application" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="UI" />
       <recent name="connection" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Admin\Downloads\Client\Client\src\connection" />
-      <recent name="C:\Users\Admin\Downloads\Client\Client\lib" />
-    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="connection.MessageContent" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Admin\Downloads\Chat Application" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\Downloads\Client\Client\src\connection" />
+      <recent name="C:\Users\Admin\Downloads\Client\Client\lib" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -427,15 +417,15 @@
       <workItem from="1513732299410" duration="745000" />
       <workItem from="1513751330200" duration="9600000" />
       <workItem from="1513785904762" duration="4421000" />
+      <workItem from="1513821474819" duration="5466000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47215000" />
+    <option name="totallyTimeSpent" value="52681000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -482,12 +472,18 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/UI/LogInController.java</url>
-          <line>109</line>
+          <line>108</line>
           <properties />
           <option name="timeStamp" value="99" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/UI/Listener.java</url>
+          <line>75</line>
+          <properties />
+          <option name="timeStamp" value="103" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="103" />
+      <option name="time" value="104" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -496,20 +492,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Dev/Java/jdk1.8.0_144/javafx-src.zip!/javafx/application/Platform.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Dev/Java/jdk1.8.0_144/javafx-src.zip!/javafx/event/ActionEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Dev/Java/jdk1.8.0_144/javafx-src.zip!/javafx/scene/control/Button.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="129">
@@ -546,14 +528,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/connection/ConnectionCallback.java" />
-    <entry file="file://$PROJECT_DIR$/src/connection/MessageType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="14" lean-forward="false" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/connection/NetworkMessage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -636,7 +610,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="122">
           <caret line="415" column="0" lean-forward="false" selection-start-line="415" selection-start-column="0" selection-end-line="415" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -644,7 +617,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="122">
           <caret line="554" column="0" lean-forward="false" selection-start-line="554" selection-start-column="0" selection-end-line="554" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -660,7 +632,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="122">
           <caret line="190" column="0" lean-forward="false" selection-start-line="190" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -682,14 +653,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="198" column="0" lean-forward="false" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
-          <folding>
-            <element signature="e#2975#2976#0" expanded="false" />
-            <element signature="e#3004#3005#0" expanded="false" />
-            <element signature="e#3304#3305#0" expanded="false" />
-            <element signature="e#3336#3337#0" expanded="false" />
-            <element signature="e#4362#4363#0" expanded="false" />
-            <element signature="e#4393#4394#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -844,14 +807,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/ChatWindowController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/connection/MessageContent/UserLogInMsgContent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -870,37 +825,87 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/connection/MessageContent/UserSignUpMsgContent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-120">
+        <state relative-caret-position="33">
           <caret line="4" column="4" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
-          <folding>
-            <element signature="e#845#846#0" expanded="true" />
-            <element signature="e#885#886#0" expanded="true" />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/connection/MessageType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="20" lean-forward="true" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/UI/LogInController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="122" column="5" lean-forward="true" selection-start-line="102" selection-start-column="3" selection-end-line="122" selection-end-column="5" />
+        <state relative-caret-position="0">
+          <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/Listener.java">
+    <entry file="file://$PROJECT_DIR$/src/UI/SignUpController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="87" column="29" lean-forward="true" selection-start-line="87" selection-start-column="29" selection-end-line="87" selection-end-column="29" />
+        <state relative-caret-position="-969">
+          <caret line="15" column="46" lean-forward="false" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/SignUpController.java">
+    <entry file="file://$PROJECT_DIR$/src/UI/ChatWindow.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/SignUp.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1513825435989" expanded="true" signature="1865:2002" ph="..." />
+            <marker date="1513825435989" expanded="true" signature="1888:1977" ph="..." />
+            <marker date="1513825435989" expanded="true" signature="2580:2716" ph="..." />
+            <marker date="1513825435989" expanded="true" signature="2603:2691" ph="..." />
+            <marker date="1513825435989" expanded="true" signature="2976:3111" ph="..." />
+            <marker date="1513825435989" expanded="true" signature="2999:3086" ph="..." />
+            <marker date="1513825435989" expanded="true" signature="3240:3379" ph="..." />
+            <marker date="1513825435989" expanded="true" signature="3263:3354" ph="..." />
+            <marker date="1513825435989" expanded="true" signature="3508:3644" ph="..." />
+            <marker date="1513825435989" expanded="true" signature="3531:3619" ph="..." />
+            <marker date="1513825435989" expanded="true" signature="3773:3912" ph="..." />
+            <marker date="1513825435989" expanded="true" signature="3796:3887" ph="..." />
+            <marker date="1513825435989" expanded="true" signature="4002:4107" ph="..." />
+            <marker date="1513825435989" expanded="true" signature="4024:4086" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/ChatWindowController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="63" column="49" lean-forward="false" selection-start-line="63" selection-start-column="49" selection-end-line="63" selection-end-column="49" />
+        <state relative-caret-position="85">
+          <caret line="14" column="58" lean-forward="false" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/Listener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-127">
+          <caret line="75" column="75" lean-forward="true" selection-start-line="75" selection-start-column="75" selection-end-line="75" selection-end-column="75" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

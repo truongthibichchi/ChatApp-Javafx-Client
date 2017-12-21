@@ -21,7 +21,7 @@
          </image>
       </ImageView>
       <JFXTextField fx:id="txtUsername" layoutX="63.0" layoutY="130.0" prefHeight="25.0" prefWidth="182.0" promptText="Username" stylesheets="@../resource/styles/TextFieldStyle.css" />
-      <JFXTextField fx:id="txtPassword" layoutX="63.0" layoutY="200.0" prefHeight="25.0" prefWidth="182.0" promptText="Password" stylesheets="@../resource/styles/TextFieldStyle.css" />
+      <JFXTextField fx:id="txtPassword" accessibleRole="PASSWORD_FIELD" layoutX="63.0" layoutY="200.0" prefHeight="25.0" prefWidth="182.0" promptText="Password" stylesheets="@../resource/styles/TextFieldStyle.css" />
       <Button fx:id="btnLogIn" layoutX="103.0" layoutY="449.0" mnemonicParsing="false" onAction="#btnLogInAction" prefHeight="37.0" prefWidth="103.0" style="-fx-cursor: hand; -fx-background-color: #1ab188;" text="Log In" textFill="WHITE" />
       <Label fx:id="lblNoti" layoutX="34.0" layoutY="416.0" text="Thông báo" textFill="#f22323" />
       <Label fx:id="lblSignUp" layoutX="185.0" layoutY="499.0" onMouseClicked="#lblSignUpAction" style="-fx-cursor: hand;" text="Sign Up" textFill="#1ab188" underline="true" />

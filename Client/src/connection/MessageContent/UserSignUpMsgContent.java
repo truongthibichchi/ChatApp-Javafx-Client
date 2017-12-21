@@ -6,13 +6,12 @@ public class UserSignUpMsgContent implements Serializable{
     private String username;
     private String pass;
     private String nickname;
-    private String email;
 
-    public UserSignUpMsgContent(String username, String pass, String nickname, String email){
+    public UserSignUpMsgContent(String username, String pass, String nickname){
         this.username=username;
         this.pass=pass;
         this.nickname=nickname;
-        this.email=email;
+
     }
     public String getUsername() {
         return username;
@@ -39,12 +38,5 @@ public class UserSignUpMsgContent implements Serializable{
         this.nickname = nickname;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
 }

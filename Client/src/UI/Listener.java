@@ -56,12 +56,33 @@ public class Listener {
 //    }
 
 
-    private   void LogIn() throws IOException{
-        UserLogInMsgContent userContent = new UserLogInMsgContent(user.getUsername(), user.getPass());
-        NetworkMessage msg = new NetworkMessage();
-        msg.setContent(userContent);
-        msg.setType(MessageType.LOG_IN);
-        outputStream.writeObject(msg);
+    public  void LogIn() throws IOException{
+       Thread thread = new Thread(()->{
+           try {
+               socket = new Socket(hostname, port);
+               outputStream = new ObjectOutputStream(socket.getOutputStream());
+               inputStream = new ObjectInputStream(socket.getInputStream());
+           } catch (IOException e) {
+               // logIncontroller.showErrorDialog("Could not connect to server");
+           }
+           try{
+               UserLogInMsgContent userContent = new UserLogInMsgContent(user.getUsername(), user.getPass());
+               NetworkMessage msg = new NetworkMessage();
+               msg.setContent(userContent);
+               msg.setType(MessageType.LOG_IN);
+               outputStream.writeObject(msg);
+               while (socket.isConnected()) {
+                   NetworkMessage msgReceived = null;
+                   msgReceived = (NetworkMessage) inputStream.readObject();
+                   if (msgReceived != null) {
+                       if (msgReceived.getType() == MessageType.LOG_IN_SUCEEDED) {
+                           logIncontroller.LoadChatForm();
+                       }
+                   }
+               }
+           }catch (Exception e){}
+       });
+       thread.start();
     }
 
     public void SignUp (User user) throws IOException{
@@ -74,7 +95,7 @@ public class Listener {
                    // logIncontroller.showErrorDialog("Could not connect to server");
                 }
                 try {
-                    UserSignUpMsgContent usercontent = new UserSignUpMsgContent(user.getUsername(), user.getPass(), user.getNickname(), user.getEmail());
+                    UserSignUpMsgContent usercontent = new UserSignUpMsgContent(user.getUsername(), user.getPass(), user.getNickname());
                     NetworkMessage msg = new NetworkMessage();
                     msg.setContent(usercontent);
                     msg.setType(MessageType.SIGN_UP);

@@ -16,7 +16,7 @@
             <JFXTextField fx:id="txtUsername" layoutX="83.0" layoutY="118.0" prefHeight="25.0" prefWidth="207.0" promptText="Username" stylesheets="@../resource/styles/TextFieldStyle.css" unFocusColor="#bcb1b1" />
             <JFXTextField fx:id="txtNickname" layoutX="83.0" layoutY="185.0" prefHeight="25.0" prefWidth="207.0" promptText="Nickname" stylesheets="@../resource/styles/TextFieldStyle.css" unFocusColor="#bcb1b1" />
             <JFXTextField fx:id="txtEmail" layoutX="83.0" layoutY="248.0" prefHeight="25.0" prefWidth="207.0" promptText="Email" stylesheets="@../resource/styles/TextFieldStyle.css" unFocusColor="#bcb1b1" />
-            <JFXTextField fx:id="txtPassword" layoutX="83.0" layoutY="320.0" prefHeight="25.0" prefWidth="207.0" promptText="Password" stylesheets="@../resource/styles/TextFieldStyle.css" unFocusColor="#bcb1b1" />
+            <JFXTextField fx:id="txtPassword" accessibleRole="PASSWORD_FIELD" layoutX="83.0" layoutY="320.0" prefHeight="25.0" prefWidth="207.0" promptText="Password" stylesheets="@../resource/styles/TextFieldStyle.css" unFocusColor="#bcb1b1" />
             <ImageView fitHeight="74.0" fitWidth="151.0" layoutX="94.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resource/images/tagami.png" />
