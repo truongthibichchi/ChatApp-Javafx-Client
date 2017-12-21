@@ -6,9 +6,6 @@ public class User implements Serializable {
     private String username;
     private String pass;
     private String nickname;
-    private String state;
-    private String email;
-    private Integer isActived;
 
     public User(String username, String pass){
         this.username=username;
@@ -16,11 +13,10 @@ public class User implements Serializable {
     }
 
 
-    public User(String username, String pass, String nickname, String email){
+    public User(String username, String pass, String nickname){
         this.username=username;
         this.pass=pass;
         this.nickname=nickname;
-        this.email=email;
     }
     public String getUsername() {
         return username;
@@ -47,29 +43,5 @@ public class User implements Serializable {
         this.nickname = nickname;
     }
 
-    public String getState() {
-        return state;
-    }
 
-    public void setState(String state) {
-        this.state = state;
-    }
-
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-
-    public Integer getIsActived() {
-        return isActived;
-    }
-
-    public void setIsActived(Integer isActived) {
-        this.isActived = isActived;
-    }
 }

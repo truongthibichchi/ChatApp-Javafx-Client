@@ -13,13 +13,12 @@
       <AnchorPane prefHeight="622.0" prefWidth="337.0" style="-fx-background-color: #24313c;">
          <children>
             <Button fx:id="btnSignUp" layoutX="140.0" layoutY="545.0" mnemonicParsing="false" onAction="#btnSignUpAction" prefHeight="36.0" prefWidth="97.0" style="-fx-background-color: #1ab188; -fx-cursor: hand;" text="Sign Up" textFill="WHITE" />
-            <JFXTextField fx:id="txtUsername" layoutX="83.0" layoutY="118.0" prefHeight="25.0" prefWidth="207.0" promptText="Username" stylesheets="@../resource/styles/TextFieldStyle.css" unFocusColor="#bcb1b1" />
-            <JFXTextField fx:id="txtNickname" layoutX="83.0" layoutY="185.0" prefHeight="25.0" prefWidth="207.0" promptText="Nickname" stylesheets="@../resource/styles/TextFieldStyle.css" unFocusColor="#bcb1b1" />
-            <JFXTextField fx:id="txtEmail" layoutX="83.0" layoutY="248.0" prefHeight="25.0" prefWidth="207.0" promptText="Email" stylesheets="@../resource/styles/TextFieldStyle.css" unFocusColor="#bcb1b1" />
-            <JFXTextField fx:id="txtPassword" layoutX="83.0" layoutY="320.0" prefHeight="25.0" prefWidth="207.0" promptText="Password" stylesheets="@../resource/styles/TextFieldStyle.css" unFocusColor="#bcb1b1" />
+            <JFXTextField fx:id="txtUsername" layoutX="83.0" layoutY="118.0" prefHeight="25.0" prefWidth="207.0" promptText="Username" stylesheets="@../styles/TextFieldStyle.css" unFocusColor="#bcb1b1" />
+            <JFXTextField fx:id="txtNickname" layoutX="83.0" layoutY="185.0" prefHeight="25.0" prefWidth="207.0" promptText="Nickname" stylesheets="@../styles/TextFieldStyle.css" unFocusColor="#bcb1b1" />
+            <JFXTextField fx:id="txtPassword" accessibleRole="PASSWORD_FIELD" layoutX="83.0" layoutY="264.0" prefHeight="25.0" prefWidth="207.0" promptText="Password" stylesheets="@../styles/TextFieldStyle.css" unFocusColor="#bcb1b1" />
             <ImageView fitHeight="74.0" fitWidth="151.0" layoutX="94.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resource/images/tagami.png" />
+                  <Image url="@../images/tagami.png" />
                </image>
             </ImageView>
             <Label layoutX="92.0" layoutY="590.0" text="Have an account? " textFill="WHITE" />
@@ -27,28 +26,23 @@
             <Label fx:id="lblNoti" layoutX="83.0" layoutY="358.0" text="Thông báo" textFill="#ff2108" />
             <ImageView fx:id="imgClose" fitHeight="25.0" fitWidth="34.0" layoutX="303.0" layoutY="6.0" onMouseClicked="#closeApp" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
                <image>
-                  <Image url="@../resource/images/close.png" />
+                  <Image url="@../images/close.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="36.0" fitWidth="34.0" layoutX="32.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fitHeight="36.0" fitWidth="34.0" layoutX="40.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resource/images/user.png" />
+                  <Image url="@../images/user.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="30.0" fitWidth="34.0" layoutX="40.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resource/images/nickname.png" />
+                  <Image url="@../images/nickname.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="25.0" fitWidth="34.0" layoutX="42.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="42.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resource/images/email.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="43.0" layoutY="318.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../resource/images/password.png" />
+                  <Image url="@../images/password.png" />
                </image>
             </ImageView>
             <Label layoutX="149.0" layoutY="397.0" text="Server Detail" textFill="WHITE">
@@ -57,8 +51,8 @@
                </font>
             </Label>
             <Label layoutX="102.0" layoutY="409.0" text="------------------------------------" textFill="WHITE" />
-            <JFXTextField fx:id="txtHostname" layoutX="132.0" layoutY="456.0" stylesheets="@../resource/styles/TextFieldStyle.css" text="localhost" />
-            <JFXTextField fx:id="txtPort" layoutX="132.0" layoutY="502.0" stylesheets="@../resource/styles/TextFieldStyle.css" text="9052" />
+            <JFXTextField fx:id="txtHostname" layoutX="132.0" layoutY="456.0" stylesheets="@../styles/TextFieldStyle.css" text="localhost" />
+            <JFXTextField fx:id="txtPort" layoutX="132.0" layoutY="502.0" stylesheets="@../styles/TextFieldStyle.css" text="9052" />
             <Label layoutX="62.0" layoutY="467.0" text="Host name" textFill="WHITE" />
             <Label layoutX="80.0" layoutY="506.0" text="Port" textFill="WHITE" />
          </children>

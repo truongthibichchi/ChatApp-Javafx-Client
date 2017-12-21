@@ -1,6 +1,5 @@
 package UI;
 
-
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,36 +12,37 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
 import java.io.IOException;
-
-
-//import java.awt.*;
-
+import java.net.URL;
 
 public class LogInController extends StageSceneController {
+    private static LogInController instance;
+    @FXML
+    private Label lblNoti;
     @FXML
     private TextField txtUsername, txtPassword, txtPort, txtHostname;
-
     @FXML
-    private Label lblSignUp, lblNoti;
-
+    private Label lblSignUp;
     @FXML
     private Button btnLogIn;
-
     @FXML
     private ImageView imgClose;
-
-    private  Listener listener;
-
+    private Listener listener;
     private Scene scene;
+
+    public LogInController() {
+        instance = this;
+    }
+
+    public static LogInController getInstance() {
+        return instance;
+    }
+
     public void closeApp() {
         Platform.exit();
         System.exit(0);
     }
-
-    private static LogInController instance;
-    public LogInController(){instance=this;}
-    public  static LogInController getInstance(){return instance; }
 
     public void btnLogInAction() {
         try {
@@ -50,18 +50,19 @@ public class LogInController extends StageSceneController {
             int port = Integer.parseInt(txtPort.getText());
             String username = txtUsername.getText();
             String password = txtPassword.getText();
-            User user= new User(username, password);
-            listener= new Listener(hostname, port, user);
-            listener.logIncontroller =this;
+            User user = new User(username, password);
+            listener = new Listener(hostname, port, user);
+            listener.logIncontroller = this;
             listener.LogIn();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     public void lblSignUpAction() {
-        Platform.runLater(()-> {
+        Platform.runLater(() -> {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("SignUp.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/SignUp.fxml"));
                 Parent root = loader.load();
                 SignUpController controller = loader.getController();
 
@@ -81,43 +82,48 @@ public class LogInController extends StageSceneController {
     }
 
 
-
-
-    public void showErrorDialog (String message){
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning!");
-            alert.setHeaderText(message);
-            alert.setContentText("Please check for firewall issues and check if the server is running.");
-            alert.showAndWait();
+    public void showErrorDialog(String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning!");
+        alert.setHeaderText(message);
+        alert.setContentText("Please check for firewall issues and check if the server is running.");
+        alert.showAndWait();
     }
-    public void showScene() throws IOException{
-        Platform.runLater(()-> {
+
+    public void showScene() throws IOException {
+        Platform.runLater(() -> {
                     Stage stage = (Stage) txtHostname.getScene().getWindow();
                     stage.setResizable(false);
-                   stage.centerOnScreen();
+                    stage.centerOnScreen();
                 }
         );
     }
 
-    public void LoadChatForm(){
-        Platform.runLater(()-> {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("ChatWindow.fxml"));
-                Parent root = loader.load();
-                ChatWindowController chatController = loader.getController();
-                chatController.setListener(listener);
-                Stage stageChat = new Stage();
-                chatController.setStage(stageChat);
-                stageChat.setScene(new Scene(root));
-                stageChat.setResizable(false);
-                stageChat.initStyle(StageStyle.UNDECORATED);
-                stageChat.centerOnScreen();
+    public void LoadChatForm() {
+        Platform.runLater(()->{
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            URL location = getClass().getResource("/views/Chat.fxml");
+            loader.setLocation(location);
+            Parent root = loader.load();
 
-                this.stage.close();
-                stageChat.show();
-            } catch (Exception e) {
-                lblNoti.setText("Can not load Chat Window Form");
-            }
+            ChatController controller = loader.getController();
+            controller.setListener(listener);
+            Stage stageChat = new Stage();
+            controller.setStage(stageChat);
+            stageChat.setScene(new Scene(root));
+            stageChat.initStyle(StageStyle.UNDECORATED);
+            stageChat.centerOnScreen();
+            stageChat.setResizable(false);
+
+            this.stage.close();
+            stageChat.show();
+        } catch (Exception e) {
+            System.err.println(e);
+        }
         });
+    }
+    public void showNoti(String x){
+        lblNoti.setText(x);
     }
 }

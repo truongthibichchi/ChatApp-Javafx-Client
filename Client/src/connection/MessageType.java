@@ -4,8 +4,9 @@ import java.io.Serializable;
 
 public enum MessageType implements Serializable{
     LOG_IN,
-    CONNECTED,
-    LOG_IN_SUCEEDED,
+    LOG_IN_SUCCEEDED,
+    USER_EXISTED,
     SIGN_UP,
+    SIGN_UP_CUCCEEDED,
     CHAT,
 }

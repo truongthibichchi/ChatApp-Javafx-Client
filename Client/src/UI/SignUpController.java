@@ -7,8 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -21,7 +21,7 @@ public class SignUpController extends StageSceneController{
     Button btnSignUp;
 
     @FXML
-    Label lblNoti, lblLogin;
+    private  Label lblNoti, lblLogin;
 
     @FXML
     ImageView imgClose;
@@ -32,7 +32,7 @@ public class SignUpController extends StageSceneController{
 
     public void lblLogInAction(){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("LogIn.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../res/views/LogIn.fxml"));
             Parent root = loader.load();
             Stage stageLogIn = new Stage();
             LogInController controller = loader.getController();
@@ -58,9 +58,8 @@ public class SignUpController extends StageSceneController{
             int port = Integer.parseInt(txtPort.getText());
             String username = txtUsername.getText();
             String password = txtPassword.getText();
-            String email=txtEmail.getText();
             String nickname = txtNickname.getText();
-            User user= new User(username, password, email, nickname);
+            User user= new User(username, password, nickname);
             listener = new Listener(hostname, port, user);
             listener.signUpController=this;
             listener.SignUp(user);
@@ -69,26 +68,32 @@ public class SignUpController extends StageSceneController{
         }
     }
 
-    public void LoadChatForm(){
-        Platform.runLater(()-> {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("ChatWindow.fxml"));
-                Parent root = loader.load();
-                ChatWindowController chatController = loader.getController();
-                chatController.setListener(listener);
-                Stage stageChat = new Stage();
-                chatController.setStage(stageChat);
-                stageChat.setScene(new Scene(root));
-                stageChat.setResizable(false);
-                stageChat.initStyle(StageStyle.UNDECORATED);
-                stageChat.centerOnScreen();
+    public void LoadChatForm() {
+        Platform.runLater(()->{
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Chat.fxml"));
+            Parent root = (Pane) loader.load();
 
-                this.stage.close();
-                stageChat.show();
-            } catch (Exception e) {
-                lblNoti.setText("Can not load Chat Window Form");
-            }
+            ChatController chatController = loader.getController();
+            chatController.setListener(listener);
+
+            Stage stageChat = new Stage();
+            chatController.setStage(stageChat);
+            stageChat.setScene(new Scene(root));
+            stageChat.setResizable(false);
+            stageChat.initStyle(StageStyle.UNDECORATED);
+            stageChat.centerOnScreen();
+
+            this.stage.close();
+            stageChat.show();
+
+        } catch (Exception e) {
+            System.err.println(e);
+        }
         });
+    }
+    public void showNoti(String x){
+        lblNoti.setText(x);
     }
 
 }

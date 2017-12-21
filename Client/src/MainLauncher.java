@@ -1,4 +1,3 @@
-import UI.ChatWindowController;
 import UI.LogInController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +10,7 @@ public class MainLauncher extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("UI/LogIn.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("views/LogIn.fxml"));
         Parent root = loader.load();
 
         primaryStage.initStyle(StageStyle.UNDECORATED);

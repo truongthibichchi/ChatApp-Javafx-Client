@@ -22,7 +22,7 @@ public class Listener {
 
     public LogInController logIncontroller;
     public SignUpController signUpController;
-    public ChatWindowController chatWindowController;
+    public ChatController chatWindowController;
 
     public Listener(String hostname, int port, User user) {
         this.hostname = hostname;
@@ -57,7 +57,7 @@ public class Listener {
 
 
     public  void LogIn() throws IOException{
-       Thread thread = new Thread(()->{
+     Thread thread = new Thread(()->{
            try {
                socket = new Socket(hostname, port);
                outputStream = new ObjectOutputStream(socket.getOutputStream());
@@ -75,9 +75,10 @@ public class Listener {
                    NetworkMessage msgReceived = null;
                    msgReceived = (NetworkMessage) inputStream.readObject();
                    if (msgReceived != null) {
-                       if (msgReceived.getType() == MessageType.LOG_IN_SUCEEDED) {
+                       if (msgReceived.getType() == MessageType.LOG_IN_SUCCEEDED) {
                            logIncontroller.LoadChatForm();
                        }
+                       
                    }
                }
            }catch (Exception e){}
@@ -92,7 +93,6 @@ public class Listener {
                     outputStream = new ObjectOutputStream(socket.getOutputStream());
                     inputStream = new ObjectInputStream(socket.getInputStream());
                 } catch (IOException e) {
-                   // logIncontroller.showErrorDialog("Could not connect to server");
                 }
                 try {
                     UserSignUpMsgContent usercontent = new UserSignUpMsgContent(user.getUsername(), user.getPass(), user.getNickname());
@@ -104,9 +104,13 @@ public class Listener {
                         NetworkMessage msgReceived = null;
                         msgReceived = (NetworkMessage) inputStream.readObject();
                         if (msgReceived != null) {
-                            if (msgReceived.getType() == MessageType.CONNECTED) {
+                            if (msgReceived.getType() == MessageType.SIGN_UP_CUCCEEDED) {
                                 signUpController.LoadChatForm();
                             }
+                            if(msgReceived.getType()==MessageType.USER_EXISTED){
+                                signUpController.showNoti("User has existed, please change username ");
+                            }
+
                         }
                     }
                 }catch (Exception e){}
