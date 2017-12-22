@@ -2,7 +2,9 @@ package connection;
 
 
 import controller.ChatController;
+import controller.LogInController;
 import controller.MainWindowController;
+import controller.SignUpController;
 import javafx.collections.ObservableList;
 
 import java.io.IOException;
@@ -20,10 +22,19 @@ public class Listener implements Runnable{
     private ObjectInputStream inputStream;
 
     private ConnectionCallback callback;
+    private LogInController logInController;
     private MainWindowController mainWindowController;
+    private SignUpController signUpController;
+
+    public void setSignUpController(SignUpController signUpController) {
+        this.signUpController = signUpController;
+    }
+
+    public void setLogInController(LogInController logInController) {
+        this.logInController = logInController;
+    }
 
     private HashMap<ObservableList<User>, ChatController> conversationControllers = new HashMap<>();
-
 
     public void setMainWindowController(MainWindowController mainWindowController) {
         this.mainWindowController = mainWindowController;
@@ -47,6 +58,7 @@ public class Listener implements Runnable{
         try{
             socket = new Socket(hostname, port);
             outputStream = new ObjectOutputStream(socket.getOutputStream());
+            inputStream = new ObjectInputStream(socket.getInputStream());
 
         }catch (Exception e){
             System.err.println(e);
@@ -54,15 +66,15 @@ public class Listener implements Runnable{
 
         try{
             connectToServer();
-            inputStream = new ObjectInputStream(socket.getInputStream());
+
             while(socket.isConnected()){
                 Message msg = (Message) inputStream.readObject();
 
                 if(msg!=null){
                     switch (msg.getType()){
                         case LOGIN_SUCCEEDED:
-                            mainWindowController.drawUser(user);
-                            mainWindowController.setUserList();
+                            user.setNickname(msg.getNickname());
+                            callback.onLoginSucceeded(msg);
                             break;
 
 
@@ -75,7 +87,7 @@ public class Listener implements Runnable{
     }
 
     private void connectToServer() {
-        Message msg = new Message(user.getUsername(), user.getNickname(), MessageType.LOGIN);
+        Message msg = new Message(user.getUsername(), user.getPass(), MessageType.LOGIN);
         try {
             outputStream.writeObject(msg);
         } catch (IOException e) {

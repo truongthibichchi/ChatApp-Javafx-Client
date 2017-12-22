@@ -1,9 +1,8 @@
 package controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import connection.ConnectionCallback;
-import connection.Status;
-import connection.User;
+import connection.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -40,14 +39,18 @@ public class MainWindowController extends StageSceneController implements Initia
     JFXTextField txtUsername, txtPassword, txtNickname;
 
     @FXML
-    private Button btnUpdateInfo, btnNewMess;
+    private JFXButton btnUpdateInfo, btnNewChat;
 
     @FXML
     private BorderPane borderPane;
     private double xOffset;
     private double yOffset;
 
+    Listener listener;
 
+    public void setListener(Listener listener) {
+        this.listener = listener;
+    }
 
     private  ObservableList<User> users;
     public void imgCloseAction() {
@@ -55,12 +58,12 @@ public class MainWindowController extends StageSceneController implements Initia
         System.exit(0);
     }
 
-    public void drawUser(User user){
+    public void drawUser(Message msg){
         Platform.runLater(()->{
-            txtUsername.setText(user.getUsername());
-            txtNickname.setText(user.getNickname());
-            txtPassword.setText(user.getPass());
-            Image imgAvatar = new Image(getClass().getClassLoader().getResource("images/avatars/"+user.getUsername()+".png").toString());
+            txtUsername.setText(msg.getUserName());
+            txtNickname.setText(msg.getNickname());
+            txtPassword.setText(msg.getPass());
+            Image imgAvatar = new Image(getClass().getClassLoader().getResource("images/avatars/"+msg.getUserName()+".png").toString());
             cirAvatar.setFill(new ImagePattern(imgAvatar));
         });
 
@@ -128,16 +131,20 @@ public class MainWindowController extends StageSceneController implements Initia
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-                /* Drag and Drop */
+
+    }
+
+    public void addDragAndDropHandler() {
+       /* Drag and Drop */
         borderPane.setOnMousePressed(event -> {
-            xOffset = MainLauncher.getPrimaryStage().getX() - event.getScreenX();
-            yOffset =MainLauncher.getPrimaryStage().getY() - event.getScreenY();
+            xOffset = this.stage.getX() - event.getScreenX();
+            yOffset =this.stage.getY() - event.getScreenY();
             borderPane.setCursor(Cursor.CLOSED_HAND);
         });
 
         borderPane.setOnMouseDragged(event -> {
-            controller.MainLauncher.getPrimaryStage().setX(event.getScreenX() + xOffset);
-            controller.MainLauncher.getPrimaryStage().setY(event.getScreenY() + yOffset);
+            this.stage.setX(event.getScreenX() + xOffset);
+            this.stage.setY(event.getScreenY() + yOffset);
 
         });
 
@@ -148,7 +155,11 @@ public class MainWindowController extends StageSceneController implements Initia
 
 
     @Override
-    public void onConnectionFailed() {
+    public void onLoginSucceeded(Message message) {
 
     }
+
+    @Override
+    public void onConnectionFailed() { }
+
 }

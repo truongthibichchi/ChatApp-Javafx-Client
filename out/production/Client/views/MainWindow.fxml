@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -12,23 +13,23 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane prefHeight="595.0" prefWidth="564.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainWindowController">
+<AnchorPane prefHeight="603.0" prefWidth="521.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainWindowController">
    <children>
       <Pane layoutY="45.0" prefHeight="558.0" prefWidth="256.0" style="-fx-background-color: #292F39;">
          <children>
             <Circle fx:id="cirAvatar" fill="DODGERBLUE" layoutX="128.0" layoutY="159.0" radius="120.0" stroke="BLACK" strokeType="INSIDE" />
+            <JFXButton fx:id="btnUpdateInfo" layoutX="77.0" layoutY="499.0" prefHeight="45.0" prefWidth="102.0" style="-fx-background-color: #1ab188;" text="Update" textFill="WHITE" />
          </children>
       </Pane>
-      <Button fx:id="btnNewMess" layoutX="367.0" layoutY="558.0" mnemonicParsing="false" onMouseClicked="#btnNewMessAction" prefHeight="45.0" prefWidth="113.0" text="New Message" />
-      <ListView fx:id="lvUserList" layoutX="256.0" layoutY="45.0" prefHeight="514.0" prefWidth="320.0" />
+      <Button fx:id="btnNewMess" layoutX="276.0" layoutY="451.0" mnemonicParsing="false" onMouseClicked="#btnNewMessAction" prefHeight="45.0" prefWidth="113.0" text="New Message" />
+      <ListView fx:id="lvUserList" layoutX="256.0" layoutY="45.0" prefHeight="499.0" prefWidth="268.0" />
       <Label fx:id="lblUsername" layoutX="30.0" layoutY="369.0" text="Username" textFill="WHITE" />
-      <Button fx:id="btnUpdateInfo" layoutX="90.0" layoutY="558.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="102.0" style="-fx-background-color: #e0146d;" text="Update" textFill="WHITE" />
       <JFXTextField fx:id="txtUsername" layoutX="91.0" layoutY="352.0" prefHeight="25.0" prefWidth="133.0" stylesheets="@../styles/TextFieldStyle.css" />
       <JFXTextField fx:id="txtNickname" layoutX="90.0" layoutY="411.0" stylesheets="@../styles/TextFieldStyle.css" />
       <JFXTextField fx:id="txtPassword" accessibleRole="PASSWORD_FIELD" layoutX="90.0" layoutY="473.0" stylesheets="@../styles/TextFieldStyle.css" />
       <Label layoutX="29.0" layoutY="425.0" text="NickName" textFill="WHITE" />
       <Label layoutX="32.0" layoutY="483.0" text="Password" textFill="WHITE" />
-      <BorderPane fx:id="borderPane" layoutX="-26.0" prefHeight="45.0" prefWidth="604.0" style="-fx-background-color: #1E222A;">
+      <BorderPane fx:id="borderPane" layoutX="-26.0" prefHeight="45.0" prefWidth="551.0" style="-fx-background-color: #1E222A;">
          <center>
             <ImageView fitHeight="44.0" fitWidth="163.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
@@ -37,7 +38,7 @@
             </ImageView>
          </center>
          <right>
-            <ImageView fx:id="imaClose" fitHeight="36.0" fitWidth="52.0" onMouseClicked="#imgCloseAction" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <ImageView fx:id="imaClose" fitHeight="43.0" fitWidth="69.0" onMouseClicked="#imgCloseAction" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@../images/close.png" />
                </image>
@@ -47,5 +48,6 @@
             </ImageView>
          </right>
       </BorderPane>
+      <JFXButton fx:id="btnNewChat" layoutX="334.0" layoutY="544.0" onAction="#btnNewMessAction" prefHeight="45.0" prefWidth="113.0" style="-fx-background-color: #da1b81;" text="New Chat" textFill="WHITE" />
    </children>
 </AnchorPane>

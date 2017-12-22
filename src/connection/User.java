@@ -16,9 +16,9 @@ public class User implements Serializable {
         this.status = status;
     }
 
-    public User(String username, String nickname){
+    public User(String username, String pass){
         this.username=username;
-        this.nickname=nickname;
+        this.pass=pass;
     }
 
 

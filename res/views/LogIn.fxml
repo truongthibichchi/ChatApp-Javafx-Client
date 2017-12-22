@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="529.0" prefWidth="286.0" style="-fx-background-color: #24313c;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LogInController">
+   <children>
+      <ImageView fitHeight="87.0" fitWidth="161.0" layoutX="63.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/tagami.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgClose" fitHeight="29.0" fitWidth="34.0" layoutX="247.0" layoutY="7.0" onMouseClicked="#closeApp" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+         <image>
+            <Image url="@../images/close.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lblNoti" layoutX="34.0" layoutY="416.0" text="Thông báo" textFill="#f22323" />
+      <Label fx:id="lblSignUp" layoutX="185.0" layoutY="499.0" onMouseClicked="#lblSignUpAction" style="-fx-cursor: hand;" text="Sign Up" textFill="#1ab188" underline="true" />
+      <Label layoutX="42.0" layoutY="499.0" text="Don't have an account?" textFill="WHITE" />
+      <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="31.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/user.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="31.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/password.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="104.0" layoutY="282.0" text="Server Detail" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="57.0" layoutY="294.0" text="------------------------------------" textFill="WHITE" />
+      <Label layoutX="17.0" layoutY="335.0" text="Host name" textFill="WHITE" />
+      <Label layoutX="35.0" layoutY="374.0" text="Port" textFill="WHITE" />
+      <JFXTextField fx:id="txtusername" layoutX="71.0" layoutY="134.0" prefHeight="25.0" prefWidth="187.0" promptText="Username" stylesheets="@../styles/TextFieldStyle.css" />
+      <JFXTextField fx:id="txtpassword" layoutX="71.0" layoutY="205.0" prefHeight="25.0" prefWidth="187.0" promptText="Password" stylesheets="@../styles/TextFieldStyle.css" />
+      <JFXTextField fx:id="txthostname" layoutX="87.0" layoutY="323.0" prefHeight="25.0" prefWidth="173.0" stylesheets="@../styles/TextFieldStyle.css" text="localhost" />
+      <JFXTextField fx:id="txtport" layoutX="87.0" layoutY="362.0" prefHeight="25.0" prefWidth="173.0" stylesheets="@../styles/TextFieldStyle.css" text="9999" />
+      <JFXButton fx:id="btnLogIn" layoutX="96.0" layoutY="447.0" onAction="#btnLogInAction" prefHeight="37.0" prefWidth="96.0" style="-fx-background-color: #1ab188; -fx-cursor: hand;" text="Log In" textFill="WHITE" />
+   </children>
+</AnchorPane>
