@@ -32,8 +32,6 @@ public class CellRendererInChat implements Callback<ListView<User>, ListCell<Use
                     statusImageView.setImage(statusImage);
 
                     ImageView pictureImageView = new ImageView();
-                    Circle cir = new Circle(300, 300, 300);
-                    pictureImageView.setClip(cir);
 
                     Image image = new Image(getClass().getClassLoader().getResource("images/avatars/" + user.getUsername().toLowerCase() + ".png").toString(), 50, 50, true, true);
                     pictureImageView.setImage(image);

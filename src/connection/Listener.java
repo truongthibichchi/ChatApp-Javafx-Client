@@ -3,11 +3,13 @@ package connection;
 
 import controller.ChatController;
 import controller.MainWindowController;
+import javafx.collections.ObservableList;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.HashMap;
 
 public class Listener implements Runnable{
     private int port;
@@ -17,15 +19,21 @@ public class Listener implements Runnable{
     private ObjectOutputStream outputStream;
     private ObjectInputStream inputStream;
 
-    public MainWindowController mainWindowController;
-    public ChatController chatController;
+    private ConnectionCallback callback;
+    private MainWindowController mainWindowController;
 
-    public void setChatController(ChatController chatController) {
-        this.chatController = chatController;
-    }
+    private HashMap<ObservableList<User>, ChatController> conversationControllers = new HashMap<>();
+
 
     public void setMainWindowController(MainWindowController mainWindowController) {
         this.mainWindowController = mainWindowController;
+    }
+    public void setConnectionCallback (ConnectionCallback callback) {
+        this.callback = callback;
+    }
+
+    public void setConversationController (ObservableList<User> userList, ChatController controller) {
+        conversationControllers.put(userList, controller);
     }
 
     public Listener(String hostname, int port, User user) {
@@ -56,6 +64,8 @@ public class Listener implements Runnable{
                             mainWindowController.drawUser(user);
                             mainWindowController.setUserList();
                             break;
+
+
                     }
                 }
             }
@@ -64,9 +74,25 @@ public class Listener implements Runnable{
         }
     }
 
-    private  void connectToServer() throws IOException{
+    private void connectToServer() {
         Message msg = new Message(user.getUsername(), user.getNickname(), MessageType.LOGIN);
-        outputStream.writeObject(msg);
+        try {
+            outputStream.writeObject(msg);
+        } catch (IOException e) {
+            if (callback != null) {
+                callback.onConnectionFailed();
+            }
+        }
+    }
+
+    synchronized public void sendToServer (Message msg) {
+        try {
+            outputStream.writeObject(msg);
+        } catch (IOException e) {
+            if (callback != null) {
+                callback.onConnectionFailed ();
+            }
+        }
     }
 }
 

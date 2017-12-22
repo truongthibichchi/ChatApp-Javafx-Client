@@ -2,40 +2,42 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
-<?import com.jfoenix.controls.JFXTextArea?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane prefHeight="605.0" prefWidth="381.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ChatController">
+<AnchorPane prefHeight="583.0" prefWidth="381.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ChatController">
    <children>
-      <Pane prefHeight="49.0" prefWidth="381.0" style="-fx-background-color: #1E222A;">
+      <Pane fx:id="pane" prefHeight="49.0" prefWidth="381.0" style="-fx-background-color: #127070;">
          <children>
             <ImageView fitHeight="45.0" fitWidth="126.0" layoutX="138.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/tagami.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="imgClose" fitHeight="35.0" fitWidth="43.0" layoutX="340.0" layoutY="7.0" onMouseClicked="#imgCloseAction" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/close.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="CLOSED_HAND" />
-               </cursor>
-            </ImageView>
+
          </children>
       </Pane>
-      <JFXListView fx:id="lvChatLine" layoutY="115.0" prefHeight="441.0" prefWidth="381.0" />
-      <JFXTextArea fx:id="txtMess" layoutY="556.0" prefHeight="49.0" prefWidth="243.0" promptText="Type here" />
-      <JFXButton fx:id="btnSend" layoutX="243.0" layoutY="556.0" prefHeight="49.0" prefWidth="94.0" style="-fx-background-color: #e0146d;" text="Send" textFill="WHITE" />
-      <ImageView fx:id="imgAudio" fitHeight="49.0" fitWidth="67.0" layoutX="332.0" layoutY="556.0" pickOnBounds="true" preserveRatio="true">
+      <JFXListView fx:id="lvChatLine" layoutY="143.0" prefHeight="404.0" prefWidth="381.0" />
+      <JFXButton fx:id="btnSend" layoutX="243.0" layoutY="547.0" prefHeight="49.0" prefWidth="94.0" style="-fx-background-color: #e0146d;" text="Send" textFill="WHITE" />
+      <ImageView fx:id="imgAudio" fitHeight="49.0" fitWidth="61.0" layoutX="332.0" layoutY="547.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/microphone.png" />
          </image>
       </ImageView>
-      <JFXListView fx:id="lvParticipants" layoutY="49.0" prefHeight="66.0" prefWidth="381.0" />
+      <ImageView fx:id="imgCloseConversation" fitHeight="32.0" fitWidth="34.0" layoutX="340.0" layoutY="7.0" onMouseClicked="#imgCloseConversationAction" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/close.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="CLOSED_HAND" />
+         </cursor>
+      </ImageView>
+      <TextArea fx:id="txtMess" layoutY="547.0" prefHeight="49.0" prefWidth="243.0" />
+      <ListView fx:id="lvParticipants" layoutY="49.0" prefHeight="94.0" prefWidth="381.0" />
    </children>
 </AnchorPane>

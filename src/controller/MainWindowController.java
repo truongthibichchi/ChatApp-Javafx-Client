@@ -1,6 +1,7 @@
 package controller;
 
 import com.jfoenix.controls.JFXTextField;
+import connection.ConnectionCallback;
 import connection.Status;
 import connection.User;
 import javafx.application.Platform;
@@ -23,12 +24,12 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
-public class MainWindowController extends StageSceneController implements Initializable{
+public class MainWindowController extends StageSceneController implements Initializable, ConnectionCallback {
     @FXML
     private ImageView imgClose;
 
@@ -45,7 +46,8 @@ public class MainWindowController extends StageSceneController implements Initia
     private BorderPane borderPane;
     private double xOffset;
     private double yOffset;
-    private static Stage primaryStageObj;
+
+
 
     private  ObservableList<User> users;
     public void imgCloseAction() {
@@ -64,6 +66,9 @@ public class MainWindowController extends StageSceneController implements Initia
 
     }
 
+    private void addChatLine(String line){
+
+    }
 
     public void setUserList(){
         Platform.runLater(()->{
@@ -87,25 +92,35 @@ public class MainWindowController extends StageSceneController implements Initia
 
     public void btnNewMessAction() throws Exception{
 
-        ArrayList<User> list= new ArrayList<>();
         ObservableList<User> selectedUser = lvUserList.getSelectionModel().getSelectedItems();
-        for(User user:selectedUser){
-            list.add(user);
+        List<User> listOfSelectedUser = new ArrayList<>();
+        for (User user : selectedUser) {
+            listOfSelectedUser.add(user);
         }
-        try {
-            primaryStageObj = this.stage;
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Chat.fxml"));
-            Parent root = loader.load();
+        ObservableList<User> copyOfSelectedUsers = FXCollections.observableList(listOfSelectedUser);
 
-            Stage stage = new Stage();
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setScene(new Scene(root));
+        Platform.runLater(()-> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Chat.fxml"));
+                Parent root = loader.load();
 
-            ChatController controller = loader.getController();
-            controller.setStage(stage);
-            controller.setParticipants(list);
-            stage.show();
-        }catch(IOException e){}
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(new Scene(root));
+
+                ChatController controller = loader.getController();
+                controller.setStage(stage);
+                controller.addDragAndDropHandler();
+                controller.setParticipants(copyOfSelectedUsers);
+                controller.drawUserList();
+
+                stage.show();
+
+            } catch (Exception e) {
+                System.err.println(e);
+            }
+        });
+
     }
     private void imgCLoseAction(){
         Platform.exit();
@@ -116,13 +131,13 @@ public class MainWindowController extends StageSceneController implements Initia
                 /* Drag and Drop */
         borderPane.setOnMousePressed(event -> {
             xOffset = MainLauncher.getPrimaryStage().getX() - event.getScreenX();
-            yOffset = MainLauncher.getPrimaryStage().getY() - event.getScreenY();
+            yOffset =MainLauncher.getPrimaryStage().getY() - event.getScreenY();
             borderPane.setCursor(Cursor.CLOSED_HAND);
         });
 
         borderPane.setOnMouseDragged(event -> {
-            MainLauncher.getPrimaryStage().setX(event.getScreenX() + xOffset);
-            MainLauncher.getPrimaryStage().setY(event.getScreenY() + yOffset);
+            controller.MainLauncher.getPrimaryStage().setX(event.getScreenX() + xOffset);
+            controller.MainLauncher.getPrimaryStage().setY(event.getScreenY() + yOffset);
 
         });
 
@@ -130,7 +145,10 @@ public class MainWindowController extends StageSceneController implements Initia
             borderPane.setCursor(Cursor.DEFAULT);
         });
     }
-    public static Stage getPrimaryStage() {
-        return primaryStageObj;
+
+
+    @Override
+    public void onConnectionFailed() {
+
     }
 }
