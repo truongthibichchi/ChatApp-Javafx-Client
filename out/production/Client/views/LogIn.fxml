@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="529.0" prefWidth="286.0" style="-fx-background-color: #24313c;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LogInController">
+<AnchorPane fx:id="anchorPane" prefHeight="529.0" prefWidth="286.0" style="-fx-background-color: #24313c;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LogInController">
    <children>
       <ImageView fitHeight="87.0" fitWidth="161.0" layoutX="63.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -20,7 +20,7 @@
             <Image url="@../images/close.png" />
          </image>
       </ImageView>
-      <Label fx:id="lblNoti" layoutX="34.0" layoutY="416.0" text="Thông báo" textFill="#f22323" />
+      <Label fx:id="lblNoti" layoutX="34.0" layoutY="416.0" textFill="#f22323" />
       <Label fx:id="lblSignUp" layoutX="185.0" layoutY="499.0" onMouseClicked="#lblSignUpAction" style="-fx-cursor: hand;" text="Sign Up" textFill="#1ab188" underline="true" />
       <Label layoutX="42.0" layoutY="499.0" text="Don't have an account?" textFill="WHITE" />
       <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="31.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">

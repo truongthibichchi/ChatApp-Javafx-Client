@@ -8,11 +8,9 @@ import javafx.stage.StageStyle;
 
 public class MainLauncher extends Application {
 
-    private static Stage primaryStageObj;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStageObj = primaryStage;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/LogIn.fxml"));
         Parent root = loader.load();
 
@@ -29,7 +27,4 @@ public class MainLauncher extends Application {
         launch(args);
     }
 
-    public static Stage getPrimaryStage() {
-        return primaryStageObj;
-    }
 }

@@ -87,7 +87,20 @@ public class Listener implements Runnable{
     }
 
     private void connectToServer() {
-        Message msg = new Message(user.getUsername(), user.getPass(), MessageType.LOGIN);
+        Message msg = new Message();
+
+        //log in
+        if(this.logInController!=null &&this.signUpController==null){
+            msg.setUserName(user.getUsername());
+            msg.setPass(user.getPass());
+            msg.setType(MessageType.LOGIN);
+        }
+        if(this.logInController==null && this.signUpController!=null){
+            msg.setUserName(user.getUsername());
+            msg.setPass(user.getPass());
+            msg.setNickname(user.getNickname());
+            msg.setType(MessageType.SIGN_UP);
+        }
         try {
             outputStream.writeObject(msg);
         } catch (IOException e) {

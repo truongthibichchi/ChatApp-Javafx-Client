@@ -59,10 +59,16 @@ public class LogInController extends StageSceneController implements Initializab
 
     synchronized public void btnLogInAction() {
         try {
+            if(txthostname.getText().isEmpty() ||txtport.getText().isEmpty()||txtusername.getText().isEmpty()||txtpassword.getText().isEmpty()){
+                showNoti("Please enter full information");
+                return;
+            }
             String hostname = txthostname.getText();
             int port = Integer.parseInt(txtport.getText());
             String username = txtusername.getText();
             String password = txtpassword.getText();
+
+
             User user = new User(username, password);
 
             listener = new Listener(hostname, port, user);
@@ -92,6 +98,7 @@ public class LogInController extends StageSceneController implements Initializab
                 this.stage.hide();
                 stageSignUp.show();
             } catch (Exception e) {
+                System.err.println(e);
                 lblNoti.setText("Can not load Sign Up Form");
             }
         });

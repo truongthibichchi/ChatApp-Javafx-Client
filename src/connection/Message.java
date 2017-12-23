@@ -30,6 +30,7 @@ public class Message implements Serializable {
     }
 
 
+    public Message(){};
     public Message(String nickname, String userName, MessageType type) {
         this.nickname = nickname;
         this.userName = userName;
