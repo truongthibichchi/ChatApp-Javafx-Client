@@ -10,6 +10,16 @@ public class Message implements Serializable {
     private MessageType type;
     private ArrayList<User> userList;
 
+    public void setUserListData(ArrayList<User> userListData) {
+        this.userListData = userListData;
+    }
+
+    public ArrayList<User> getUserListData() {
+        return userListData;
+    }
+
+    private  ArrayList<User> userListData;
+
 
     public String getPass() {
         return pass;

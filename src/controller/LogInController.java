@@ -135,6 +135,7 @@ public class LogInController extends StageSceneController implements Initializab
             controller.drawUser(msg);
             controller.setStage(stageMain);
             controller.addDragAndDropHandler();
+            controller.setUserList(msg);
 
 
             stageMain.centerOnScreen();

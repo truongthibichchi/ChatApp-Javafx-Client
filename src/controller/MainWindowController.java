@@ -73,20 +73,20 @@ public class MainWindowController extends StageSceneController implements Initia
 
     }
 
-    public void setUserList(){
+    public void setUserList(Message msg){
         Platform.runLater(()->{
 
-            ArrayList<User> list = new ArrayList<>();
-            User user1 = new User("khanh", "khanh", "khanh", Status.ONLINE);
-            User user2 = new User("nhi", "nhi", "nhi", Status.ONLINE);
-            User user3 = new User("me", "me", "me", Status.ONLINE);
-            User user4 = new User("be", "be", "be", Status.DISCONNECT);
-            list.add(user1);
-            list.add(user2);
-            list.add(user3);
-            list.add(user4);
+//            ArrayList<User> list = new ArrayList<>();
+//            User user1 = new User("khanh", "khanh", "khanh", Status.ONLINE);
+//            User user2 = new User("nhi", "nhi", "nhi", Status.ONLINE);
+//            User user3 = new User("me", "me", "me", Status.ONLINE);
+//            User user4 = new User("be", "be", "be", Status.DISCONNECT);
+//            list.add(user1);
+//            list.add(user2);
+//            list.add(user3);
+//            list.add(user4);
 
-            users = FXCollections.observableList(list);
+            users = FXCollections.observableList(msg.getUserListData());
             lvUserList.setItems(users);
             lvUserList.setCellFactory(new CellRendererInMainWindow());
             lvUserList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
