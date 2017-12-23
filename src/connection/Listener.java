@@ -82,7 +82,7 @@ public class Listener implements Runnable{
                 }
             }
         }catch (Exception e){
-
+            System.err.println(e);
         }
     }
 
