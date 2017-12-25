@@ -23,8 +23,17 @@ public class Listener implements Runnable{
 
     private ConnectionCallback callback;
     private LogInController logInController;
+
+
+
     private MainWindowController mainWindowController;
     private SignUpController signUpController;
+
+    public MainWindowController getMainWindowController() {
+        return mainWindowController;
+    }
+
+    public User getUser() {return user; }
 
     public void setSignUpController(SignUpController signUpController) {
         this.signUpController = signUpController;
@@ -72,12 +81,17 @@ public class Listener implements Runnable{
 
                 if(msg!=null){
                     switch (msg.getType()){
-                        case LOGIN_SUCCEEDED:
-                            user.setNickname(msg.getNickname());
-                            callback.onLoginSucceeded(msg);
+                        case CONNECTED:
+                            callback.onConnected(msg);
                             break;
+                        case LOG_IN_FAILED:
+                            callback.onLoginFailed(msg);
+                            break;
+                        case NEW_USER_CONNECTED:
+                            callback.onNewUserConnected(msg);
 
-
+                        case DISCONNECT:
+                            callback.onUserDisconnected(msg);
                     }
                 }
             }
@@ -95,19 +109,15 @@ public class Listener implements Runnable{
             msg.setPass(user.getPass());
             msg.setType(MessageType.LOGIN);
         }
+
+        //sign up
         if(this.logInController==null && this.signUpController!=null){
             msg.setUserName(user.getUsername());
             msg.setPass(user.getPass());
             msg.setNickname(user.getNickname());
             msg.setType(MessageType.SIGN_UP);
         }
-        try {
-            outputStream.writeObject(msg);
-        } catch (IOException e) {
-            if (callback != null) {
-                callback.onConnectionFailed();
-            }
-        }
+        sendToServer(msg);
     }
 
     synchronized public void sendToServer (Message msg) {
@@ -115,7 +125,7 @@ public class Listener implements Runnable{
             outputStream.writeObject(msg);
         } catch (IOException e) {
             if (callback != null) {
-                callback.onConnectionFailed ();
+                callback.onConnectionFailed();
             }
         }
     }

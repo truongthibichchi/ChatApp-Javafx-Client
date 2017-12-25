@@ -1,11 +1,9 @@
 package controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import connection.ConnectionCallback;
-import connection.Listener;
-import connection.Message;
-import connection.User;
+import connection.*;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +12,6 @@ import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -40,12 +37,18 @@ public class LogInController extends StageSceneController implements Initializab
     private double xOffset;
     private double yOffset;
 
-    @FXML private JFXTextField txtusername, txtpassword, txthostname, txtport;
+    @FXML private JFXTextField txtusername, txthostname, txtport;
+    @FXML private JFXPasswordField txtPassword;
 
     Listener listener;
 
     public LogInController() {
         instance = this;
+    }
+
+    @Override
+    public void onUserDisconnected(Message msg) {
+
     }
 
     public static LogInController getInstance() {
@@ -59,14 +62,14 @@ public class LogInController extends StageSceneController implements Initializab
 
     synchronized public void btnLogInAction() {
         try {
-            if(txthostname.getText().isEmpty() ||txtport.getText().isEmpty()||txtusername.getText().isEmpty()||txtpassword.getText().isEmpty()){
-                showNoti("Please enter full information");
+            if(txthostname.getText().isEmpty() ||txtport.getText().isEmpty()||txtusername.getText().isEmpty()||txtPassword.getText().isEmpty()){
+                showNotification("Please enter full information");
                 return;
             }
             String hostname = txthostname.getText();
             int port = Integer.parseInt(txtport.getText());
             String username = txtusername.getText();
-            String password = txtpassword.getText();
+            String password = txtPassword.getText();
 
 
             User user = new User(username, password);
@@ -155,22 +158,41 @@ public class LogInController extends StageSceneController implements Initializab
         }
         });
     }
-    public void showNoti(String x){
+
+    @Override
+    public void onNewUserConnected(Message msg) {
+        listener.getMainWindowController().setUserList(msg);
+    }
+
+
+    public void showNotification(String x){
         lblNoti.setText(x);
     }
 
     @Override
-    public void onConnectionFailed() {
-
+    public void onLoginFailed(Message msg) {
+        showNotification(msg.getUserName()+ " is already connected to server");
     }
 
     @Override
-    public void onLoginSucceeded(Message msg) {
-            LoadMainForm(msg);
+    public void onConnectionFailed() {
+        showNotification("Can not connect to Server");
+    }
+
+
+    @Override
+    public void onSignUpFailed(Message msg) {
+    }
+
+    @Override
+    public void onConnected(Message msg) {
+        //TODO: clone userlist data
+        LoadMainForm(msg);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        lblNoti.setText("");
            /* Drag and Drop */
         anchorPane.setOnMousePressed(event -> {
             xOffset = this.stage.getX() - event.getScreenX();

@@ -1,10 +1,12 @@
 package controller;
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import connection.ConnectionCallback;
 import connection.Listener;
 import connection.Message;
 import connection.User;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,7 +17,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -24,7 +25,8 @@ import java.util.ResourceBundle;
 
 
 public class SignUpController extends StageSceneController implements Initializable,ConnectionCallback{
-    @FXML JFXTextField txtUsername, txtNickname, txtPassword,  txtHostname, txtPort;
+    @FXML JFXTextField txtUsername, txtNickname,  txtHostname, txtPort;
+    @FXML  private JFXPasswordField txtPassword;
     @FXML Button btnSignUp;
     @FXML private  Label lblNoti, lblLogin;
     @FXML ImageView imgClose;
@@ -35,6 +37,7 @@ public class SignUpController extends StageSceneController implements Initializa
 
 
     private Listener listener;
+    private ObservableList<User> users;
     public void closeApp () {
         stage.close();
     }
@@ -61,6 +64,8 @@ public class SignUpController extends StageSceneController implements Initializa
         }
     }
 
+
+
     public void btnSignUpAction(){
         try{
             if (txtHostname.getText().isEmpty() || txtPort.getText().isEmpty() || txtUsername.getText().isEmpty() || txtPassword.getText().isEmpty() || txtNickname.getText().isEmpty()) {
@@ -77,24 +82,41 @@ public class SignUpController extends StageSceneController implements Initializa
             listener = new Listener(hostname, port, user);
             listener.setSignUpController(this);
             listener.setConnectionCallback(this);
+            Thread thread= new Thread(listener);
+            thread.start();
         }catch (Exception e){
             System.err.println(e);
         }
     }
 
-    public void LoadChatForm() {
+    public void loadMainWindowForm(Message msg) {
         Platform.runLater(()->{
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Chat.fxml"));
-            Parent root = (Pane) loader.load();
+            FXMLLoader loader = new FXMLLoader();
+            URL location = getClass().getResource("/views/MainWindow.fxml");
+            loader.setLocation(location);
+            Parent root = loader.load();
 
-            MainWindowController mainWindowController = loader.getController();
             Stage stageMain = new Stage();
-            mainWindowController.setStage(stageMain);
-            stageMain.setScene(new Scene(root));
-            stageMain.setResizable(false);
             stageMain.initStyle(StageStyle.UNDECORATED);
+            stageMain.setScene(new Scene(root));
+
+            MainWindowController controller = loader.getController();
+            controller.setStage(stageMain);
+
+            controller.setListener(listener);
+            listener.setMainWindowController(controller);
+
+            controller.drawUser(msg);
+            listener.setConnectionCallback(controller);
+
+            ;
+            controller.addDragAndDropHandler();
+            controller.setUserList(msg);
+
+
             stageMain.centerOnScreen();
+            stageMain.setResizable(false);
 
             this.stage.close();
             stageMain.show();
@@ -104,17 +126,38 @@ public class SignUpController extends StageSceneController implements Initializa
         }
         });
     }
+
     public void showNoti(String x){
         lblNoti.setText(x);
     }
 
     @Override
-    public void onLoginSucceeded(Message message) {
+    public void onConnected(Message msg) {
+        loadMainWindowForm(msg);
+    }
+
+    @Override
+    public void onLoginFailed(Message msg) {
 
     }
 
     @Override
     public void onConnectionFailed() {
+
+    }
+
+    @Override
+    public void onSignUpFailed(Message msg) {
+
+    }
+
+    @Override
+    public void onUserDisconnected(Message msg) {
+
+    }
+
+    @Override
+    public void onNewUserConnected(Message msg) {
 
     }
 

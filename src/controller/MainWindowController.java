@@ -1,6 +1,7 @@
 package controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import connection.*;
 import javafx.application.Platform;
@@ -36,7 +37,8 @@ public class MainWindowController extends StageSceneController implements Initia
     @FXML
     private ListView lvUserList;
     @FXML
-    JFXTextField txtUsername, txtPassword, txtNickname;
+    JFXTextField txtUsername, txtNickname;
+    @FXML private JFXPasswordField txtPassword;
 
     @FXML
     private JFXButton btnUpdateInfo, btnNewChat;
@@ -62,7 +64,6 @@ public class MainWindowController extends StageSceneController implements Initia
         Platform.runLater(()->{
             txtUsername.setText(msg.getUserName());
             txtNickname.setText(msg.getNickname());
-            txtPassword.setText(msg.getPass());
             Image imgAvatar = new Image(getClass().getClassLoader().getResource("images/avatars/"+msg.getUserName()+".png").toString());
             cirAvatar.setFill(new ImagePattern(imgAvatar));
         });
@@ -73,24 +74,19 @@ public class MainWindowController extends StageSceneController implements Initia
 
     }
 
+    public void setUserList (ArrayList<User> users) {
+        Platform.runLater(() -> {
+            lvUserList.setItems(FXCollections.observableList(users));
+            lvUserList.setCellFactory(new CellRendererInMainWindow());
+            lvUserList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        });
+    }
+
     public void setUserList(Message msg){
-        Platform.runLater(()->{
-
-//            ArrayList<User> list = new ArrayList<>();
-//            User user1 = new User("khanh", "khanh", "khanh", Status.ONLINE);
-//            User user2 = new User("nhi", "nhi", "nhi", Status.ONLINE);
-//            User user3 = new User("me", "me", "me", Status.ONLINE);
-//            User user4 = new User("be", "be", "be", Status.DISCONNECT);
-//            list.add(user1);
-//            list.add(user2);
-//            list.add(user3);
-//            list.add(user4);
-
             users = FXCollections.observableList(msg.getUserListData());
             lvUserList.setItems(users);
             lvUserList.setCellFactory(new CellRendererInMainWindow());
             lvUserList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        });
     }
 
     public void btnNewMessAction() throws Exception{
@@ -125,7 +121,14 @@ public class MainWindowController extends StageSceneController implements Initia
         });
 
     }
+
+    @Override
+    public void onUserDisconnected(Message msg) {
+        setUserList(msg);
+    }
+
     private void imgCLoseAction(){
+
         Platform.exit();
         System.exit(0);
     }
@@ -155,11 +158,28 @@ public class MainWindowController extends StageSceneController implements Initia
 
 
     @Override
-    public void onLoginSucceeded(Message message) {
+    public void onConnected(Message msg) {
 
     }
 
     @Override
-    public void onConnectionFailed() { }
+    public void onLoginFailed(Message msg) {
 
+    }
+
+    @Override
+    public void onConnectionFailed() {
+
+    }
+
+
+    @Override
+    public void onSignUpFailed(Message msg) {
+
+    }
+
+    @Override
+    public void onNewUserConnected(Message msg) {
+        setUserList(msg.getUserListData());
+    }
 }

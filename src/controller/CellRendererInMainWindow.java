@@ -44,6 +44,7 @@ class CellRendererInMainWindow implements Callback<ListView<User>, ListCell<User
                     hBox.getChildren().addAll(statusImageView, pictureImageView, name);
 
                     hBox.setAlignment(Pos.CENTER);
+                    hBox.setStyle("-fx-background: #D3D3D3;");
 
                     setGraphic(hBox);
 
