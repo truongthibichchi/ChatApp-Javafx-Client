@@ -18,18 +18,21 @@
    <children>
       <Pane layoutY="45.0" prefHeight="558.0" prefWidth="256.0" style="-fx-background-color: #292F39;">
          <children>
-            <Circle fx:id="cirAvatar" fill="DODGERBLUE" layoutX="128.0" layoutY="159.0" radius="120.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="cirAvatar"  fill="DODGERBLUE" layoutX="128.0" layoutY="159.0" radius="120.0" stroke="BLACK" strokeType="INSIDE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Circle>
             <JFXButton fx:id="btnUpdateInfo" layoutX="77.0" layoutY="499.0" prefHeight="45.0" prefWidth="102.0" style="-fx-background-color: #1ab188;" text="Update" textFill="WHITE" />
-            <JFXPasswordField fx:id="txtPassword" layoutX="86.0" layoutY="435.0" prefHeight="25.0" prefWidth="145.0" stylesheets="@../styles/TextFieldStyle.css" />
-            <JFXTextField fx:id="txtNickname" layoutX="89.0" layoutY="381.0" prefHeight="25.0" prefWidth="145.0" stylesheets="@../styles/TextFieldStyle.css" />
-            <JFXTextField fx:id="txtUsername" layoutX="89.0" layoutY="326.0" prefHeight="25.0" prefWidth="145.0" stylesheets="@../styles/TextFieldStyle.css" />
-            <Label fx:id="lblUsername" layoutX="31.0" layoutY="329.0" text="Username" textFill="WHITE" />
-            <Label layoutX="32.0" layoutY="386.0" text="NickName" textFill="WHITE" />
+            <JFXPasswordField fx:id="txtPassword" alignment="CENTER" layoutX="86.0" layoutY="435.0" prefHeight="25.0" prefWidth="145.0" stylesheets="@../styles/FXMLStyle.css" />
+            <JFXTextField fx:id="txtNickname" alignment="CENTER" layoutX="88.0" layoutY="381.0" prefHeight="25.0" prefWidth="145.0" stylesheets="@../styles/FXMLStyle.css" />
+            <JFXTextField fx:id="txtUsername" alignment="CENTER" layoutX="89.0" layoutY="326.0" prefHeight="25.0" prefWidth="145.0" stylesheets="@../styles/FXMLStyle.css" />
+            <Label fx:id="lblUsername" layoutX="14.0" layoutY="330.0" text="Username" textFill="WHITE" />
+            <Label layoutX="13.0" layoutY="385.0" text="NickName" textFill="WHITE" />
+            <Label layoutX="19.0" layoutY="438.0" text="Password" textFill="WHITE" />
          </children>
       </Pane>
       <Button fx:id="btnNewMess" layoutX="276.0" layoutY="451.0" mnemonicParsing="false" onMouseClicked="#btnNewMessAction" prefHeight="45.0" prefWidth="113.0" text="New Message" />
       <ListView fx:id="lvUserList" layoutX="256.0" layoutY="45.0" prefHeight="485.0" prefWidth="268.0" style="-fx-background-color: #D3D3D3;" />
-      <Label layoutX="32.0" layoutY="483.0" text="Password" textFill="WHITE" />
       <BorderPane fx:id="borderPane" layoutX="-26.0" prefHeight="45.0" prefWidth="551.0" style="-fx-background-color: #1E222A;">
          <center>
             <ImageView fitHeight="44.0" fitWidth="163.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">

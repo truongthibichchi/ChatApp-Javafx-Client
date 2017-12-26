@@ -7,8 +7,39 @@ public class Message implements Serializable {
     private String nickname;
     private String userName;
     private String pass;
+    private String text;
+
+    private Status status;
     private MessageType type;
     private  ArrayList<User> userListData;
+    private ArrayList<User> chatUsers;
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+
+    public ArrayList<User> getChatUsers() {
+        return chatUsers;
+    }
+
+    public void setChatUsers(ArrayList<User> chatUsers) {
+        this.chatUsers = chatUsers;
+    }
+
+
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
 
     public Message(){};
     public Message(String userName, String nickname, MessageType type) {

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane prefHeight="583.0" prefWidth="381.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ChatController">
+<AnchorPane prefHeight="583.0" prefWidth="381.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ChatController">
    <children>
       <Pane fx:id="pane" prefHeight="49.0" prefWidth="381.0" style="-fx-background-color: #127070;">
          <children>
@@ -23,11 +23,17 @@
          </children>
       </Pane>
       <JFXListView fx:id="lvChatLine" layoutY="143.0" prefHeight="404.0" prefWidth="381.0" />
-      <JFXButton fx:id="btnSend" layoutX="243.0" layoutY="547.0" prefHeight="49.0" prefWidth="94.0" style="-fx-background-color: #e0146d;" text="Send" textFill="WHITE" />
+      <JFXButton fx:id="btnSend" layoutX="243.0" layoutY="547.0" onAction="#btbSendMessgageAction" prefHeight="49.0" prefWidth="94.0" style="-fx-background-color: #e0146d;" text="Send" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
       <ImageView fx:id="imgAudio" fitHeight="49.0" fitWidth="61.0" layoutX="332.0" layoutY="547.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/microphone.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <ImageView fx:id="imgCloseConversation" fitHeight="32.0" fitWidth="34.0" layoutX="340.0" layoutY="7.0" onMouseClicked="#imgCloseConversationAction" pickOnBounds="true" preserveRatio="true">
          <image>

@@ -1,0 +1,11 @@
+.text-field {
+    -fx-text-fill: white;
+}
+
+.password-field{
+    -fx-text-fill: white;
+}
+
+#cirAvatar{
+     -fx-image: url("/images/avatars/default_avatar.png");
+ }

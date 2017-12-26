@@ -35,6 +35,12 @@ public class User implements Serializable {
         this.pass = pass;
     }
 
+    public User(String username, String nickname, Status status) {
+        this.username = username;
+        this.nickname = nickname;
+        this.status = status;
+    }
+
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }

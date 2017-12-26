@@ -1,12 +1,11 @@
 package controller;
+
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import connection.ConnectionCallback;
-import connection.Listener;
-import connection.Message;
-import connection.User;
+import connection.*;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,34 +14,86 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import util.convertFile;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class SignUpController extends StageSceneController implements Initializable,ConnectionCallback{
-    @FXML JFXTextField txtUsername, txtNickname,  txtHostname, txtPort;
-    @FXML  private JFXPasswordField txtPassword;
-    @FXML Button btnSignUp;
-    @FXML private  Label lblNoti, lblLogin;
-    @FXML ImageView imgClose;
-    @FXML private AnchorPane anchorPane;
+public class SignUpController extends StageSceneController implements Initializable, ConnectionCallback {
+    @FXML
+    private JFXTextField txtUsername, txtNickname, txtHostname, txtPort;
+    @FXML
+    private JFXPasswordField txtPassword;
+    @FXML
+    private Button btnSignUp;
+    @FXML
+    private Label lblNoti, lblLogin;
+    @FXML
+    private ImageView imgClose;
+    @FXML
+    private AnchorPane anchorPane;
+    @FXML
+    private Circle imgAvatar;
 
     private double xOffset;
     private double yOffset;
 
-
     private Listener listener;
     private ObservableList<User> users;
-    public void closeApp () {
+    private File selectedFile;
+    private Image imagetoSave;
+
+    public void closeApp() {
         stage.close();
     }
 
-    public void lblLogInAction(){
+    public static void saveToFile(Image image, String username) {
+        try {
+            File outputFile = new File("/images/avatars/");
+            BufferedImage bImage = SwingFXUtils.fromFXImage(image, null);
+            try {
+                ImageIO.write(bImage, username+".png", outputFile);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }catch (Exception e){
+            System.err.println(e);
+        }
+    }
+    public void imgAvatarAction () {
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Attach a file");
+        fc.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files",
+                        "*.png", "*.jpg"));
+        selectedFile = fc.showOpenDialog(null);
+
+        BufferedImage bufferedImage = null;
+        if (selectedFile != null) {
+            try {
+                bufferedImage = ImageIO.read(selectedFile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            imagetoSave = SwingFXUtils.toFXImage(bufferedImage, null);
+            imgAvatar.setFill(new ImagePattern(imagetoSave));
+        }
+    }
+
+    public void lblLogInAction() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/LogIn.fxml"));
             Parent root = loader.load();
@@ -57,19 +108,15 @@ public class SignUpController extends StageSceneController implements Initializa
 
             stageLogIn.show();
             this.stage.close();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             lblNoti.setText("Can not load Log In Form");
         }
     }
 
-
-
-    public void btnSignUpAction(){
-        try{
+    public void btnSignUpAction() throws IOException{
+        try {
             if (txtHostname.getText().isEmpty() || txtPort.getText().isEmpty() || txtUsername.getText().isEmpty() || txtPassword.getText().isEmpty() || txtNickname.getText().isEmpty()) {
-                showNoti("Please enter full information");
+                showNotification("Please enter full information");
                 return;
             }
             String hostname = txtHostname.getText();
@@ -78,91 +125,86 @@ public class SignUpController extends StageSceneController implements Initializa
             String password = txtPassword.getText();
             String nickname = txtNickname.getText();
 
-            User user= new User(username, password, nickname);
+
+            User user = new User(username, password, nickname);
             listener = new Listener(hostname, port, user);
             listener.setSignUpController(this);
             listener.setConnectionCallback(this);
-            Thread thread= new Thread(listener);
+            Thread thread = new Thread(listener);
             thread.start();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.err.println(e);
         }
     }
 
     public void loadMainWindowForm(Message msg) {
-        Platform.runLater(()->{
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            URL location = getClass().getResource("/views/MainWindow.fxml");
-            loader.setLocation(location);
-            Parent root = loader.load();
+        Platform.runLater(() -> {
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                URL location = getClass().getResource("/views/MainWindow.fxml");
+                loader.setLocation(location);
+                Parent root = loader.load();
 
-            Stage stageMain = new Stage();
-            stageMain.initStyle(StageStyle.UNDECORATED);
-            stageMain.setScene(new Scene(root));
+                Stage stageMain = new Stage();
+                stageMain.initStyle(StageStyle.UNDECORATED);
+                stageMain.setScene(new Scene(root));
 
-            MainWindowController controller = loader.getController();
-            controller.setStage(stageMain);
+                MainWindowController controller = loader.getController();
+                controller.setStage(stageMain);
 
-            controller.setListener(listener);
-            listener.setMainWindowController(controller);
+                controller.setListener(listener);
+                listener.setMainWindowController(controller);
 
-            controller.drawUser(msg);
-            listener.setConnectionCallback(controller);
+                controller.drawUser(msg);
+                listener.setConnectionCallback(controller);
 
-            ;
-            controller.addDragAndDropHandler();
-            controller.setUserList(msg);
+                ;
+                controller.addDragAndDropHandler();
+                controller.setUsersData(msg.getUserListData());
+                controller.drawUserList(msg.getUserListData());
 
 
-            stageMain.centerOnScreen();
-            stageMain.setResizable(false);
+                stageMain.centerOnScreen();
+                stageMain.setResizable(false);
 
-            this.stage.close();
-            stageMain.show();
+                this.stage.close();
+                stageMain.show();
 
-        } catch (Exception e) {
-            System.err.println(e);
-        }
+            } catch (Exception e) {
+                System.err.println(e);
+            }
         });
     }
 
-    public void showNoti(String x){
-        lblNoti.setText(x);
+    public void showNotification(String x) {
+        Platform.runLater(() -> {
+            lblNoti.setText(x);
+        });
     }
 
     @Override
     public void onConnected(Message msg) {
+        saveToFile(imagetoSave, txtUsername.getText());
         loadMainWindowForm(msg);
     }
 
     @Override
-    public void onLoginFailed(Message msg) {
-
-    }
-
+    public void onLoginFailed(Message msg) {}
     @Override
-    public void onConnectionFailed() {
-
-    }
-
+    public void onConnectionFailed(){}
     @Override
     public void onSignUpFailed(Message msg) {
-
+        showNotification("Sign up failed");
     }
-
     @Override
-    public void onUserDisconnected(Message msg) {
-
-    }
-
+    public void onUserDisconnected(String username, String nickname, Status status) {}
     @Override
-    public void onNewUserConnected(Message msg) {
-
-    }
-
+    public void onNewUserConnected(String username, String nickname, Status status) {}
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        imagetoSave = new Image(getClass().getClassLoader().getResource("images/avatars/default_avatar.png").toString());
+        imgAvatar.setFill(new ImagePattern(imagetoSave));
+
         anchorPane.setOnMousePressed(event -> {
             xOffset = this.stage.getX() - event.getScreenX();
             yOffset = this.stage.getY() - event.getScreenY();

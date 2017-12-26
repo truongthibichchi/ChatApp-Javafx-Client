@@ -5,6 +5,6 @@ public interface ConnectionCallback {
     void onLoginFailed(Message msg);
     void onConnectionFailed();
     void onSignUpFailed(Message msg);
-    void onUserDisconnected(Message msg);
-    void onNewUserConnected (Message msg);
+    void onUserDisconnected(String username, String nickname, Status status);
+    void onNewUserConnected (String username, String nickname, Status status);
 }

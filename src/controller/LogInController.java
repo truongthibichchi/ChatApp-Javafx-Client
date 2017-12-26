@@ -11,49 +11,27 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LogInController extends StageSceneController implements Initializable, ConnectionCallback {
-    private static LogInController instance;
-    @FXML
-    private Label lblNoti;
-    @FXML
-    private Label lblSignUp;
-    @FXML
-    private JFXButton btnLogIn;
-    @FXML
-    private ImageView imgClose;
-    private Scene scene;
+    @FXML private Label lblNoti;
+    @FXML private Label lblSignUp;
+    @FXML private JFXButton btnLogIn;
+    @FXML private ImageView imgClose;
     @FXML private AnchorPane anchorPane;
-    private double xOffset;
-    private double yOffset;
-
     @FXML private JFXTextField txtusername, txthostname, txtport;
     @FXML private JFXPasswordField txtPassword;
 
-    Listener listener;
+    private double xOffset;
+    private double yOffset;
 
-    public LogInController() {
-        instance = this;
-    }
-
-    @Override
-    public void onUserDisconnected(Message msg) {
-
-    }
-
-    public static LogInController getInstance() {
-        return instance;
-    }
+    private Listener listener;
 
     public void closeApp() {
         Platform.exit();
@@ -95,9 +73,11 @@ public class LogInController extends StageSceneController implements Initializab
 
                 Stage stageSignUp = new Stage();
                 controller.setStage(stageSignUp);
+
                 stageSignUp.initStyle(StageStyle.UNDECORATED);
                 stageSignUp.setScene(new Scene(root));
                 stageSignUp.centerOnScreen();
+
                 this.stage.hide();
                 stageSignUp.show();
             } catch (Exception e) {
@@ -105,24 +85,6 @@ public class LogInController extends StageSceneController implements Initializab
                 lblNoti.setText("Can not load Sign Up Form");
             }
         });
-    }
-
-
-    public void showErrorDialog(String message) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Warning!");
-        alert.setHeaderText(message);
-        alert.setContentText("Please check for firewall issues and check if the server is running.");
-        alert.showAndWait();
-    }
-
-    public void showScene() throws IOException {
-        Platform.runLater(() -> {
-                    Stage stage = (Stage) txthostname.getScene().getWindow();
-                    stage.setResizable(false);
-                    stage.centerOnScreen();
-                }
-        );
     }
 
     public void LoadMainForm(Message msg) {
@@ -140,12 +102,13 @@ public class LogInController extends StageSceneController implements Initializab
             MainWindowController controller = loader.getController();
             listener.setMainWindowController(controller);
             listener.setConnectionCallback(controller);
-            controller.setListener(listener);
+            //controller.setListener(listener);
 
             controller.drawUser(msg);
             controller.setStage(stageMain);
             controller.addDragAndDropHandler();
-            controller.setUserList(msg);
+            controller.setUsersData(msg.getUserListData());
+            controller.drawUserList(msg.getUserListData());
 
 
             stageMain.centerOnScreen();
@@ -159,37 +122,31 @@ public class LogInController extends StageSceneController implements Initializab
         });
     }
 
-    @Override
-    public void onNewUserConnected(Message msg) {
-        listener.getMainWindowController().setUserList(msg);
-    }
-
-
     public void showNotification(String x){
-        lblNoti.setText(x);
+        Platform.runLater(()->{
+            lblNoti.setText(x);
+        });
     }
 
+    @Override
+    public void onNewUserConnected(String username, String nickname, Status status) {}
     @Override
     public void onLoginFailed(Message msg) {
         showNotification(msg.getUserName()+ " is already connected to server");
     }
-
     @Override
     public void onConnectionFailed() {
-        showNotification("Can not connect to Server");
+        showNotification("Wrong username or password");
     }
-
-
     @Override
-    public void onSignUpFailed(Message msg) {
-    }
-
+    public void onSignUpFailed(Message msg) {}
+    @Override
+    public void onUserDisconnected(String username, String nickname, Status status) {}
     @Override
     public void onConnected(Message msg) {
         //TODO: clone userlist data
         LoadMainForm(msg);
     }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         lblNoti.setText("");

@@ -5,12 +5,12 @@ import controller.ChatController;
 import controller.LogInController;
 import controller.MainWindowController;
 import controller.SignUpController;
-import javafx.collections.ObservableList;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Listener implements Runnable{
@@ -21,40 +21,27 @@ public class Listener implements Runnable{
     private ObjectOutputStream outputStream;
     private ObjectInputStream inputStream;
 
-    private ConnectionCallback callback;
+    private ConnectionCallback connectioncallback;
+    private ChatCallback chatCallback;
+
     private LogInController logInController;
-
-
-
     private MainWindowController mainWindowController;
     private SignUpController signUpController;
-
-    public MainWindowController getMainWindowController() {
-        return mainWindowController;
-    }
+    private HashMap<ArrayList<User>, ChatController> chatControllers = new HashMap<>();
 
     public User getUser() {return user; }
-
     public void setSignUpController(SignUpController signUpController) {
         this.signUpController = signUpController;
     }
-
     public void setLogInController(LogInController logInController) {
         this.logInController = logInController;
     }
-
-    private HashMap<ObservableList<User>, ChatController> conversationControllers = new HashMap<>();
-
-    public void setMainWindowController(MainWindowController mainWindowController) {
-        this.mainWindowController = mainWindowController;
-    }
+    public void setMainWindowController(MainWindowController mainWindowController) {this.mainWindowController = mainWindowController; }
     public void setConnectionCallback (ConnectionCallback callback) {
-        this.callback = callback;
+        this.connectioncallback = callback;
     }
-
-    public void setConversationController (ObservableList<User> userList, ChatController controller) {
-        conversationControllers.put(userList, controller);
-    }
+    public void setChatCallback(ChatCallback chatCallback) {this.chatCallback = chatCallback; }
+    public void setChatControllers (ArrayList<User> users, ChatController controller) {chatControllers.put(users, controller);}
 
     public Listener(String hostname, int port, User user) {
         this.hostname = hostname;
@@ -82,16 +69,22 @@ public class Listener implements Runnable{
                 if(msg!=null){
                     switch (msg.getType()){
                         case CONNECTED:
-                            callback.onConnected(msg);
+                            connectioncallback.onConnected(msg);
                             break;
                         case LOG_IN_FAILED:
-                            callback.onLoginFailed(msg);
+                            connectioncallback.onLoginFailed(msg);
                             break;
+                        case SIGN_UP_FAILED:
+                            connectioncallback.onSignUpFailed(msg);
                         case NEW_USER_CONNECTED:
-                            callback.onNewUserConnected(msg);
-
+                            connectioncallback.onNewUserConnected(msg.getUserName(),msg.getNickname(), msg.getStatus());
+                            break;
                         case DISCONNECT:
-                            callback.onUserDisconnected(msg);
+                            connectioncallback.onUserDisconnected(msg.getUserName(),msg.getNickname(), msg.getStatus());
+                            break;
+                        case CHAT_TEXT:
+                            connectioncallback.onSendTextSuceeded(msg);
+                            break;
                     }
                 }
             }
@@ -124,10 +117,18 @@ public class Listener implements Runnable{
         try {
             outputStream.writeObject(msg);
         } catch (IOException e) {
-            if (callback != null) {
-                callback.onConnectionFailed();
+            if (connectioncallback != null) {
+                connectioncallback.onConnectionFailed();
             }
         }
+    }
+
+    public void chatText(ArrayList<User> users, String text){
+        Message msg = new Message();
+        msg.setText(text);
+        msg.setChatUsers(users);
+        msg.setType(MessageType.CHAT_TEXT);
+        sendToServer(msg);
     }
 }
 

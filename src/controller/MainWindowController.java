@@ -13,7 +13,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.image.Image;
@@ -26,35 +25,33 @@ import javafx.stage.StageStyle;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class MainWindowController extends StageSceneController implements Initializable, ConnectionCallback {
-    @FXML
-    private ImageView imgClose;
-
-    @FXML Circle cirAvatar;
-    @FXML
-    private ListView lvUserList;
-    @FXML
-    JFXTextField txtUsername, txtNickname;
+    @FXML private ImageView imgClose;
+    @FXML private Circle cirAvatar;
+    @FXML private ListView lvUserList;
+    @FXML private JFXTextField txtUsername, txtNickname;
     @FXML private JFXPasswordField txtPassword;
+    @FXML private JFXButton btnUpdateInfo, btnNewChat;
+    @FXML private BorderPane borderPane;
 
-    @FXML
-    private JFXButton btnUpdateInfo, btnNewChat;
-
-    @FXML
-    private BorderPane borderPane;
     private double xOffset;
     private double yOffset;
 
-    Listener listener;
+    private Listener listener;
+    private ArrayList<User> usersData;
+   private HashMap<ArrayList<User>, ChatController> chatControllers = new HashMap<>();
 
     public void setListener(Listener listener) {
         this.listener = listener;
     }
+    public void setUsersData(ArrayList<User> usersData) {
+        this.usersData = usersData;
+    }
 
-    private  ObservableList<User> users;
+
     public void imgCloseAction() {
         Platform.exit();
         System.exit(0);
@@ -67,14 +64,13 @@ public class MainWindowController extends StageSceneController implements Initia
             Image imgAvatar = new Image(getClass().getClassLoader().getResource("images/avatars/"+msg.getUserName()+".png").toString());
             cirAvatar.setFill(new ImagePattern(imgAvatar));
         });
-
     }
 
     private void addChatLine(String line){
 
     }
 
-    public void setUserList (ArrayList<User> users) {
+    public void drawUserList(ArrayList<User> users) {
         Platform.runLater(() -> {
             lvUserList.setItems(FXCollections.observableList(users));
             lvUserList.setCellFactory(new CellRendererInMainWindow());
@@ -82,21 +78,12 @@ public class MainWindowController extends StageSceneController implements Initia
         });
     }
 
-    public void setUserList(Message msg){
-            users = FXCollections.observableList(msg.getUserListData());
-            lvUserList.setItems(users);
-            lvUserList.setCellFactory(new CellRendererInMainWindow());
-            lvUserList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-    }
-
     public void btnNewMessAction() throws Exception{
-
-        ObservableList<User> selectedUser = lvUserList.getSelectionModel().getSelectedItems();
-        List<User> listOfSelectedUser = new ArrayList<>();
-        for (User user : selectedUser) {
-            listOfSelectedUser.add(user);
+        ObservableList<User> oberUsers = lvUserList.getSelectionModel().getSelectedItems();
+        ArrayList<User> selectedUsers = new ArrayList<>();
+        for (User user : oberUsers) {
+            selectedUsers.add(user);
         }
-        ObservableList<User> copyOfSelectedUsers = FXCollections.observableList(listOfSelectedUser);
 
         Platform.runLater(()-> {
             try {
@@ -110,8 +97,11 @@ public class MainWindowController extends StageSceneController implements Initia
                 ChatController controller = loader.getController();
                 controller.setStage(stage);
                 controller.addDragAndDropHandler();
-                controller.setParticipants(copyOfSelectedUsers);
-                controller.drawUserList();
+                controller.setUsers(selectedUsers);
+                controller.setListener(listener);
+                controller.drawUserList(selectedUsers);
+                //chatControllers.put(selectedUsers, controller);
+                //listener.setConversationController(chatControllers);
 
                 stage.show();
 
@@ -122,19 +112,14 @@ public class MainWindowController extends StageSceneController implements Initia
 
     }
 
-    @Override
-    public void onUserDisconnected(Message msg) {
-        setUserList(msg);
-    }
-
-    private void imgCLoseAction(){
-
+    public void imgCLoseAction(){
         Platform.exit();
         System.exit(0);
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        Image imgAvatar = new Image(getClass().getClassLoader().getResource("images/avatars/default_avatar.png").toString());
+        cirAvatar.setFill(new ImagePattern(imgAvatar));
     }
 
     public void addDragAndDropHandler() {
@@ -156,30 +141,47 @@ public class MainWindowController extends StageSceneController implements Initia
         });
     }
 
-
     @Override
-    public void onConnected(Message msg) {
-
-    }
-
+    public void onConnected(Message msg) {}
     @Override
-    public void onLoginFailed(Message msg) {
-
-    }
-
+    public void onLoginFailed(Message msg) {}
     @Override
-    public void onConnectionFailed() {
-
-    }
-
-
+    public void onConnectionFailed() { }
     @Override
     public void onSignUpFailed(Message msg) {
 
     }
-
     @Override
-    public void onNewUserConnected(Message msg) {
-        setUserList(msg.getUserListData());
+    public void onNewUserConnected(String username, String nickname,  Status status) {
+        int count = 0;
+        for(User user: usersData){
+            if(user.getUsername().equals(username)){
+                count++;
+                user.setStatus(status);
+                break;
+            }
+        }
+        if(count==0){
+            //sign up
+            usersData.add(new User(username, nickname, status));
+        }
+        drawUserList(usersData);
     }
+    @Override
+    public void onUserDisconnected(String username, String nickname, Status status) {
+        for (User user : usersData){
+            if(user.getUsername().equals(username)){
+                user.setStatus(status);
+            }
+        }
+        drawUserList(usersData);
+    }
+//    @Override
+//    public void onSendTextSuceeded(Message msg) {
+//        for(Map.Entry<ArrayList<User>,ChatController> entry : chatControllers.entrySet()){
+//            if(entry.getKey().equals(msg.getChatUsers())){
+//                ChatController chatController = entry.getValue();
+//            }
+//        }
+//    }
 }
