@@ -62,10 +62,10 @@ public class SignUpController extends StageSceneController implements Initializa
 
     public static void saveToFile(Image image, String username) {
         try {
-            File outputFile = new File("/images/avatars/");
+            File outputFile = new File("res/images/avatars/"+username+".png");
             BufferedImage bImage = SwingFXUtils.fromFXImage(image, null);
             try {
-                ImageIO.write(bImage, username+".png", outputFile);
+                ImageIO.write(bImage, "png", outputFile);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

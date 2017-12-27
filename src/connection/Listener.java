@@ -83,7 +83,9 @@ public class Listener implements Runnable{
                             connectioncallback.onUserDisconnected(msg.getUserName(),msg.getNickname(), msg.getStatus());
                             break;
                         case CHAT_TEXT:
-                            connectioncallback.onSendTextSuceeded(msg);
+                            //TODO: open new ChatWindow for other users, reopen ChatWindow for group chat's creator
+                            //connectioncallback.onNewGroupChatCreated(msg) : load Chat form....
+                            chatCallback.onSendTextSuceeded(msg);
                             break;
                     }
                 }
@@ -123,13 +125,15 @@ public class Listener implements Runnable{
         }
     }
 
-    public void chatText(ArrayList<User> users, String text){
+    public void chatText(String username, ArrayList<User> users, String text){
         Message msg = new Message();
+        msg.setUserName(username);
         msg.setText(text);
         msg.setChatUsers(users);
         msg.setType(MessageType.CHAT_TEXT);
         sendToServer(msg);
     }
+
 }
 
 

@@ -2,20 +2,25 @@ package controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
-import connection.ChatCallback;
-import connection.Listener;
-import connection.Message;
+import connection.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import connection.User;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
+
 import java.util.ArrayList;
 
 public class ChatController extends StageSceneController implements ChatCallback{
@@ -31,7 +36,9 @@ public class ChatController extends StageSceneController implements ChatCallback
 
     private ArrayList<User> users;
     private Listener listener;
+    private String username;
 
+    public void setUsername(String username) {this.username = username; }
     public void setUsers(ArrayList<User> users) {
         this.users = users;
     }
@@ -72,11 +79,66 @@ public class ChatController extends StageSceneController implements ChatCallback
         listener.setChatControllers(users, this);
         String text = txtMess.getText();
         ArrayList<User> participants = users;
-        listener.chatText(participants, text);
+        listener.chatText(username, participants, text);
+    }
+
+    private void addChatLine(Message msg){
+        if(msg.getType().equals(MessageType.CHAT_TEXT)){
+            if(msg.getUserName().equals(username)){
+                setlvItemOfUser(msg.getText(), msg.getUserName());
+            }
+            else{
+                setlvItemOfOtherUsers(msg.getText(), msg.getUserName());
+            }
+        }
+        txtMess.clear();
+    }
+    private void setlvItemOfUser(String mess, String username){
+        HBox messItem = new HBox();
+
+        Circle circle = new Circle();
+        Image image = new Image(getClass().getClassLoader().getResource("images/avatars/" + username.toLowerCase() + ".png").toString(), 50, 50, true, true);
+        circle.setRadius(15);
+        circle.setFill(new ImagePattern(image));
+
+        Label blank = new Label("  ");
+        Label text = new Label(mess);
+
+        messItem.getChildren().addAll(circle, blank, text);
+        messItem.setAlignment(Pos.CENTER_LEFT);
+
+        lvChatLine.getItems().add(messItem);
+    }
+    private void setlvItemOfOtherUsers(String mess, String username){
+        HBox messItem = new HBox();
+
+        Label blank = new Label("  ");
+        Label text = new Label(mess);
+
+        Circle circle = new Circle();
+        Image image = new Image(getClass().getClassLoader().getResource("images/avatars/" + username.toLowerCase() + ".png").toString(), 50, 50, true, true);
+        circle.setRadius(15);
+        circle.setFill(new ImagePattern(image));
+
+        messItem.getChildren().addAll(text, blank, circle);
+        messItem.setAlignment(Pos.CENTER_RIGHT);
+
+        lvChatLine.getItems().add(messItem);
+    }
+    private void newMessageNotification(){
+         try {
+             Media hit = new Media(getClass().getClassLoader().getResource("sound/sound.mp3").toString());
+             MediaPlayer mediaPlayer = new MediaPlayer(hit);
+             mediaPlayer.play();
+         } catch (Exception e) {
+             e.printStackTrace();
+         }
     }
 
     @Override
     public void onSendTextSuceeded(Message message) {
-
+        addChatLine(message);
+        newMessageNotification();
     }
+
 }

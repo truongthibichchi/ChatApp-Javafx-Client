@@ -7,6 +7,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
@@ -31,11 +32,11 @@ public class CellRendererInChat implements Callback<ListView<User>, ListCell<Use
                     Image statusImage = new Image(getClass().getClassLoader().getResource("images/" + user.getStatus().toString().toLowerCase() + ".png").toString(), 16, 16, true, true);
                     statusImageView.setImage(statusImage);
 
-                    ImageView pictureImageView = new ImageView();
-
                     Image image = new Image(getClass().getClassLoader().getResource("images/avatars/" + user.getUsername().toLowerCase() + ".png").toString(), 50, 50, true, true);
-                    pictureImageView.setImage(image);
-                    vBox.getChildren().addAll(statusImageView, pictureImageView, name);
+                    Circle circle = new Circle();
+                    circle.setRadius(20);
+                    circle.setFill(new ImagePattern(image));
+                    vBox.getChildren().addAll(statusImageView, circle, name);
 
                     vBox.setAlignment(Pos.CENTER);
 

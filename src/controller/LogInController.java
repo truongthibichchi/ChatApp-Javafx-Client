@@ -102,7 +102,7 @@ public class LogInController extends StageSceneController implements Initializab
             MainWindowController controller = loader.getController();
             listener.setMainWindowController(controller);
             listener.setConnectionCallback(controller);
-            //controller.setListener(listener);
+            controller.setListener(listener);
 
             controller.drawUser(msg);
             controller.setStage(stageMain);
@@ -144,7 +144,6 @@ public class LogInController extends StageSceneController implements Initializab
     public void onUserDisconnected(String username, String nickname, Status status) {}
     @Override
     public void onConnected(Message msg) {
-        //TODO: clone userlist data
         LoadMainForm(msg);
     }
     @Override

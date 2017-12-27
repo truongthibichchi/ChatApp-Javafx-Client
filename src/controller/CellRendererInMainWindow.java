@@ -3,11 +3,13 @@ package controller;
 import connection.User;
 import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
@@ -35,16 +37,19 @@ class CellRendererInMainWindow implements Callback<ListView<User>, ListCell<User
                     Image statusImage = new Image(getClass().getClassLoader().getResource("images/" + user.getStatus().toString().toLowerCase() + ".png").toString(), 16, 16, true, true);
                     statusImageView.setImage(statusImage);
 
-
-                    ImageView pictureImageView = new ImageView();
-
+                    Circle circle = new Circle();
                     Image image = new Image(getClass().getClassLoader().getResource("images/avatars/" + user.getUsername().toLowerCase() + ".png").toString(), 50, 50, true, true);
-                    pictureImageView.setImage(image);
+                    circle.setFill(new ImagePattern(image));
+                    circle.setRadius(20);
 
-                    hBox.getChildren().addAll(statusImageView, pictureImageView, name);
+                    Label label1 = new Label("       ");
+                    Label label2 = new Label("     ");
+                    Label label3 = new Label("     ");
 
-                    hBox.setAlignment(Pos.CENTER);
-                    hBox.setStyle("-fx-background: #D3D3D3;");
+                    hBox.getChildren().addAll(label1, statusImageView, label2 , circle, label3, name);
+
+                    hBox.setAlignment(Pos.CENTER_LEFT);
+                    //hBox.setStyle("-fx-background-color: #D3D3D3;");
 
                     setGraphic(hBox);
 

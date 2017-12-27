@@ -42,7 +42,6 @@ public class MainWindowController extends StageSceneController implements Initia
 
     private Listener listener;
     private ArrayList<User> usersData;
-   private HashMap<ArrayList<User>, ChatController> chatControllers = new HashMap<>();
 
     public void setListener(Listener listener) {
         this.listener = listener;
@@ -50,7 +49,6 @@ public class MainWindowController extends StageSceneController implements Initia
     public void setUsersData(ArrayList<User> usersData) {
         this.usersData = usersData;
     }
-
 
     public void imgCloseAction() {
         Platform.exit();
@@ -64,10 +62,6 @@ public class MainWindowController extends StageSceneController implements Initia
             Image imgAvatar = new Image(getClass().getClassLoader().getResource("images/avatars/"+msg.getUserName()+".png").toString());
             cirAvatar.setFill(new ImagePattern(imgAvatar));
         });
-    }
-
-    private void addChatLine(String line){
-
     }
 
     public void drawUserList(ArrayList<User> users) {
@@ -98,10 +92,9 @@ public class MainWindowController extends StageSceneController implements Initia
                 controller.setStage(stage);
                 controller.addDragAndDropHandler();
                 controller.setUsers(selectedUsers);
+                controller.setUsername(txtUsername.getText());
                 controller.setListener(listener);
                 controller.drawUserList(selectedUsers);
-                //chatControllers.put(selectedUsers, controller);
-                //listener.setConversationController(chatControllers);
 
                 stage.show();
 
@@ -109,7 +102,6 @@ public class MainWindowController extends StageSceneController implements Initia
                 System.err.println(e);
             }
         });
-
     }
 
     public void imgCLoseAction(){
@@ -118,6 +110,7 @@ public class MainWindowController extends StageSceneController implements Initia
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        txtUsername.setEditable(false);
         Image imgAvatar = new Image(getClass().getClassLoader().getResource("images/avatars/default_avatar.png").toString());
         cirAvatar.setFill(new ImagePattern(imgAvatar));
     }
@@ -176,12 +169,5 @@ public class MainWindowController extends StageSceneController implements Initia
         }
         drawUserList(usersData);
     }
-//    @Override
-//    public void onSendTextSuceeded(Message msg) {
-//        for(Map.Entry<ArrayList<User>,ChatController> entry : chatControllers.entrySet()){
-//            if(entry.getKey().equals(msg.getChatUsers())){
-//                ChatController chatController = entry.getValue();
-//            }
-//        }
-//    }
+
 }
