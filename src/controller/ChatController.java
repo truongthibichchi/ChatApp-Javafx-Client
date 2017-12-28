@@ -49,8 +49,8 @@ public class ChatController extends StageSceneController {
     }
 
     public void imgCloseConversationAction(){
+        listener.closeChatWindow(users);
         this.stage.close();
-
     }
 
     public void drawUserList(ArrayList<User> users) {
