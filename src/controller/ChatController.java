@@ -20,7 +20,9 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.TextAlignment;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class ChatController extends StageSceneController {
@@ -47,7 +49,8 @@ public class ChatController extends StageSceneController {
     }
 
     public void imgCloseConversationAction(){
-        this.stage.hide();
+        this.stage.close();
+
     }
 
     public void drawUserList(ArrayList<User> users) {
@@ -100,6 +103,8 @@ public class ChatController extends StageSceneController {
 
             Label blank = new Label("  ");
             Label text = new Label(mess);
+            text.setWrapText(true);
+            text.setTextAlignment(TextAlignment.LEFT);
 
             messItem.getChildren().addAll(text, blank, circle);
             messItem.setAlignment(Pos.CENTER_RIGHT);
@@ -111,6 +116,8 @@ public class ChatController extends StageSceneController {
 
             Label blank = new Label("  ");
             Label text = new Label(mess);
+            text.setWrapText(true);
+            text.setTextAlignment(TextAlignment.LEFT);
 
             Circle circle = new Circle();
             Image image = new Image(getClass().getClassLoader().getResource("images/avatars/" + username.toLowerCase() + ".png").toString(), 50, 50, true, true);

@@ -139,7 +139,9 @@ public class Listener implements Runnable{
         sendToServer(msg);
     }
 
-
+    public void closeChatWindow(ArrayList<User> users){
+        mainWindowController.closeChatWindow(users);
+    }
 }
 
 

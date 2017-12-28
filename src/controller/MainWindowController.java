@@ -88,6 +88,7 @@ public class MainWindowController extends StageSceneController implements Initia
             selectedUsers.add(user);
         }
 
+        selectedUsers.add(userMain);
         if(isGroupChatExisted(selectedUsers)){
             lblNotiLvUser.setText("Group chat existed");
             return;
@@ -95,7 +96,32 @@ public class MainWindowController extends StageSceneController implements Initia
         else{
             lblNotiLvUser.setText("");
         }
-        loadNewChatWindow(selectedUsers);
+        Platform.runLater(()-> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Chat.fxml"));
+                Parent root = loader.load();
+
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(new Scene(root));
+
+                ChatController controller = loader.getController();
+
+                controller.setStage(stage);
+                controller.addDragAndDropHandler();
+                controller.setUsers(selectedUsers);
+                controller.setUser(userMain);
+                controller.setListener(listener);
+                controller.drawUserList(selectedUsers);
+
+                setChatControllers(selectedUsers, controller);
+
+                stage.show();
+
+            } catch (Exception e) {
+                System.err.println(e);
+            }
+        });
     }
 
     private boolean isGroupChatExisted(ArrayList<User> users){
@@ -185,7 +211,7 @@ public class MainWindowController extends StageSceneController implements Initia
                 return;
             }
         }
-        loadNewChatWindow(msg.getChatUsers());
+        loadNewChatWindow(msg);
     }
 
     private boolean isEqualUsers(ArrayList<User> msgUsers,ArrayList<User> mapUsers){
@@ -206,8 +232,7 @@ public class MainWindowController extends StageSceneController implements Initia
       }
        return true;
     }
-
-    private void loadNewChatWindow(ArrayList<User> users){
+    private void loadNewChatWindow(Message msg){
         Platform.runLater(()-> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Chat.fxml"));
@@ -221,12 +246,13 @@ public class MainWindowController extends StageSceneController implements Initia
 
                 controller.setStage(stage);
                 controller.addDragAndDropHandler();
-                controller.setUsers(users);
+                controller.setUsers(msg.getChatUsers());
                 controller.setUser(userMain);
                 controller.setListener(listener);
-                controller.drawUserList(users);
+                controller.drawUserList(msg.getChatUsers());
 
-                setChatControllers(users, controller);
+                setChatControllers(msg.getChatUsers(), controller);
+                controller.onSendTextSuceeded(msg);
 
                 stage.show();
 
@@ -235,4 +261,10 @@ public class MainWindowController extends StageSceneController implements Initia
             }
         });
     }
+    public void closeChatWindow(ArrayList<User> users){
+        if(chatControllers.containsKey(users)){
+            chatControllers.remove(users);
+        }
+    }
+
 }
