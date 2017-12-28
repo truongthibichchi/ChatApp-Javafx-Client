@@ -13,9 +13,9 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="257.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SignUpController">
    <children>
-      <AnchorPane fx:id="anchorPane" prefHeight="622.0" prefWidth="337.0" style="-fx-background-color: #24313c;">
+      <AnchorPane fx:id="anchorPane" prefHeight="639.0" prefWidth="337.0" style="-fx-background-color: #24313c;">
          <children>
-            <Button fx:id="btnSignUp" layoutX="140.0" layoutY="545.0" mnemonicParsing="false" onMouseClicked="#btnSignUpAction" prefHeight="36.0" prefWidth="97.0" style="-fx-background-color: #1ab188; -fx-cursor: hand;" text="Sign Up" textFill="WHITE" />
+            <Button fx:id="btnSignUp" layoutX="141.0" layoutY="563.0" mnemonicParsing="false" onMouseClicked="#btnSignUpAction" prefHeight="36.0" prefWidth="97.0" style="-fx-background-color: #1ab188; -fx-cursor: hand;" text="Sign Up" textFill="WHITE" />
             <JFXTextField fx:id="txtUsername" layoutX="83.0" layoutY="228.0" prefHeight="25.0" prefWidth="207.0" promptText="Username" stylesheets="@../styles/FXMLStyle.css" unFocusColor="#bcb1b1" />
             <JFXTextField fx:id="txtNickname" layoutX="83.0" layoutY="291.0" prefHeight="25.0" prefWidth="207.0" promptText="Nickname" stylesheets="@../styles/FXMLStyle.css" unFocusColor="#bcb1b1" />
             <ImageView fitHeight="74.0" fitWidth="151.0" layoutX="94.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
@@ -23,9 +23,9 @@
                   <Image url="@../images/tagami.png" />
                </image>
             </ImageView>
-            <Label layoutX="92.0" layoutY="590.0" text="Have an account? " textFill="WHITE" />
-            <Label fx:id="lblLogin" layoutX="211.0" layoutY="590.0" onMouseClicked="#lblLogInAction" style="-fx-cursor: hand;" text="Log In" textFill="#1ab188" underline="true" />
-            <Label fx:id="lblNoti" layoutX="92.0" layoutY="511.0" textFill="#ff2108" />
+            <Label layoutX="93.0" layoutY="608.0" text="Have an account? " textFill="WHITE" />
+            <Label fx:id="lblLogin" layoutX="212.0" layoutY="608.0" onMouseClicked="#lblLogInAction" style="-fx-cursor: hand;" text="Log In" textFill="#1ab188" underline="true" />
+            <Label fx:id="lblNoti" layoutX="83.0" layoutY="539.0" textFill="#ff2108" />
             <ImageView fx:id="imgClose" fitHeight="25.0" fitWidth="34.0" layoutX="303.0" layoutY="6.0" onMouseClicked="#closeApp" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
                <image>
                   <Image url="@../images/close.png" />

@@ -14,11 +14,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane prefHeight="603.0" prefWidth="521.0" style="-fx-background-color: #D3D3D3;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainWindowController">
+<AnchorPane prefHeight="603.0" prefWidth="521.0" style="-fx-background-color: #D3D3D3;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainWindowController">
    <children>
       <Pane layoutY="45.0" prefHeight="558.0" prefWidth="256.0" style="-fx-background-color: #292F39;">
          <children>
-            <Circle fx:id="cirAvatar"  fill="DODGERBLUE" layoutX="128.0" layoutY="159.0" radius="120.0" stroke="BLACK" strokeType="INSIDE">
+            <Circle fx:id="cirAvatar" fill="DODGERBLUE" layoutX="128.0" layoutY="159.0" radius="120.0" stroke="BLACK" strokeType="INSIDE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Circle>
@@ -29,10 +29,11 @@
             <Label fx:id="lblUsername" layoutX="14.0" layoutY="330.0" text="Username" textFill="WHITE" />
             <Label layoutX="13.0" layoutY="385.0" text="NickName" textFill="WHITE" />
             <Label layoutX="19.0" layoutY="438.0" text="Password" textFill="WHITE" />
+            <Label fx:id="lblNotiUser" layoutX="25.0" layoutY="471.0" prefHeight="17.0" prefWidth="85.0" textFill="#ff0404" />
          </children>
       </Pane>
       <Button fx:id="btnNewMess" layoutX="276.0" layoutY="451.0" mnemonicParsing="false" onMouseClicked="#btnNewMessAction" prefHeight="45.0" prefWidth="113.0" text="New Message" />
-      <ListView fx:id="lvUserList" layoutX="256.0" layoutY="45.0" prefHeight="485.0" prefWidth="268.0" style="-fx-background-color: #D3D3D3;" />
+      <ListView fx:id="lvUserList" layoutX="257.0" layoutY="44.0" prefHeight="463.0" prefWidth="268.0" />
       <BorderPane fx:id="borderPane" layoutX="-26.0" prefHeight="45.0" prefWidth="551.0" style="-fx-background-color: #1E222A;">
          <center>
             <ImageView fitHeight="44.0" fitWidth="163.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
@@ -42,7 +43,7 @@
             </ImageView>
          </center>
          <right>
-            <ImageView fx:id="imaClose" fitHeight="43.0" fitWidth="69.0" onMouseClicked="#imgCloseAction" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <ImageView fx:id="imgClose" fitHeight="43.0" fitWidth="69.0" onMouseClicked="#imgCloseAction" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@../images/close.png" />
                </image>
@@ -52,6 +53,7 @@
             </ImageView>
          </right>
       </BorderPane>
-      <JFXButton fx:id="btnNewChat" layoutX="334.0" layoutY="544.0" onAction="#btnNewMessAction" prefHeight="45.0" prefWidth="113.0" style="-fx-background-color: #da1b81;" text="New Chat" textFill="WHITE" />
+      <JFXButton fx:id="btnNewChat" layoutX="347.0" layoutY="544.0" onAction="#btnNewMessAction" prefHeight="45.0" prefWidth="102.0" style="-fx-background-color: #da1b81;" text="New Chat" textFill="WHITE" />
+      <Label fx:id="lblNotiLvUser" layoutX="284.0" layoutY="517.0" textFill="#ff0404" />
    </children>
 </AnchorPane>

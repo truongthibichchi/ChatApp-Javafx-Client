@@ -47,12 +47,9 @@ class CellRendererInMainWindow implements Callback<ListView<User>, ListCell<User
                     Label label3 = new Label("     ");
 
                     hBox.getChildren().addAll(label1, statusImageView, label2 , circle, label3, name);
-
                     hBox.setAlignment(Pos.CENTER_LEFT);
-                    //hBox.setStyle("-fx-background-color: #D3D3D3;");
 
                     setGraphic(hBox);
-
                 }
             }
         };

@@ -12,6 +12,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Listener implements Runnable{
     private int port;
@@ -22,12 +23,10 @@ public class Listener implements Runnable{
     private ObjectInputStream inputStream;
 
     private ConnectionCallback connectioncallback;
-    private ChatCallback chatCallback;
 
     private LogInController logInController;
     private MainWindowController mainWindowController;
     private SignUpController signUpController;
-    private HashMap<ArrayList<User>, ChatController> chatControllers = new HashMap<>();
 
     public User getUser() {return user; }
     public void setSignUpController(SignUpController signUpController) {
@@ -40,8 +39,7 @@ public class Listener implements Runnable{
     public void setConnectionCallback (ConnectionCallback callback) {
         this.connectioncallback = callback;
     }
-    public void setChatCallback(ChatCallback chatCallback) {this.chatCallback = chatCallback; }
-    public void setChatControllers (ArrayList<User> users, ChatController controller) {chatControllers.put(users, controller);}
+
 
     public Listener(String hostname, int port, User user) {
         this.hostname = hostname;
@@ -71,21 +69,28 @@ public class Listener implements Runnable{
                         case CONNECTED:
                             connectioncallback.onConnected(msg);
                             break;
-                        case LOG_IN_FAILED:
-                            connectioncallback.onLoginFailed(msg);
+
+                        case WRONG_INFO:
+                            connectioncallback.onWrongInfo();
                             break;
+
+                        case ALREADY_LOGGED_IN:
+                            connectioncallback.onUserAlreadyLogedIn();
+                            break;
+
                         case SIGN_UP_FAILED:
-                            connectioncallback.onSignUpFailed(msg);
+                            connectioncallback.onSignUpFailed();
+                            break;
+
                         case NEW_USER_CONNECTED:
                             connectioncallback.onNewUserConnected(msg.getUserName(),msg.getNickname(), msg.getStatus());
                             break;
                         case DISCONNECT:
                             connectioncallback.onUserDisconnected(msg.getUserName(),msg.getNickname(), msg.getStatus());
                             break;
+
                         case CHAT_TEXT:
-                            //TODO: open new ChatWindow for other users, reopen ChatWindow for group chat's creator
-                            //connectioncallback.onNewGroupChatCreated(msg) : load Chat form....
-                            chatCallback.onSendTextSuceeded(msg);
+                            connectioncallback.onReCeivedAtextMessage(msg);
                             break;
                     }
                 }
@@ -133,6 +138,7 @@ public class Listener implements Runnable{
         msg.setType(MessageType.CHAT_TEXT);
         sendToServer(msg);
     }
+
 
 }
 

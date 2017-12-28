@@ -2,7 +2,8 @@ package connection;
 
 public enum MessageType {
     LOGIN,
-    LOG_IN_FAILED,
+    WRONG_INFO,
+    ALREADY_LOGGED_IN,
     SIGN_UP,
     SIGN_UP_FAILED,
     CONNECTED,

@@ -64,8 +64,8 @@
       <file leaf-file-name="Listener.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/connection/Listener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1190">
-              <caret line="86" column="96" lean-forward="false" selection-start-line="86" selection-start-column="96" selection-end-line="86" selection-end-column="96" />
+            <state relative-caret-position="85">
+              <caret line="69" column="58" lean-forward="false" selection-start-line="69" selection-start-column="47" selection-end-line="69" selection-end-column="58" />
               <folding>
                 <element signature="method#connectToServer#0;class#Listener#0" expanded="false" />
                 <element signature="method#sendToServer#0;class#Listener#0" expanded="false" />
@@ -77,57 +77,62 @@
       <file leaf-file-name="ChatController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controller/ChatController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="680">
-              <caret line="135" column="5" lean-forward="false" selection-start-line="135" selection-start-column="5" selection-end-line="135" selection-end-column="5" />
+            <state relative-caret-position="425">
+              <caret line="83" column="58" lean-forward="false" selection-start-line="83" selection-start-column="58" selection-end-line="83" selection-end-column="58" />
               <folding>
-                <element signature="method#setUsername#0;class#ChatController#0" expanded="false" />
-                <element signature="method#imgCloseConversationAction#0;class#ChatController#0" expanded="false" />
                 <element signature="method#drawUserList#0;class#ChatController#0" expanded="false" />
-                <element signature="e#1631#1858#0" expanded="false" />
+                <element signature="e#1583#1810#0" expanded="false" />
                 <element signature="method#addDragAndDropHandler#0;class#ChatController#0" expanded="false" />
-                <element signature="e#1941#2132#0" expanded="false" />
-                <element signature="e#2166#2304#0" expanded="false" />
-                <element signature="e#2339#2403#0" expanded="false" />
-                <element signature="method#addChatLine#0;class#ChatController#0" expanded="false" />
-                <element signature="method#setlvItemOfUser#0;class#ChatController#0" expanded="false" />
-                <element signature="method#setlvItemOfOtherUsers#0;class#ChatController#0" expanded="false" />
-                <element signature="method#newMessageNotification#0;class#ChatController#0" expanded="false" />
+                <element signature="e#1893#2084#0" expanded="false" />
+                <element signature="e#2118#2256#0" expanded="false" />
+                <element signature="e#2291#2355#0" expanded="false" />
+                <element signature="method#soundNotification#0;class#ChatController#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainWindowController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainWindowController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controller/MainWindowController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="94" column="62" lean-forward="true" selection-start-line="94" selection-start-column="62" selection-end-line="94" selection-end-column="62" />
+            <state relative-caret-position="237">
+              <caret line="58" column="27" lean-forward="false" selection-start-line="58" selection-start-column="27" selection-end-line="58" selection-end-column="27" />
               <folding>
+                <element signature="method#setChatControllers#0;class#MainWindowController#0" expanded="false" />
                 <element signature="method#imgCloseAction#0;class#MainWindowController#0" expanded="false" />
-                <element signature="method#drawUser#0;class#MainWindowController#0" expanded="false" />
-                <element signature="e#1793#2109#0" expanded="false" />
                 <element signature="method#drawUserList#0;class#MainWindowController#0" expanded="false" />
-                <element signature="e#2199#2442#0" expanded="false" />
+                <element signature="e#2651#2894#0" expanded="false" />
+                <element signature="method#btnNewMessAction#0;class#MainWindowController#0" expanded="false" />
+                <element signature="method#isGroupChatExisted#0;class#MainWindowController#0" expanded="false" />
                 <element signature="method#imgCLoseAction#0;class#MainWindowController#0" expanded="false" />
+                <element signature="method#initialize#0;class#MainWindowController#0" expanded="false" />
                 <element signature="method#addDragAndDropHandler#0;class#MainWindowController#0" expanded="false" />
-                <element signature="e#4117#4314#0" expanded="false" />
-                <element signature="e#4355#4494#0" expanded="false" />
-                <element signature="e#4536#4606#0" expanded="false" />
+                <element signature="e#4122#4319#0" expanded="false" />
+                <element signature="e#4360#4499#0" expanded="false" />
+                <element signature="e#4541#4611#0" expanded="false" />
                 <element signature="method#onConnectionFailed#0;class#MainWindowController#0" expanded="false" />
                 <element signature="method#onSignUpFailed#0;class#MainWindowController#0" expanded="false" />
                 <element signature="method#onNewUserConnected#0;class#MainWindowController#0" expanded="false" />
                 <element signature="method#onUserDisconnected#0;class#MainWindowController#0" expanded="false" />
+                <element signature="method#onReCeivedAtextMessage#0;class#MainWindowController#0" expanded="false" />
+                <element signature="method#isEqualUsers#0;class#MainWindowController#0" expanded="false" />
+                <element signature="method#loadNewChatWindow#0;class#MainWindowController#0" expanded="false" />
+                <element signature="e#6705#7561#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CellRendererInMainWindow.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controller/CellRendererInMainWindow.java">
+      <file leaf-file-name="LogInController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/controller/LogInController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="782">
-              <caret line="58" column="20" lean-forward="false" selection-start-line="58" selection-start-column="20" selection-end-line="58" selection-end-column="20" />
-              <folding />
+            <state relative-caret-position="241">
+              <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+              <folding>
+                <element signature="method#closeApp#0;class#LogInController#0" expanded="false" />
+                <element signature="method#lblSignUpAction#0;class#LogInController#0" expanded="false" />
+                <element signature="method#initialize#0;class#LogInController#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -156,6 +161,10 @@
       <find>close</find>
       <find>css</find>
       <find>draw</find>
+      <find>imgCLoseAction</find>
+      <find>detai</find>
+      <find>noti</find>
+      <find>lblnotiUser</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -182,29 +191,29 @@
         <option value="$PROJECT_DIR$/src/controller/MainLauncher.java" />
         <option value="$PROJECT_DIR$/src/MainLauncher.java" />
         <option value="$PROJECT_DIR$/res/styles/TextFieldStyle.css" />
-        <option value="$PROJECT_DIR$/res/views/LogIn.fxml" />
         <option value="$PROJECT_DIR$/src/connection/User.java" />
         <option value="$PROJECT_DIR$/src/connection/Status.java" />
         <option value="$PROJECT_DIR$/res/styles/FXMLStyle.css" />
-        <option value="$PROJECT_DIR$/res/views/SignUp.fxml" />
         <option value="$PROJECT_DIR$/src/util/convertImage.java" />
         <option value="$PROJECT_DIR$/src/util/convertFile.java" />
         <option value="$PROJECT_DIR$/src/connection/chatCallback.java" />
-        <option value="$PROJECT_DIR$/res/views/MainWindow.fxml" />
-        <option value="$PROJECT_DIR$/src/connection/ConnectionCallback.java" />
-        <option value="$PROJECT_DIR$/src/connection/ChatCallback.java" />
-        <option value="$PROJECT_DIR$/src/controller/SignUpController.java" />
-        <option value="$PROJECT_DIR$/src/controller/MainWindowController.java" />
-        <option value="$PROJECT_DIR$/src/connection/MessageType.java" />
         <option value="$PROJECT_DIR$/src/util/VoicePlayback.java" />
         <option value="$PROJECT_DIR$/src/util/VoiceRecorder.java" />
         <option value="$PROJECT_DIR$/src/controller/ItemOfUser.java" />
-        <option value="$PROJECT_DIR$/src/controller/LogInController.java" />
         <option value="$PROJECT_DIR$/src/connection/Message.java" />
-        <option value="$PROJECT_DIR$/src/controller/CellRendererInMainWindow.java" />
         <option value="$PROJECT_DIR$/src/controller/CellRendererInChat.java" />
-        <option value="$PROJECT_DIR$/src/controller/ChatController.java" />
+        <option value="$PROJECT_DIR$/src/controller/CellRendererInMainWindow.java" />
+        <option value="$PROJECT_DIR$/res/views/SignUp.fxml" />
+        <option value="$PROJECT_DIR$/res/views/LogIn.fxml" />
+        <option value="$PROJECT_DIR$/src/connection/MessageType.java" />
+        <option value="$PROJECT_DIR$/src/connection/ChatCallback.java" />
+        <option value="$PROJECT_DIR$/src/connection/ConnectionCallback.java" />
         <option value="$PROJECT_DIR$/src/connection/Listener.java" />
+        <option value="$PROJECT_DIR$/src/controller/SignUpController.java" />
+        <option value="$PROJECT_DIR$/res/views/MainWindow.fxml" />
+        <option value="$PROJECT_DIR$/src/controller/ChatController.java" />
+        <option value="$PROJECT_DIR$/src/controller/MainWindowController.java" />
+        <option value="$PROJECT_DIR$/src/controller/LogInController.java" />
       </list>
     </option>
   </component>
@@ -215,7 +224,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="683" />
     <option name="width" value="683" />
     <option name="height" value="738" />
@@ -239,6 +248,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -250,12 +261,6 @@
               <item name="Client" type="b2602c69:ProjectViewProjectNode" />
               <item name="Client" type="462c0819:PsiDirectoryNode" />
               <item name="res" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Client" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="styles" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Client" type="b2602c69:ProjectViewProjectNode" />
@@ -290,9 +295,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -307,7 +310,7 @@
     <property name="dynamic.classpath" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Server/Server" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/JavaFX-Chat-master/JavaFX-Chat-master" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -536,11 +539,14 @@
       <workItem from="1514268332275" duration="8691000" />
       <workItem from="1514300753081" duration="12372000" />
       <workItem from="1514341389997" duration="170000" />
+      <workItem from="1514375435879" duration="2137000" />
+      <workItem from="1514383927845" duration="1344000" />
+      <workItem from="1514422351942" duration="19558000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="145252000" />
+    <option name="totallyTimeSpent" value="168291000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -552,25 +558,26 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32847896" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32847896" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30097088" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29935277" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20131771" sideWeight="0.6703755" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22108346" sideWeight="0.6703755" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34304208" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -578,44 +585,12 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32847896" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329429" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32847896" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34304208" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32847896" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32847896" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29935277" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329429" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20131771" sideWeight="0.6703755" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32847896" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -631,13 +606,19 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/controller/MainWindowController.java</url>
-          <line>75</line>
+          <url>file://$PROJECT_DIR$/src/connection/Listener.java</url>
+          <line>92</line>
           <properties />
-          <option name="timeStamp" value="104" />
+          <option name="timeStamp" value="123" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/controller/MainWindowController.java</url>
+          <line>67</line>
+          <properties />
+          <option name="timeStamp" value="128" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="109" />
+      <option name="time" value="129" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -781,30 +762,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/views/Chat.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="40" column="52" lean-forward="false" selection-start-line="40" selection-start-column="52" selection-end-line="40" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/connection/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="31" column="5" lean-forward="true" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/connection/Status.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="42" lean-forward="false" selection-start-line="4" selection-start-column="42" selection-end-line="4" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/images/avatars/default_avatar.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -857,28 +814,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/views/SignUp.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-204">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/views/LogIn.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="760">
-          <caret line="48" column="27" lean-forward="false" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/styles/FXMLStyle.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -886,57 +821,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/connection/ConnectionCallback.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="61" lean-forward="true" selection-start-line="8" selection-start-column="61" selection-end-line="8" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/connection/ChatCallback.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="27" lean-forward="false" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Dev/Java/jdk1.8.0_144/javafx-src.zip!/com/sun/glass/ui/win/WinApplication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
           <caret line="190" column="0" lean-forward="false" selection-start-line="190" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/SignUpController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="120" column="13" lean-forward="true" selection-start-line="120" selection-start-column="13" selection-end-line="120" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="method#lblLogInAction#0;class#SignUpController#0" expanded="false" />
-            <element signature="method#loadMainWindowForm#0;class#SignUpController#0" expanded="false" />
-            <element signature="method#showNotification#0;class#SignUpController#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/views/MainWindow.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="20" column="139" lean-forward="false" selection-start-line="20" selection-start-column="139" selection-end-line="20" selection-end-column="139" />
-          <folding>
-            <marker date="1514279572329" expanded="true" signature="2503:3616" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/connection/MessageType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="9" lean-forward="false" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -953,33 +841,197 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/LogInController.java">
+    <entry file="file://$PROJECT_DIR$/src/controller/CellRendererInMainWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="95" column="40" lean-forward="true" selection-start-line="95" selection-start-column="40" selection-end-line="95" selection-end-column="40" />
+        <state relative-caret-position="408">
+          <caret line="36" column="16" lean-forward="true" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="16" />
           <folding>
-            <element signature="method#closeApp#0;class#LogInController#0" expanded="false" />
-            <element signature="method#btnLogInAction#0;class#LogInController#0" expanded="false" />
-            <element signature="method#lblSignUpAction#0;class#LogInController#0" expanded="false" />
-            <element signature="method#showNotification#0;class#LogInController#0" expanded="false" />
-            <element signature="e#4779#4780#0" expanded="true" />
-            <element signature="e#4812#4813#0" expanded="true" />
-            <element signature="method#initialize#0;class#LogInController#0" expanded="false" />
+            <element signature="e#711#2128#0" expanded="false" />
+            <element signature="e#2127#2128#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/connection/Status.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="42" lean-forward="false" selection-start-line="4" selection-start-column="42" selection-end-line="4" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/views/Chat.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="42" column="35" lean-forward="false" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/views/SignUp.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="27" column="87" lean-forward="false" selection-start-line="27" selection-start-column="87" selection-end-line="27" selection-end-column="87" />
+          <folding>
+            <marker date="1514428988140" expanded="true" signature="2222:2349" ph="..." />
+            <marker date="1514428988140" expanded="true" signature="2245:2324" ph="..." />
+            <marker date="1514428988140" expanded="true" signature="2609:2735" ph="..." />
+            <marker date="1514428988140" expanded="true" signature="2632:2710" ph="..." />
+            <marker date="1514428988140" expanded="true" signature="2864:2994" ph="..." />
+            <marker date="1514428988140" expanded="true" signature="2887:2969" ph="..." />
+            <marker date="1514428988140" expanded="true" signature="3123:3253" ph="..." />
+            <marker date="1514428988140" expanded="true" signature="3146:3228" ph="..." />
+            <marker date="1514428988140" expanded="true" signature="3345:3450" ph="..." />
+            <marker date="1514428988140" expanded="true" signature="3367:3429" ph="..." />
+            <marker date="1514428988140" expanded="true" signature="4354:4478" ph="..." />
+            <marker date="1514428988140" expanded="true" signature="4378:4456" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/views/LogIn.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="48" column="71" lean-forward="false" selection-start-line="48" selection-start-column="71" selection-end-line="48" selection-end-column="71" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/connection/Message.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-346">
+        <state relative-caret-position="119">
           <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/connection/MessageType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="19" lean-forward="false" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/connection/ChatCallback.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="46" lean-forward="false" selection-start-line="4" selection-start-column="46" selection-end-line="4" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/SignUpController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="474">
+          <caret line="209" column="8" lean-forward="false" selection-start-line="209" selection-start-column="8" selection-end-line="209" selection-end-column="8" />
+          <folding>
+            <element signature="method#saveToFile#0;class#SignUpController#0" expanded="false" />
+            <element signature="method#imgAvatarAction#0;class#SignUpController#0" expanded="false" />
+            <element signature="method#lblLogInAction#0;class#SignUpController#0" expanded="false" />
+            <element signature="method#btnSignUpAction#0;class#SignUpController#0" expanded="false" />
+            <element signature="method#loadMainWindowForm#0;class#SignUpController#0" expanded="false" />
+            <element signature="e#4667#5882#0" expanded="false" />
+            <element signature="method#showNotification#0;class#SignUpController#0" expanded="false" />
+            <element signature="e#5963#6012#0" expanded="false" />
+            <element signature="method#onConnected#0;class#SignUpController#0" expanded="false" />
+            <element signature="e#6380#6381#0" expanded="true" />
+            <element signature="e#6446#6447#0" expanded="true" />
+            <element signature="method#initialize#0;class#SignUpController#0" expanded="false" />
+            <element signature="e#7028#7226#0" expanded="false" />
+            <element signature="e#7267#7406#0" expanded="false" />
+            <element signature="e#7448#7518#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/views/MainWindow.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="56" column="33" lean-forward="false" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="33" />
+          <folding>
+            <marker date="1514436926858" expanded="true" signature="3777:3792" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/connection/ConnectionCallback.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="9" lean-forward="false" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/connection/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="79" lean-forward="true" selection-start-line="22" selection-start-column="79" selection-end-line="22" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/ChatController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="83" column="58" lean-forward="false" selection-start-line="83" selection-start-column="58" selection-end-line="83" selection-end-column="58" />
+          <folding>
+            <element signature="method#drawUserList#0;class#ChatController#0" expanded="false" />
+            <element signature="e#1583#1810#0" expanded="false" />
+            <element signature="method#addDragAndDropHandler#0;class#ChatController#0" expanded="false" />
+            <element signature="e#1893#2084#0" expanded="false" />
+            <element signature="e#2118#2256#0" expanded="false" />
+            <element signature="e#2291#2355#0" expanded="false" />
+            <element signature="method#soundNotification#0;class#ChatController#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/MainWindowController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="58" column="27" lean-forward="false" selection-start-line="58" selection-start-column="27" selection-end-line="58" selection-end-column="27" />
+          <folding>
+            <element signature="method#setChatControllers#0;class#MainWindowController#0" expanded="false" />
+            <element signature="method#imgCloseAction#0;class#MainWindowController#0" expanded="false" />
+            <element signature="method#drawUserList#0;class#MainWindowController#0" expanded="false" />
+            <element signature="e#2651#2894#0" expanded="false" />
+            <element signature="method#btnNewMessAction#0;class#MainWindowController#0" expanded="false" />
+            <element signature="method#isGroupChatExisted#0;class#MainWindowController#0" expanded="false" />
+            <element signature="method#imgCLoseAction#0;class#MainWindowController#0" expanded="false" />
+            <element signature="method#initialize#0;class#MainWindowController#0" expanded="false" />
+            <element signature="method#addDragAndDropHandler#0;class#MainWindowController#0" expanded="false" />
+            <element signature="e#4122#4319#0" expanded="false" />
+            <element signature="e#4360#4499#0" expanded="false" />
+            <element signature="e#4541#4611#0" expanded="false" />
+            <element signature="method#onConnectionFailed#0;class#MainWindowController#0" expanded="false" />
+            <element signature="method#onSignUpFailed#0;class#MainWindowController#0" expanded="false" />
+            <element signature="method#onNewUserConnected#0;class#MainWindowController#0" expanded="false" />
+            <element signature="method#onUserDisconnected#0;class#MainWindowController#0" expanded="false" />
+            <element signature="method#onReCeivedAtextMessage#0;class#MainWindowController#0" expanded="false" />
+            <element signature="method#isEqualUsers#0;class#MainWindowController#0" expanded="false" />
+            <element signature="method#loadNewChatWindow#0;class#MainWindowController#0" expanded="false" />
+            <element signature="e#6705#7561#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/connection/Listener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1190">
-          <caret line="86" column="96" lean-forward="false" selection-start-line="86" selection-start-column="96" selection-end-line="86" selection-end-column="96" />
+        <state relative-caret-position="85">
+          <caret line="69" column="58" lean-forward="false" selection-start-line="69" selection-start-column="47" selection-end-line="69" selection-end-column="58" />
           <folding>
             <element signature="method#connectToServer#0;class#Listener#0" expanded="false" />
             <element signature="method#sendToServer#0;class#Listener#0" expanded="false" />
@@ -987,54 +1039,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/CellRendererInMainWindow.java">
+    <entry file="file://$PROJECT_DIR$/src/controller/LogInController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="58" column="20" lean-forward="false" selection-start-line="58" selection-start-column="20" selection-end-line="58" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/ChatController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="135" column="5" lean-forward="false" selection-start-line="135" selection-start-column="5" selection-end-line="135" selection-end-column="5" />
+        <state relative-caret-position="241">
+          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding>
-            <element signature="method#setUsername#0;class#ChatController#0" expanded="false" />
-            <element signature="method#imgCloseConversationAction#0;class#ChatController#0" expanded="false" />
-            <element signature="method#drawUserList#0;class#ChatController#0" expanded="false" />
-            <element signature="e#1631#1858#0" expanded="false" />
-            <element signature="method#addDragAndDropHandler#0;class#ChatController#0" expanded="false" />
-            <element signature="e#1941#2132#0" expanded="false" />
-            <element signature="e#2166#2304#0" expanded="false" />
-            <element signature="e#2339#2403#0" expanded="false" />
-            <element signature="method#addChatLine#0;class#ChatController#0" expanded="false" />
-            <element signature="method#setlvItemOfUser#0;class#ChatController#0" expanded="false" />
-            <element signature="method#setlvItemOfOtherUsers#0;class#ChatController#0" expanded="false" />
-            <element signature="method#newMessageNotification#0;class#ChatController#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/MainWindowController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="94" column="62" lean-forward="true" selection-start-line="94" selection-start-column="62" selection-end-line="94" selection-end-column="62" />
-          <folding>
-            <element signature="method#imgCloseAction#0;class#MainWindowController#0" expanded="false" />
-            <element signature="method#drawUser#0;class#MainWindowController#0" expanded="false" />
-            <element signature="e#1793#2109#0" expanded="false" />
-            <element signature="method#drawUserList#0;class#MainWindowController#0" expanded="false" />
-            <element signature="e#2199#2442#0" expanded="false" />
-            <element signature="method#imgCLoseAction#0;class#MainWindowController#0" expanded="false" />
-            <element signature="method#addDragAndDropHandler#0;class#MainWindowController#0" expanded="false" />
-            <element signature="e#4117#4314#0" expanded="false" />
-            <element signature="e#4355#4494#0" expanded="false" />
-            <element signature="e#4536#4606#0" expanded="false" />
-            <element signature="method#onConnectionFailed#0;class#MainWindowController#0" expanded="false" />
-            <element signature="method#onSignUpFailed#0;class#MainWindowController#0" expanded="false" />
-            <element signature="method#onNewUserConnected#0;class#MainWindowController#0" expanded="false" />
-            <element signature="method#onUserDisconnected#0;class#MainWindowController#0" expanded="false" />
+            <element signature="method#closeApp#0;class#LogInController#0" expanded="false" />
+            <element signature="method#lblSignUpAction#0;class#LogInController#0" expanded="false" />
+            <element signature="method#initialize#0;class#LogInController#0" expanded="false" />
           </folding>
         </state>
       </provider>

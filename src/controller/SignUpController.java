@@ -189,17 +189,27 @@ public class SignUpController extends StageSceneController implements Initializa
     }
 
     @Override
-    public void onLoginFailed(Message msg) {}
+    public void onWrongInfo() {}
+
+    @Override
+    public void onUserAlreadyLogedIn() {}
+
     @Override
     public void onConnectionFailed(){}
     @Override
-    public void onSignUpFailed(Message msg) {
-        showNotification("Sign up failed");
+    public void onSignUpFailed() {
+        showNotification("This username is not available");
     }
     @Override
     public void onUserDisconnected(String username, String nickname, Status status) {}
     @Override
     public void onNewUserConnected(String username, String nickname, Status status) {}
+
+    @Override
+    public void onReCeivedAtextMessage(Message msg) {
+
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         imagetoSave = new Image(getClass().getClassLoader().getResource("images/avatars/default_avatar.png").toString());

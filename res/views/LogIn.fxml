@@ -34,19 +34,19 @@
             <Image url="@../images/password.png" />
          </image>
       </ImageView>
-      <Label layoutX="104.0" layoutY="282.0" text="Server Detail" textFill="WHITE">
+      <Label layoutX="104.0" layoutY="282.0" text="Server Detail" textFill="#0eeb8d">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="57.0" layoutY="294.0" text="------------------------------------" textFill="WHITE" />
+      <Label layoutX="57.0" layoutY="294.0" text="------------------------------------" textFill="#0eeb8d" />
       <Label layoutX="17.0" layoutY="335.0" text="Host name" textFill="WHITE" />
       <Label layoutX="35.0" layoutY="374.0" text="Port" textFill="WHITE" />
       <JFXTextField fx:id="txtusername" layoutX="71.0" layoutY="134.0" prefHeight="25.0" prefWidth="187.0" promptText="Username" stylesheets="@../styles/FXMLStyle.css" />
       <JFXTextField fx:id="txthostname" layoutX="87.0" layoutY="323.0" prefHeight="25.0" prefWidth="173.0" stylesheets="@../styles/FXMLStyle.css" text="localhost" />
       <JFXTextField fx:id="txtport" layoutX="87.0" layoutY="362.0" prefHeight="25.0" prefWidth="173.0" stylesheets="@../styles/FXMLStyle.css" text="9999" />
       <JFXButton fx:id="btnLogIn" layoutX="96.0" layoutY="447.0" onAction="#btnLogInAction" prefHeight="37.0" prefWidth="96.0" style="-fx-background-color: #1ab188; -fx-cursor: hand;" text="Log In" textFill="WHITE" />
-      <Label fx:id="lblNoti" layoutX="46.0" layoutY="415.0" text="Label" textFill="#dd0606" />
+      <Label fx:id="lblNoti" layoutX="46.0" layoutY="415.0" textFill="#dd0606" />
       <JFXPasswordField fx:id="txtPassword" layoutX="76.0" layoutY="205.0" prefHeight="25.0" prefWidth="180.0" stylesheets="@../styles/FXMLStyle.css" />
    </children>
 </AnchorPane>

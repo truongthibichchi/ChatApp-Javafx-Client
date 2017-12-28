@@ -104,7 +104,9 @@ public class LogInController extends StageSceneController implements Initializab
             listener.setConnectionCallback(controller);
             controller.setListener(listener);
 
-            controller.drawUser(msg);
+            User user= new User(msg.getUserName(), msg.getPass(), msg.getNickname(), msg.getStatus());
+            controller.setUserMain(user);
+            controller.drawUser();
             controller.setStage(stageMain);
             controller.addDragAndDropHandler();
             controller.setUsersData(msg.getUserListData());
@@ -131,21 +133,29 @@ public class LogInController extends StageSceneController implements Initializab
     @Override
     public void onNewUserConnected(String username, String nickname, Status status) {}
     @Override
-    public void onLoginFailed(Message msg) {
-        showNotification(msg.getUserName()+ " is already connected to server");
-    }
+    public void onWrongInfo() {showNotification("Wrong username or password");}
+
+    @Override
+    public void onUserAlreadyLogedIn() {showNotification(txtusername.getText()+"has already logged in");}
+
     @Override
     public void onConnectionFailed() {
         showNotification("Wrong username or password");
     }
     @Override
-    public void onSignUpFailed(Message msg) {}
+    public void onSignUpFailed() {}
     @Override
     public void onUserDisconnected(String username, String nickname, Status status) {}
     @Override
     public void onConnected(Message msg) {
         LoadMainForm(msg);
     }
+
+    @Override
+    public void onReCeivedAtextMessage(Message msg) {
+
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         lblNoti.setText("");

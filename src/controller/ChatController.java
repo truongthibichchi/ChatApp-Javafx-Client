@@ -23,7 +23,7 @@ import javafx.scene.shape.Circle;
 
 import java.util.ArrayList;
 
-public class ChatController extends StageSceneController implements ChatCallback{
+public class ChatController extends StageSceneController {
     @FXML private Pane pane;
     @FXML private ImageView imgCloseConversation, imgAudio;
     @FXML private JFXListView lvChatLine;
@@ -36,9 +36,9 @@ public class ChatController extends StageSceneController implements ChatCallback
 
     private ArrayList<User> users;
     private Listener listener;
-    private String username;
+    private User user;
 
-    public void setUsername(String username) {this.username = username; }
+    public void setUser(User user) {this.user = user; }
     public void setUsers(ArrayList<User> users) {
         this.users = users;
     }
@@ -48,7 +48,6 @@ public class ChatController extends StageSceneController implements ChatCallback
 
     public void imgCloseConversationAction(){
         this.stage.hide();
-
     }
 
     public void drawUserList(ArrayList<User> users) {
@@ -75,16 +74,14 @@ public class ChatController extends StageSceneController implements ChatCallback
     }
 
     public void btbSendMessgageAction (){
-        listener.setChatCallback(this);
-        listener.setChatControllers(users, this);
-        String text = txtMess.getText();
-        ArrayList<User> participants = users;
-        listener.chatText(username, participants, text);
+        if(txtMess.getText().isEmpty()){
+            return;
+        }
+        listener.chatText(user.getUsername(), users, txtMess.getText());
     }
-
     private void addChatLine(Message msg){
         if(msg.getType().equals(MessageType.CHAT_TEXT)){
-            if(msg.getUserName().equals(username)){
+            if(msg.getUserName().equals(user.getUsername())){
                 setlvItemOfUser(msg.getText(), msg.getUserName());
             }
             else{
@@ -94,38 +91,38 @@ public class ChatController extends StageSceneController implements ChatCallback
         txtMess.clear();
     }
     private void setlvItemOfUser(String mess, String username){
-        HBox messItem = new HBox();
+        Platform.runLater(()->{HBox messItem = new HBox();
 
-        Circle circle = new Circle();
-        Image image = new Image(getClass().getClassLoader().getResource("images/avatars/" + username.toLowerCase() + ".png").toString(), 50, 50, true, true);
-        circle.setRadius(15);
-        circle.setFill(new ImagePattern(image));
+            Circle circle = new Circle();
+            Image image = new Image(getClass().getClassLoader().getResource("images/avatars/" + username.toLowerCase() + ".png").toString(), 50, 50, true, true);
+            circle.setRadius(15);
+            circle.setFill(new ImagePattern(image));
 
-        Label blank = new Label("  ");
-        Label text = new Label(mess);
+            Label blank = new Label("  ");
+            Label text = new Label(mess);
 
-        messItem.getChildren().addAll(circle, blank, text);
-        messItem.setAlignment(Pos.CENTER_LEFT);
+            messItem.getChildren().addAll(text, blank, circle);
+            messItem.setAlignment(Pos.CENTER_RIGHT);
 
-        lvChatLine.getItems().add(messItem);
+            lvChatLine.getItems().add(messItem);});
     }
     private void setlvItemOfOtherUsers(String mess, String username){
-        HBox messItem = new HBox();
+        Platform.runLater(()->{ HBox messItem = new HBox();
 
-        Label blank = new Label("  ");
-        Label text = new Label(mess);
+            Label blank = new Label("  ");
+            Label text = new Label(mess);
 
-        Circle circle = new Circle();
-        Image image = new Image(getClass().getClassLoader().getResource("images/avatars/" + username.toLowerCase() + ".png").toString(), 50, 50, true, true);
-        circle.setRadius(15);
-        circle.setFill(new ImagePattern(image));
+            Circle circle = new Circle();
+            Image image = new Image(getClass().getClassLoader().getResource("images/avatars/" + username.toLowerCase() + ".png").toString(), 50, 50, true, true);
+            circle.setRadius(15);
+            circle.setFill(new ImagePattern(image));
 
-        messItem.getChildren().addAll(text, blank, circle);
-        messItem.setAlignment(Pos.CENTER_RIGHT);
+            messItem.getChildren().addAll(circle, blank, text);
+            messItem.setAlignment(Pos.CENTER_LEFT);
 
-        lvChatLine.getItems().add(messItem);
+            lvChatLine.getItems().add(messItem);});
     }
-    private void newMessageNotification(){
+    private void soundNotification(){
          try {
              Media hit = new Media(getClass().getClassLoader().getResource("sound/sound.mp3").toString());
              MediaPlayer mediaPlayer = new MediaPlayer(hit);
@@ -135,10 +132,13 @@ public class ChatController extends StageSceneController implements ChatCallback
          }
     }
 
-    @Override
+
     public void onSendTextSuceeded(Message message) {
+        if(!this.stage.isShowing()){
+            this.stage.show();
+        }
         addChatLine(message);
-        newMessageNotification();
+        soundNotification();
     }
 
 }

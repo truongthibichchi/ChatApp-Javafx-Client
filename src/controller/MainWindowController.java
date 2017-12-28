@@ -13,6 +13,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.image.Image;
@@ -26,6 +28,7 @@ import javafx.stage.StageStyle;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class MainWindowController extends StageSceneController implements Initializable, ConnectionCallback {
@@ -35,6 +38,7 @@ public class MainWindowController extends StageSceneController implements Initia
     @FXML private JFXTextField txtUsername, txtNickname;
     @FXML private JFXPasswordField txtPassword;
     @FXML private JFXButton btnUpdateInfo, btnNewChat;
+    @FXML private Label lblNotiUser, lblNotiLvUser;
     @FXML private BorderPane borderPane;
 
     private double xOffset;
@@ -42,6 +46,9 @@ public class MainWindowController extends StageSceneController implements Initia
 
     private Listener listener;
     private ArrayList<User> usersData;
+    private User userMain;
+
+    private HashMap<ArrayList<User>, ChatController> chatControllers = new HashMap<>();
 
     public void setListener(Listener listener) {
         this.listener = listener;
@@ -49,17 +56,19 @@ public class MainWindowController extends StageSceneController implements Initia
     public void setUsersData(ArrayList<User> usersData) {
         this.usersData = usersData;
     }
+    public void setUserMain(User user){this.userMain=user;}
+    public void setChatControllers (ArrayList<User> users, ChatController controller) {chatControllers.put(users, controller);}
 
     public void imgCloseAction() {
         Platform.exit();
         System.exit(0);
     }
 
-    public void drawUser(Message msg){
+    public void drawUser(){
         Platform.runLater(()->{
-            txtUsername.setText(msg.getUserName());
-            txtNickname.setText(msg.getNickname());
-            Image imgAvatar = new Image(getClass().getClassLoader().getResource("images/avatars/"+msg.getUserName()+".png").toString());
+            txtUsername.setText(userMain.getUsername());
+            txtNickname.setText(userMain.getNickname());
+            Image imgAvatar = new Image(getClass().getClassLoader().getResource("images/avatars/"+userMain.getUsername()+".png").toString());
             cirAvatar.setFill(new ImagePattern(imgAvatar));
         });
     }
@@ -79,29 +88,21 @@ public class MainWindowController extends StageSceneController implements Initia
             selectedUsers.add(user);
         }
 
-        Platform.runLater(()-> {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Chat.fxml"));
-                Parent root = loader.load();
+        if(isGroupChatExisted(selectedUsers)){
+            lblNotiLvUser.setText("Group chat existed");
+            return;
+        }
+        else{
+            lblNotiLvUser.setText("");
+        }
+        loadNewChatWindow(selectedUsers);
+    }
 
-                Stage stage = new Stage();
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.setScene(new Scene(root));
-
-                ChatController controller = loader.getController();
-                controller.setStage(stage);
-                controller.addDragAndDropHandler();
-                controller.setUsers(selectedUsers);
-                controller.setUsername(txtUsername.getText());
-                controller.setListener(listener);
-                controller.drawUserList(selectedUsers);
-
-                stage.show();
-
-            } catch (Exception e) {
-                System.err.println(e);
-            }
-        });
+    private boolean isGroupChatExisted(ArrayList<User> users){
+        if(chatControllers.containsKey(users)){
+            return true;
+        }
+        return false;
     }
 
     public void imgCLoseAction(){
@@ -137,11 +138,15 @@ public class MainWindowController extends StageSceneController implements Initia
     @Override
     public void onConnected(Message msg) {}
     @Override
-    public void onLoginFailed(Message msg) {}
+    public void onWrongInfo(){}
+
+    @Override
+    public void onUserAlreadyLogedIn() {}
+
     @Override
     public void onConnectionFailed() { }
     @Override
-    public void onSignUpFailed(Message msg) {
+    public void onSignUpFailed() {
 
     }
     @Override
@@ -170,4 +175,64 @@ public class MainWindowController extends StageSceneController implements Initia
         drawUserList(usersData);
     }
 
+    @Override
+    public void onReCeivedAtextMessage(Message msg) {
+        ChatController controller=null;
+        for(Map.Entry<ArrayList<User>, ChatController> entry: chatControllers.entrySet()){
+            if (isEqualUsers(entry.getKey(), msg.getChatUsers())){
+                controller= entry.getValue();
+                controller.onSendTextSuceeded(msg);
+                return;
+            }
+        }
+        loadNewChatWindow(msg.getChatUsers());
+    }
+
+    private boolean isEqualUsers(ArrayList<User> msgUsers,ArrayList<User> mapUsers){
+      String msgUsername="";
+      String mapUsename="";
+      if(msgUsers.size()!=mapUsers.size()){
+          return false;
+      }
+      for(User user:msgUsers){
+          msgUsername+=user.getUsername();
+      }
+
+      for(User user:mapUsers){
+          mapUsename+=user.getUsername();
+      }
+      if(!msgUsername.equals(mapUsename)){
+          return false;
+      }
+       return true;
+    }
+
+    private void loadNewChatWindow(ArrayList<User> users){
+        Platform.runLater(()-> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Chat.fxml"));
+                Parent root = loader.load();
+
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(new Scene(root));
+
+                ChatController controller = loader.getController();
+
+                controller.setStage(stage);
+                controller.addDragAndDropHandler();
+                controller.setUsers(users);
+                controller.setUser(userMain);
+                controller.setListener(listener);
+                controller.drawUserList(users);
+
+                setChatControllers(users, controller);
+
+                stage.show();
+
+            } catch (Exception e) {
+                System.err.println(e);
+            }
+        });
+    }
 }
