@@ -112,7 +112,6 @@ public class LogInController extends StageSceneController implements Initializab
             controller.setUsersData(msg.getUserListData());
             controller.drawUserList(msg.getUserListData());
 
-
             stageMain.centerOnScreen();
             stageMain.setResizable(false);
 

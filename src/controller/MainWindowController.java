@@ -150,6 +150,21 @@ public class MainWindowController extends StageSceneController implements Initia
         return false;
     }
 
+    private void updateInfoForChatUsers(String username, String nickname, Status status ){
+        for(Map.Entry<ArrayList<User>, ChatController > entry: chatControllers.entrySet()){
+            ArrayList< User> users = entry.getKey();
+            for(User user:users){
+                if(user.getUsername().equals(username)){
+                    user.setNickname(nickname);
+                    user.setStatus(status);
+                }
+            }
+            ChatController controller = entry.getValue();
+            controller.setUsers(users);
+            controller.drawUserList(users);
+        }
+    }
+
     public void imgCLoseAction() {
         Platform.exit();
         System.exit(0);
@@ -217,6 +232,7 @@ public class MainWindowController extends StageSceneController implements Initia
             usersData.add(new User(username, nickname, status));
         }
         drawUserList(usersData);
+        updateInfoForChatUsers(username, nickname, status);
     }
 
     @Override
@@ -227,6 +243,7 @@ public class MainWindowController extends StageSceneController implements Initia
             }
         }
         drawUserList(usersData);
+        updateInfoForChatUsers(username, nickname, status);
     }
 
     @Override
@@ -281,6 +298,7 @@ public class MainWindowController extends StageSceneController implements Initia
                 controller.drawUserList(msg.getChatUsers());
 
                 setChatControllers(msg.getChatUsers(), controller);
+                updateInfoForChatUsers(userMain.getUsername(), userMain.getNickname(), userMain.getStatus());
                 controller.onSendTextSuceeded(msg);
 
                 stage.show();
