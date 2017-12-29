@@ -155,6 +155,8 @@ public class SignUpController extends StageSceneController implements Initializa
                 controller.setListener(listener);
                 listener.setMainWindowController(controller);
 
+                User user = new User(msg.getUserName(), msg.getPass(), msg.getNickname(),msg.getStatus());
+                controller.setUserMain(user);
                 controller.drawUser();
                 listener.setConnectionCallback(controller);
 
