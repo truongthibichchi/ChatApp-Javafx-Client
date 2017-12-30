@@ -1,3 +1,4 @@
+
 package controller;
 
 import com.jfoenix.controls.JFXPasswordField;
@@ -17,36 +18,31 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import util.convertFile;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 
 public class SignUpController extends StageSceneController implements Initializable, ConnectionCallback {
-    @FXML
-    private JFXTextField txtUsername, txtNickname, txtHostname, txtPort;
-    @FXML
-    private JFXPasswordField txtPassword;
-    @FXML
-    private Button btnSignUp;
-    @FXML
-    private Label lblNoti, lblLogin;
-    @FXML
-    private ImageView imgClose;
-    @FXML
-    private AnchorPane anchorPane;
-    @FXML
-    private Circle imgAvatar;
+    @FXML private JFXTextField txtUsername, txtNickname, txtHostname, txtPort;
+    @FXML private JFXPasswordField txtPassword;
+    @FXML private Button btnSignUp;
+    @FXML private Label lblNoti, lblLogin;
+    @FXML private ImageView imgClose;
+    @FXML private AnchorPane anchorPane;
+    @FXML private Circle imgAvatar;
 
     private double xOffset;
     private double yOffset;
@@ -56,16 +52,19 @@ public class SignUpController extends StageSceneController implements Initializa
     private File selectedFile;
     private Image imagetoSave;
 
+    private String username, password, nickname;
+    private byte[] avatar;
+
     public void closeApp() {
         stage.close();
     }
 
     public static void saveToFile(Image image, String username) {
         try {
-            File outputFile = new File("res/images/avatars/"+username+".png");
+            File file = new File("res/images/avatars/"+username+".png");
             BufferedImage bImage = SwingFXUtils.fromFXImage(image, null);
             try {
-                ImageIO.write(bImage, "png", outputFile);
+                ImageIO.write(bImage, "png", file);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -93,6 +92,19 @@ public class SignUpController extends StageSceneController implements Initializa
         }
     }
 
+    private void convertImageToByte() {
+        try {
+            FileInputStream fis = new FileInputStream(selectedFile);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            byte[] buff = new byte[1024];
+            for (int readNum; (readNum = fis.read(buff)) != -1; ) {
+                baos.write(buff, 0, readNum);
+            }
+            avatar = baos.toByteArray();
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }
     public void lblLogInAction() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/LogIn.fxml"));
@@ -119,14 +131,16 @@ public class SignUpController extends StageSceneController implements Initializa
                 showNotification("Please enter full information");
                 return;
             }
+
             String hostname = txtHostname.getText();
             int port = Integer.parseInt(txtPort.getText());
-            String username = txtUsername.getText();
-            String password = txtPassword.getText();
-            String nickname = txtNickname.getText();
+            username = txtUsername.getText();
+            password = txtPassword.getText();
+            nickname = txtNickname.getText();
+            convertImageToByte();
 
 
-            User user = new User(username, password, nickname);
+            User user = new User(username, password, nickname, avatar);
             listener = new Listener(hostname, port, user);
             listener.setSignUpController(this);
             listener.setConnectionCallback(this);
@@ -137,47 +151,6 @@ public class SignUpController extends StageSceneController implements Initializa
         }
     }
 
-    public void loadMainWindowForm(Message msg) {
-        Platform.runLater(() -> {
-            try {
-                FXMLLoader loader = new FXMLLoader();
-                URL location = getClass().getResource("/views/MainWindow.fxml");
-                loader.setLocation(location);
-                Parent root = loader.load();
-
-                Stage stageMain = new Stage();
-                stageMain.initStyle(StageStyle.UNDECORATED);
-                stageMain.setScene(new Scene(root));
-
-                MainWindowController controller = loader.getController();
-                controller.setStage(stageMain);
-
-                controller.setListener(listener);
-                listener.setMainWindowController(controller);
-
-                User user = new User(msg.getUserName(), msg.getPass(), msg.getNickname(),msg.getStatus());
-                controller.setUserMain(user);
-                controller.drawUser();
-                listener.setConnectionCallback(controller);
-
-                ;
-                controller.addDragAndDropHandler();
-                controller.setUsersData(msg.getUserListData());
-                controller.drawUserList(msg.getUserListData());
-
-
-                stageMain.centerOnScreen();
-                stageMain.setResizable(false);
-
-                this.stage.close();
-                stageMain.show();
-
-            } catch (Exception e) {
-                System.err.println(e);
-            }
-        });
-    }
-
     public void showNotification(String x) {
         Platform.runLater(() -> {
             lblNoti.setText(x);
@@ -186,8 +159,8 @@ public class SignUpController extends StageSceneController implements Initializa
 
     @Override
     public void onConnected(Message msg) {
-        saveToFile(imagetoSave, txtUsername.getText());
-        loadMainWindowForm(msg);
+        saveToFile(imagetoSave, msg.getUserName());
+        showNotification("sign up suceeded!");
     }
 
     @Override
@@ -214,7 +187,15 @@ public class SignUpController extends StageSceneController implements Initializa
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        imagetoSave = new Image(getClass().getClassLoader().getResource("images/avatars/default_avatar.png").toString());
+        String initFilePath = getClass().getResource("/images/avatars/default_avatar.png").getPath().replaceFirst("/", "");
+        selectedFile = new File(initFilePath);
+        BufferedImage bufferedImage = null;
+        try {
+            bufferedImage = ImageIO.read(selectedFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        imagetoSave = SwingFXUtils.toFXImage(bufferedImage, null);
         imgAvatar.setFill(new ImagePattern(imagetoSave));
 
         anchorPane.setOnMousePressed(event -> {

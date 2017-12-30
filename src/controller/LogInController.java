@@ -67,7 +67,8 @@ public class LogInController extends StageSceneController implements Initializab
     public void lblSignUpAction() {
         Platform.runLater(() -> {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/SignUp.fxml"));
+                URL fxmlFilePath = getClass().getResource("/views/SignUp.fxml");
+                FXMLLoader loader = new FXMLLoader(fxmlFilePath);
                 Parent root = loader.load();
                 SignUpController controller = loader.getController();
 

@@ -11,11 +11,11 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="257.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SignUpController">
+<AnchorPane prefHeight="400.0" prefWidth="257.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SignUpController">
    <children>
       <AnchorPane fx:id="anchorPane" prefHeight="639.0" prefWidth="337.0" style="-fx-background-color: #24313c;">
          <children>
-            <Button fx:id="btnSignUp" layoutX="141.0" layoutY="563.0" mnemonicParsing="false" onMouseClicked="#btnSignUpAction" prefHeight="36.0" prefWidth="97.0" style="-fx-background-color: #1ab188; -fx-cursor: hand;" text="Sign Up" textFill="WHITE" />
+            <Button fx:id="btnSignUp" focusTraversable="false" layoutX="141.0" layoutY="563.0" mnemonicParsing="false" onMouseClicked="#btnSignUpAction" prefHeight="36.0" prefWidth="97.0" style="-fx-background-color: #1ab188; -fx-cursor: hand;" text="Sign Up" textFill="WHITE" />
             <JFXTextField fx:id="txtUsername" layoutX="83.0" layoutY="228.0" prefHeight="25.0" prefWidth="207.0" promptText="Username" stylesheets="@../styles/FXMLStyle.css" unFocusColor="#bcb1b1" />
             <JFXTextField fx:id="txtNickname" layoutX="83.0" layoutY="291.0" prefHeight="25.0" prefWidth="207.0" promptText="Nickname" stylesheets="@../styles/FXMLStyle.css" unFocusColor="#bcb1b1" />
             <ImageView fitHeight="74.0" fitWidth="151.0" layoutX="94.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
@@ -53,11 +53,11 @@
                </font>
             </Label>
             <Label layoutX="103.0" layoutY="424.0" text="------------------------------------" textFill="#0eeb8d" />
-            <JFXTextField fx:id="txtHostname" layoutX="133.0" layoutY="453.0" stylesheets="@../styles/FXMLStyle.css" text="localhost" />
-            <JFXTextField fx:id="txtPort" layoutX="133.0" layoutY="499.0" stylesheets="@../styles/FXMLStyle.css" text="9999" />
+            <JFXTextField fx:id="txtHostname" focusTraversable="false" layoutX="133.0" layoutY="453.0" stylesheets="@../styles/FXMLStyle.css" text="localhost" />
+            <JFXTextField fx:id="txtPort" focusTraversable="false" layoutX="133.0" layoutY="499.0" stylesheets="@../styles/FXMLStyle.css" text="9999" />
             <Label layoutX="63.0" layoutY="463.0" text="Host name" textFill="WHITE" />
             <Label layoutX="81.0" layoutY="502.0" text="Port" textFill="WHITE" />
-            <JFXPasswordField fx:id="txtPassword" layoutX="83.0" layoutY="352.0" prefHeight="25.0" prefWidth="207.0" promptText="Password" stylesheets="@../styles/FXMLStyle.css" />
+            <JFXPasswordField fx:id="txtPassword" layoutX="83.0" layoutY="352.0" onAction="#btnSignUpAction" prefHeight="25.0" prefWidth="207.0" promptText="Password" stylesheets="@../styles/FXMLStyle.css" />
             <Circle fx:id="imgAvatar" fill="DODGERBLUE" layoutX="180.0" layoutY="140.0" onMouseClicked="#imgAvatarAction" radius="71.0" stroke="BLACK" strokeType="INSIDE">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />

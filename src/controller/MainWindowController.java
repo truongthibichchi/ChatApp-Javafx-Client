@@ -13,7 +13,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
@@ -150,20 +149,24 @@ public class MainWindowController extends StageSceneController implements Initia
         return false;
     }
 
-    private void updateInfoForChatUsers(String username, String nickname, Status status ){
-        for(Map.Entry<ArrayList<User>, ChatController > entry: chatControllers.entrySet()){
-            ArrayList< User> users = entry.getKey();
-            for(User user:users){
-                if(user.getUsername().equals(username)){
-                    user.setNickname(nickname);
-                    user.setStatus(status);
+    private void updateInfoForChatUsers(String username, String nickname, Status status) {
+        if (chatControllers != null) {
+
+            for (Map.Entry<ArrayList<User>, ChatController> entry : chatControllers.entrySet()) {
+                ArrayList<User> users = entry.getKey();
+                for (User user : users) {
+                    if (user.getUsername().equals(username)) {
+                        user.setNickname(nickname);
+                        user.setStatus(status);
+                    }
                 }
+                ChatController controller = entry.getValue();
+                controller.setUsers(users);
+                controller.drawUserList(users);
             }
-            ChatController controller = entry.getValue();
-            controller.setUsers(users);
-            controller.drawUserList(users);
         }
     }
+
 
     public void imgCLoseAction() {
         Platform.exit();
@@ -239,11 +242,11 @@ public class MainWindowController extends StageSceneController implements Initia
     public void onUserDisconnected(String username, String nickname, Status status) {
         for (User user : usersData) {
             if (user.getUsername().equals(username)) {
-                user.setStatus(status);
+                user.setStatus(Status.DISCONNECT);
             }
         }
         drawUserList(usersData);
-        updateInfoForChatUsers(username, nickname, status);
+        updateInfoForChatUsers(username, nickname, Status.DISCONNECT);
     }
 
     @Override
