@@ -152,6 +152,16 @@ public class LogInController extends StageSceneController implements Initializab
     }
 
     @Override
+    public void onChangeInfoSucceeded(Message msg) {
+
+    }
+
+    @Override
+    public void onChangeInfoFailed(Message msg) {
+
+    }
+
+    @Override
     public void onReCeivedAtextMessage(Message msg) {
 
     }

@@ -181,6 +181,16 @@ public class SignUpController extends StageSceneController implements Initializa
     public void onNewUserConnected(String username, String nickname, Status status) {}
 
     @Override
+    public void onChangeInfoSucceeded(Message msg) {
+
+    }
+
+    @Override
+    public void onChangeInfoFailed(Message msg) {
+
+    }
+
+    @Override
     public void onReCeivedAtextMessage(Message msg) {
 
     }

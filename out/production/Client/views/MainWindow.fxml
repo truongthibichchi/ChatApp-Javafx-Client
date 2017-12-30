@@ -14,18 +14,30 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane prefHeight="603.0" prefWidth="521.0" style="-fx-background-color: #D3D3D3;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainWindowController">
+<AnchorPane prefHeight="603.0" prefWidth="521.0" style="-fx-background-color: #D3D3D3;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainWindowController">
    <children>
       <Pane layoutY="45.0" prefHeight="558.0" prefWidth="256.0" style="-fx-background-color: #292F39;">
          <children>
-            <Circle fx:id="cirAvatar" fill="DODGERBLUE" layoutX="128.0" layoutY="159.0" radius="120.0" stroke="BLACK" strokeType="INSIDE">
+            <Circle fx:id="cirAvatar" fill="DODGERBLUE" layoutX="128.0" layoutY="159.0" onMouseClicked="#imgAvatarAction" radius="120.0" stroke="BLACK" strokeType="INSIDE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Circle>
-            <JFXButton fx:id="btnUpdateInfo" layoutX="77.0" layoutY="499.0" prefHeight="45.0" prefWidth="102.0" style="-fx-background-color: #1ab188;" text="Update" textFill="WHITE" />
-            <JFXPasswordField fx:id="txtPassword" alignment="CENTER" layoutX="86.0" layoutY="435.0" prefHeight="25.0" prefWidth="145.0" stylesheets="@../styles/FXMLStyle.css" />
-            <JFXTextField fx:id="txtNickname" alignment="CENTER" layoutX="88.0" layoutY="381.0" prefHeight="25.0" prefWidth="145.0" stylesheets="@../styles/FXMLStyle.css" />
-            <JFXTextField fx:id="txtUsername" alignment="CENTER" layoutX="89.0" layoutY="326.0" prefHeight="25.0" prefWidth="145.0" stylesheets="@../styles/FXMLStyle.css" />
+            <JFXButton fx:id="btnUpdateInfo" layoutX="77.0" layoutY="499.0" onAction="#btnUpdateInfoAction" prefHeight="45.0" prefWidth="102.0" style="-fx-background-color: #1ab188;" text="Update" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
+            <JFXPasswordField fx:id="txtPassword" alignment="CENTER" layoutX="86.0" layoutY="435.0" onAction="#btnUpdateInfoAction" prefHeight="25.0" prefWidth="145.0" stylesheets="@../styles/FXMLStyle.css">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXPasswordField>
+            <JFXTextField fx:id="txtNickname" alignment="CENTER" layoutX="88.0" layoutY="381.0" onAction="#btnUpdateInfoAction" prefHeight="25.0" prefWidth="145.0" stylesheets="@../styles/FXMLStyle.css">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXTextField>
+            <JFXTextField fx:id="txtUsername" alignment="CENTER" layoutX="89.0" layoutY="326.0" prefHeight="25.0" prefWidth="145.0" stylesheets="@../styles/FXMLStyle.css">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXTextField>
             <Label fx:id="lblUsername" layoutX="14.0" layoutY="330.0" text="Username" textFill="WHITE" />
             <Label layoutX="13.0" layoutY="385.0" text="NickName" textFill="WHITE" />
             <Label layoutX="19.0" layoutY="438.0" text="Password" textFill="WHITE" />
@@ -53,7 +65,10 @@
             </ImageView>
          </right>
       </BorderPane>
-      <JFXButton fx:id="btnNewChat" layoutX="347.0" layoutY="544.0" onAction="#btnNewMessAction" prefHeight="45.0" prefWidth="102.0" style="-fx-background-color: #da1b81;" text="New Chat" textFill="WHITE" />
+      <JFXButton fx:id="btnNewChat" layoutX="347.0" layoutY="544.0" onAction="#btnNewMessAction" prefHeight="45.0" prefWidth="102.0" style="-fx-background-color: #da1b81;" text="New Chat" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
       <Label fx:id="lblNotiLvUser" layoutX="284.0" layoutY="517.0" textFill="#ff0404" />
    </children>
 </AnchorPane>

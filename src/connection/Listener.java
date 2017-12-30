@@ -1,7 +1,6 @@
 package connection;
 
 
-import controller.ChatController;
 import controller.LogInController;
 import controller.MainWindowController;
 import controller.SignUpController;
@@ -11,8 +10,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Listener implements Runnable{
     private int port;
@@ -89,6 +86,13 @@ public class Listener implements Runnable{
                             connectioncallback.onUserDisconnected(msg.getUserName(),msg.getNickname(), msg.getStatus());
                             break;
 
+                        case CHANGE_INFO_SUCCEEDED:
+                            connectioncallback.onChangeInfoSucceeded(msg);
+                            break;
+
+                        case CHANGE_INFO_FAILED:
+                            connectioncallback.onChangeInfoFailed(msg);
+                            break;
                         case CHAT_TEXT:
                             connectioncallback.onReCeivedAtextMessage(msg);
                             break;
@@ -115,6 +119,7 @@ public class Listener implements Runnable{
             msg.setUserName(user.getUsername());
             msg.setPass(user.getPass());
             msg.setNickname(user.getNickname());
+            msg.setAvatar(user.getAvatar());
             msg.setType(MessageType.SIGN_UP);
         }
         sendToServer(msg);
@@ -130,6 +135,17 @@ public class Listener implements Runnable{
         }
     }
 
+    public void changeInfoUserMain(User user){
+        Message msg = new Message();
+        msg.setUserName(user.getUsername());
+        msg.setPass(user.getPass());
+        msg.setNickname(user.getNickname());
+        msg.setAvatar(user.getAvatar());
+        msg.setType(MessageType.CHANGE_INFO);
+
+        sendToServer(msg);
+    }
+
     public void chatText(String username, ArrayList<User> users, String text){
         Message msg = new Message();
         msg.setUserName(username);
@@ -138,6 +154,7 @@ public class Listener implements Runnable{
         msg.setType(MessageType.CHAT_TEXT);
         sendToServer(msg);
     }
+
 
     public void closeChatWindow(ArrayList<User> users){
         mainWindowController.closeChatWindow(users);

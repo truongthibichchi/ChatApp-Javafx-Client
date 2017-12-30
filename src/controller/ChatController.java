@@ -55,7 +55,13 @@ public class ChatController extends StageSceneController {
 
     public void drawUserList(ArrayList<User> users) {
         Platform.runLater(() -> {
-            lvParticipants.setItems(FXCollections.observableList(users));
+            ArrayList<User> cloneList = new ArrayList<>();
+            for(User u: users){
+                if(!u.getUsername().equals(user.getUsername())){
+                    cloneList.add(u);
+                }
+            }
+            lvParticipants.setItems(FXCollections.observableList(cloneList));
             lvParticipants.setOrientation(Orientation.HORIZONTAL);
             lvParticipants.setCellFactory(new CellRendererInChat());
         });

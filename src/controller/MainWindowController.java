@@ -7,6 +7,7 @@ import connection.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,9 +22,16 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -55,7 +63,26 @@ public class MainWindowController extends StageSceneController implements Initia
     private ArrayList<User> usersData;
     private User userMain;
 
+    private File selectFile;
+    private Image imagetoSave;
+    private String username, password, nickname;
+    private byte[] avatar;
+
     private HashMap<ArrayList<User>, ChatController> chatControllers = new HashMap<>();
+
+    public static void saveToFile(Image image, String username) {
+        try {
+            File file = new File("res/images/avatars/" + username + ".png");
+            BufferedImage bImage = SwingFXUtils.fromFXImage(image, null);
+            try {
+                ImageIO.write(bImage, "png", file);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }
 
     public void setListener(Listener listener) {
         this.listener = listener;
@@ -89,7 +116,15 @@ public class MainWindowController extends StageSceneController implements Initia
 
     public void drawUserList(ArrayList<User> users) {
         Platform.runLater(() -> {
-            lvUserList.setItems(FXCollections.observableList(users));
+
+            ArrayList<User> cloneList = new ArrayList<>();
+            for (User user : users) {
+                if (!user.getUsername().equals(userMain.getUsername())) {
+                    cloneList.add(user);
+                }
+            }
+
+            lvUserList.setItems(FXCollections.observableList(cloneList));
             lvUserList.setCellFactory(new CellRendererInMainWindow());
             lvUserList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         });
@@ -167,10 +202,59 @@ public class MainWindowController extends StageSceneController implements Initia
         }
     }
 
-
     public void imgCLoseAction() {
         Platform.exit();
         System.exit(0);
+    }
+
+    public void btnUpdateInfoAction() {
+        if (txtPassword.getText().isEmpty() || txtNickname.getText().isEmpty()) {
+            lblNotiUser.setText("Please enter full information");
+            return;
+        }
+        if (selectFile == null) {
+            String initFilePath = getClass().getResource("/images/avatars/" + userMain.getUsername() + ".png").getPath().replaceFirst("/", "");
+            selectFile = new File(initFilePath);
+            convertImageToByte();
+        }
+        User user = new User(txtUsername.getText(), txtPassword.getText(), txtNickname.getText(), avatar);
+        listener.changeInfoUserMain(user);
+    }
+
+    public void imgAvatarAction() {
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Attach a file");
+        fc.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files",
+                        "*.png", "*.jpg"));
+        selectFile = fc.showOpenDialog(null);
+
+        BufferedImage bufferedImage = null;
+        if (selectFile == null) {
+            String initFilePath = getClass().getResource("/images/avatars/" + userMain.getUsername() + ".png").getPath().replaceFirst("/", "");
+            selectFile = new File(initFilePath);
+        }
+        try {
+            bufferedImage = ImageIO.read(selectFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        imagetoSave = SwingFXUtils.toFXImage(bufferedImage, null);
+        cirAvatar.setFill(new ImagePattern(imagetoSave));
+    }
+
+    private void convertImageToByte() {
+        try {
+            FileInputStream fis = new FileInputStream(selectFile);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            byte[] buff = new byte[1024];
+            for (int readNum; (readNum = fis.read(buff)) != -1; ) {
+                baos.write(buff, 0, readNum);
+            }
+            avatar = baos.toByteArray();
+        } catch (Exception e) {
+            System.err.println(e);
+        }
     }
 
     @Override
@@ -247,6 +331,25 @@ public class MainWindowController extends StageSceneController implements Initia
         }
         drawUserList(usersData);
         updateInfoForChatUsers(username, nickname, Status.DISCONNECT);
+    }
+
+    @Override
+    public void onChangeInfoSucceeded(Message msg) {
+        if( userMain.getUsername().equals(msg.getUserName())){
+            userMain.setNickname(msg.getNickname());
+            userMain.setPass(msg.getPass());
+        }
+        saveToFile(imagetoSave, msg.getUserName());
+        drawUser();
+        drawUserList(msg.getUserListData());
+    }
+
+    @Override
+    public void onChangeInfoFailed(Message msg) {
+        Platform.runLater(() -> {
+            lblNotiUser.setText("Change info failed");
+                }
+        );
     }
 
     @Override
