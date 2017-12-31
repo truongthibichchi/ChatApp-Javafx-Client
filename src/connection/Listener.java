@@ -96,6 +96,10 @@ public class Listener implements Runnable{
                         case CHAT_TEXT:
                             connectioncallback.onReCeivedAtextMessage(msg);
                             break;
+
+                        case VOICE:
+
+                            break;
                     }
                 }
             }
@@ -112,6 +116,7 @@ public class Listener implements Runnable{
             msg.setUserName(user.getUsername());
             msg.setPass(user.getPass());
             msg.setType(MessageType.LOGIN);
+
         }
 
         //sign up
@@ -155,6 +160,9 @@ public class Listener implements Runnable{
         sendToServer(msg);
     }
 
+    public static void sendVoiceMessage (String username, ArrayList<User> users, byte[] audio ) throws IOException{
+            //TODO: send voice in chat
+    }
 
     public void closeChatWindow(ArrayList<User> users){
         mainWindowController.closeChatWindow(users);

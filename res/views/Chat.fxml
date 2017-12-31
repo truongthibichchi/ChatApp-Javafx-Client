@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane prefHeight="583.0" prefWidth="381.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ChatController">
+<AnchorPane prefHeight="583.0" prefWidth="381.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ChatController">
    <children>
       <Pane fx:id="pane" prefHeight="49.0" prefWidth="381.0" style="-fx-background-color: #127070;">
          <children>
@@ -27,7 +27,7 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></JFXButton>
-      <ImageView fx:id="imgAudio" fitHeight="49.0" fitWidth="61.0" layoutX="332.0" layoutY="547.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgAudio" fitHeight="49.0" fitWidth="61.0" layoutX="332.0" layoutY="547.0" onMouseClicked="#imgAudioAction" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/microphone.png" />
          </image>

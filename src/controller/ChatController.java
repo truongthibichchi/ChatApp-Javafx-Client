@@ -21,13 +21,18 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.TextAlignment;
+import util.VoiceRecorder;
+import util.VoiceUtil;
 
+import javax.sound.sampled.AudioFormat;
 import javax.swing.*;
 import java.util.ArrayList;
 
 public class ChatController extends StageSceneController {
     @FXML private Pane pane;
     @FXML private ImageView imgCloseConversation, imgAudio;
+    Image microphoneActiveImage = new Image(getClass().getClassLoader().getResource("images/microphone-active.png").toString());
+    Image microphoneInactiveImage = new Image(getClass().getClassLoader().getResource("images/microphone.png").toString());
     @FXML private JFXListView lvChatLine;
     @FXML private ListView lvParticipants;
     @FXML private TextArea txtMess;
@@ -37,6 +42,7 @@ public class ChatController extends StageSceneController {
     private double yOffset;
 
     private ArrayList<User> users;
+    ArrayList<User> cloneList = null;
     private Listener listener;
     private User user;
 
@@ -55,7 +61,6 @@ public class ChatController extends StageSceneController {
 
     public void drawUserList(ArrayList<User> users) {
         Platform.runLater(() -> {
-            ArrayList<User> cloneList = new ArrayList<>();
             for(User u: users){
                 if(!u.getUsername().equals(user.getUsername())){
                     cloneList.add(u);
@@ -143,6 +148,26 @@ public class ChatController extends StageSceneController {
          } catch (Exception e) {
              e.printStackTrace();
          }
+    }
+    public void imgAudioAction(){
+
+        if (VoiceUtil.isRecording()) {
+            Platform.runLater(() -> {
+                        imgAudio.setImage(microphoneInactiveImage);
+                    }
+            );
+            VoiceUtil.setRecording(false);
+        } else {
+            Platform.runLater(() -> {
+                        imgAudio.setImage(microphoneActiveImage);
+
+                    }
+            );
+            VoiceRecorder recorder = new VoiceRecorder();
+            recorder.setUsername(user.getUsername());
+            recorder.setParticipants(cloneList);
+            recorder.captureAudio();
+        }
     }
 
 

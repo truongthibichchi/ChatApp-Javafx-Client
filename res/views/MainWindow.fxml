@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane prefHeight="603.0" prefWidth="521.0" style="-fx-background-color: #D3D3D3;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainWindowController">
+<AnchorPane prefHeight="603.0" prefWidth="521.0" style="-fx-background-color: ;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainWindowController">
    <children>
       <Pane layoutY="45.0" prefHeight="558.0" prefWidth="256.0" style="-fx-background-color: #292F39;">
          <children>
@@ -65,10 +65,15 @@
             </ImageView>
          </right>
       </BorderPane>
-      <JFXButton fx:id="btnNewChat" layoutX="347.0" layoutY="544.0" onAction="#btnNewMessAction" prefHeight="45.0" prefWidth="102.0" style="-fx-background-color: #da1b81;" text="New Chat" textFill="WHITE">
+      <JFXButton fx:id="btnNewChat" layoutX="323.0" layoutY="544.0" onAction="#btnNewMessAction" prefHeight="45.0" prefWidth="85.0" style="-fx-background-color: #1e90ff;" text="Chat" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></JFXButton>
       <Label fx:id="lblNotiLvUser" layoutX="284.0" layoutY="517.0" textFill="#ff0404" />
+      <ImageView fx:id="imgCall" fitHeight="54.0" fitWidth="55.0" layoutX="427.0" layoutY="539.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/call.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
