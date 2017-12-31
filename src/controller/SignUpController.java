@@ -191,9 +191,10 @@ public class SignUpController extends StageSceneController implements Initializa
     }
 
     @Override
-    public void onReCeivedAtextMessage(Message msg) {
+    public void onReceivedMessage(Message msg) {
 
     }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

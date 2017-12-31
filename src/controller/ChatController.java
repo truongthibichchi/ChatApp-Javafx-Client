@@ -21,6 +21,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.TextAlignment;
+import util.VoicePlayback;
 import util.VoiceRecorder;
 import util.VoiceUtil;
 
@@ -42,7 +43,7 @@ public class ChatController extends StageSceneController {
     private double yOffset;
 
     private ArrayList<User> users;
-    ArrayList<User> cloneList = null;
+
     private Listener listener;
     private User user;
 
@@ -61,6 +62,7 @@ public class ChatController extends StageSceneController {
 
     public void drawUserList(ArrayList<User> users) {
         Platform.runLater(() -> {
+            ArrayList<User> cloneList = new ArrayList<>();
             for(User u: users){
                 if(!u.getUsername().equals(user.getUsername())){
                     cloneList.add(u);
@@ -165,18 +167,75 @@ public class ChatController extends StageSceneController {
             );
             VoiceRecorder recorder = new VoiceRecorder();
             recorder.setUsername(user.getUsername());
-            recorder.setParticipants(cloneList);
+            recorder.setParticipants(users);
             recorder.captureAudio();
         }
     }
 
 
-    public void onSendTextSuceeded(Message message) {
+    public void onSendTextSucceeded(Message message) {
         if(!this.stage.isShowing()){
             this.stage.show();
         }
         addChatLine(message);
         soundNotification();
+    }
+
+    public void onSendVoiceSucceeded(Message message){
+        if(!this.stage.isShowing()){
+            this.stage.show();
+        }
+        if(message.getUserName().equals(user.getUsername())){
+            setVoiceItemofUser(message.getUserName(), message.getVoiceMsg());
+        }
+        else{
+            setVoiceItemofOtherUsers(message.getUserName(), message.getVoiceMsg());
+        }
+    }
+
+    private void setVoiceItemofUser(String username, byte[] audio){
+        Platform.runLater(()->{HBox messItem = new HBox();
+
+            Circle circle = new Circle();
+            Image image = new Image(getClass().getClassLoader().getResource("images/avatars/" + username.toLowerCase() + ".png").toString(), 50, 50, true, true);
+            circle.setRadius(15);
+            circle.setFill(new ImagePattern(image));
+
+            Label text = new Label(" Sent a voice message! ");
+            text.setWrapText(true);
+            text.setTextAlignment(TextAlignment.LEFT);
+
+            ImageView imageview = new ImageView(new Image(getClass().getClassLoader().getResource("images/sound.png").toString()));
+            VoicePlayback.playAudio(audio);
+
+            messItem.getChildren().addAll(imageview, text, circle);
+            messItem.setAlignment(Pos.CENTER_RIGHT);
+
+            lvChatLine.getItems().add(messItem);
+        });
+    }
+
+    private void setVoiceItemofOtherUsers(String username, byte[] audio) {
+        Platform.runLater(() -> {
+            HBox messItem = new HBox();
+
+            Circle circle = new Circle();
+            Image image = new Image(getClass().getClassLoader().getResource("images/avatars/" + username.toLowerCase() + ".png").toString(), 50, 50, true, true);
+            circle.setRadius(15);
+            circle.setFill(new ImagePattern(image));
+
+            Label text = new Label(" Sent a voice message! ");
+            text.setWrapText(true);
+            text.setTextAlignment(TextAlignment.LEFT);
+
+            ImageView imageview = new ImageView(new Image(getClass().getClassLoader().getResource("images/sound.png").toString()));
+            VoicePlayback.playAudio(audio);
+
+            messItem.getChildren().addAll(circle, text, imageview);
+            messItem.setAlignment(Pos.CENTER_LEFT);
+
+            lvChatLine.getItems().add(messItem);
+        });
     }
 
 }

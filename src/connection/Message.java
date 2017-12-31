@@ -11,6 +11,7 @@ public class Message implements Serializable {
     private Status status;
 
     private String text;
+    private byte[] voiceMsg;
 
     private MessageType type;
     private  ArrayList<User> userListData;
@@ -93,5 +94,13 @@ public class Message implements Serializable {
 
     public void setChatUsers(ArrayList<User> chatUsers) {
         this.chatUsers = chatUsers;
+    }
+
+    public byte[] getVoiceMsg() {
+        return voiceMsg;
+    }
+
+    public void setVoiceMsg(byte[] voiceMsg) {
+        this.voiceMsg = voiceMsg;
     }
 }

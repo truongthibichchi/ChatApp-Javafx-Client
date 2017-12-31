@@ -16,7 +16,7 @@ public class Listener implements Runnable{
     private String hostname;
     private Socket socket;
     private User user;
-    private ObjectOutputStream outputStream;
+    private static ObjectOutputStream outputStream;
     private ObjectInputStream inputStream;
 
     private ConnectionCallback connectioncallback;
@@ -94,11 +94,11 @@ public class Listener implements Runnable{
                             connectioncallback.onChangeInfoFailed(msg);
                             break;
                         case CHAT_TEXT:
-                            connectioncallback.onReCeivedAtextMessage(msg);
+                            connectioncallback.onReceivedMessage(msg);
                             break;
 
                         case VOICE:
-
+                            connectioncallback.onReceivedMessage(msg);
                             break;
                     }
                 }
@@ -112,7 +112,7 @@ public class Listener implements Runnable{
         Message msg = new Message();
 
         //log in
-        if(this.logInController!=null &&this.signUpController==null){
+        if(this.logInController!=null){
             msg.setUserName(user.getUsername());
             msg.setPass(user.getPass());
             msg.setType(MessageType.LOGIN);
@@ -161,7 +161,12 @@ public class Listener implements Runnable{
     }
 
     public static void sendVoiceMessage (String username, ArrayList<User> users, byte[] audio ) throws IOException{
-            //TODO: send voice in chat
+            Message msg = new Message();
+            msg.setUserName(username);
+            msg.setVoiceMsg(audio);
+            msg.setChatUsers(users);
+            msg.setType(MessageType.VOICE);
+            outputStream.writeObject(msg);
     }
 
     public void closeChatWindow(ArrayList<User> users){

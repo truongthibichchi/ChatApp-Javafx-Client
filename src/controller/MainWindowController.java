@@ -353,12 +353,17 @@ public class MainWindowController extends StageSceneController implements Initia
     }
 
     @Override
-    public void onReCeivedAtextMessage(Message msg) {
+    public void onReceivedMessage(Message msg) {
         ChatController controller = null;
         for (Map.Entry<ArrayList<User>, ChatController> entry : chatControllers.entrySet()) {
             if (isEqualUsers(entry.getKey(), msg.getChatUsers())) {
                 controller = entry.getValue();
-                controller.onSendTextSuceeded(msg);
+                if(msg.getType().equals(MessageType.CHAT_TEXT)) {
+                    controller.onSendTextSucceeded(msg);
+                }
+                if(msg.getType().equals(MessageType.VOICE)){
+                    controller.onSendVoiceSucceeded(msg);
+                }
                 return;
             }
         }
@@ -405,7 +410,13 @@ public class MainWindowController extends StageSceneController implements Initia
 
                 setChatControllers(msg.getChatUsers(), controller);
                 updateInfoForChatUsers(userMain.getUsername(), userMain.getNickname(), userMain.getStatus());
-                controller.onSendTextSuceeded(msg);
+
+                if(msg.getType().equals(MessageType.CHAT_TEXT)) {
+                    controller.onSendTextSucceeded(msg);
+                }
+                if(msg.getType().equals(MessageType.VOICE)) {
+                    controller.onSendVoiceSucceeded(msg);
+                }
 
                 stage.show();
 

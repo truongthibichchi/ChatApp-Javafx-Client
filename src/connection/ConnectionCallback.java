@@ -10,5 +10,5 @@ public interface ConnectionCallback {
     void onNewUserConnected (String username, String nickname, Status status);
     void onChangeInfoSucceeded(Message msg);
     void onChangeInfoFailed(Message msg);
-    void onReCeivedAtextMessage(Message msg);
+    void onReceivedMessage(Message msg);
 }
