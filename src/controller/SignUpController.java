@@ -195,7 +195,10 @@ public class SignUpController extends StageSceneController implements Initializa
 
     }
 
+    @Override
+    public void onRequestCall(Message msg) {
 
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         String initFilePath = getClass().getResource("/images/avatars/default_avatar.png").getPath().replaceFirst("/", "");
@@ -225,4 +228,6 @@ public class SignUpController extends StageSceneController implements Initializa
             anchorPane.setCursor(Cursor.DEFAULT);
         });
     }
+
+
 }

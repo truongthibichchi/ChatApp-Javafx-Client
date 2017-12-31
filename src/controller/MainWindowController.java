@@ -55,6 +55,8 @@ public class MainWindowController extends StageSceneController implements Initia
     private Label lblNotiUser, lblNotiLvUser;
     @FXML
     private BorderPane borderPane;
+    @FXML
+    private ImageView imgCall;
 
     private double xOffset;
     private double yOffset;
@@ -69,6 +71,8 @@ public class MainWindowController extends StageSceneController implements Initia
     private byte[] avatar;
 
     private HashMap<ArrayList<User>, ChatController> chatControllers = new HashMap<>();
+    private CallController callController;
+
 
     public static void saveToFile(Image image, String username) {
         try {
@@ -98,6 +102,9 @@ public class MainWindowController extends StageSceneController implements Initia
 
     public void setChatControllers(ArrayList<User> users, ChatController controller) {
         chatControllers.put(users, controller);
+    }
+    public void setCallController(CallController controller) {
+        this.callController = controller;
     }
 
     public void imgCloseAction() {
@@ -257,6 +264,64 @@ public class MainWindowController extends StageSceneController implements Initia
         }
     }
 
+    public void imgCallAction() {
+        try {
+            ObservableList<User> oberUsers = lvUserList.getSelectionModel().getSelectedItems();
+            if(oberUsers.size()>1){
+                lblNotiLvUser.setText("Choose only one user!");
+                return;
+            }
+            ArrayList<User> selectedUsers = new ArrayList<>();
+            selectedUsers.add(userMain);
+
+            for (User user : oberUsers) {
+                if (user.getStatus().equals(Status.BUSY)){
+                    lblNotiLvUser.setText(user.getUsername()+" is busy, please try later!");
+                    return;
+                }
+                if(user.getStatus().equals(Status.DISCONNECT)){
+                    lblNotiLvUser.setText(user.getUsername()+" is not online, please try later!");
+                    return;
+                }
+            }
+
+
+            loadCallForm(userMain.getUsername(), selectedUsers);
+            listener.requestCall(userMain.getUsername(), selectedUsers);
+
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+
+    }
+
+    private void loadCallForm(String username, ArrayList<User> selectedUsers) {
+        Platform.runLater(() -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Call.fxml"));
+                Parent root = loader.load();
+
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(new Scene(root));
+
+                callController = loader.getController();
+                callController.setStage(stage);
+                callController.addDragAndDropHandler();
+                callController.setUsers(selectedUsers);
+                callController.setUser(userMain);
+                callController.setListener(listener);
+                callController.drawUser(selectedUsers);
+
+                stage.show();
+
+            } catch (Exception e) {
+                System.err.println(e);
+            }
+        });
+
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         txtUsername.setEditable(false);
@@ -335,7 +400,7 @@ public class MainWindowController extends StageSceneController implements Initia
 
     @Override
     public void onChangeInfoSucceeded(Message msg) {
-        if( userMain.getUsername().equals(msg.getUserName())){
+        if (userMain.getUsername().equals(msg.getUserName())) {
             userMain.setNickname(msg.getNickname());
             userMain.setPass(msg.getPass());
         }
@@ -347,7 +412,7 @@ public class MainWindowController extends StageSceneController implements Initia
     @Override
     public void onChangeInfoFailed(Message msg) {
         Platform.runLater(() -> {
-            lblNotiUser.setText("Change info failed");
+                    lblNotiUser.setText("Change info failed");
                 }
         );
     }
@@ -358,10 +423,10 @@ public class MainWindowController extends StageSceneController implements Initia
         for (Map.Entry<ArrayList<User>, ChatController> entry : chatControllers.entrySet()) {
             if (isEqualUsers(entry.getKey(), msg.getChatUsers())) {
                 controller = entry.getValue();
-                if(msg.getType().equals(MessageType.CHAT_TEXT)) {
+                if (msg.getType().equals(MessageType.CHAT_TEXT)) {
                     controller.onSendTextSucceeded(msg);
                 }
-                if(msg.getType().equals(MessageType.VOICE)){
+                if (msg.getType().equals(MessageType.VOICE)) {
                     controller.onSendVoiceSucceeded(msg);
                 }
                 return;
@@ -411,10 +476,10 @@ public class MainWindowController extends StageSceneController implements Initia
                 setChatControllers(msg.getChatUsers(), controller);
                 updateInfoForChatUsers(userMain.getUsername(), userMain.getNickname(), userMain.getStatus());
 
-                if(msg.getType().equals(MessageType.CHAT_TEXT)) {
+                if (msg.getType().equals(MessageType.CHAT_TEXT)) {
                     controller.onSendTextSucceeded(msg);
                 }
-                if(msg.getType().equals(MessageType.VOICE)) {
+                if (msg.getType().equals(MessageType.VOICE)) {
                     controller.onSendVoiceSucceeded(msg);
                 }
 
@@ -432,6 +497,36 @@ public class MainWindowController extends StageSceneController implements Initia
                 chatControllers.remove(users);
             }
         }
+
+    }
+
+    @Override
+    public void onRequestCall(Message msg) {
+        Platform.runLater(() -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Call.fxml"));
+                Parent root = loader.load();
+
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(new Scene(root));
+
+                callController = loader.getController();
+
+                callController.setStage(stage);
+                callController.addDragAndDropHandler();
+                callController.setUsers(msg.getChatUsers());
+                callController.setUser(userMain);
+                callController.setListener(listener);
+                callController.drawUser(msg.getChatUsers());
+                callController.setVisibleForImgAccept(msg.getUserName());
+
+                stage.show();
+
+            } catch (Exception e) {
+                System.err.println(e);
+            }
+        });
 
     }
 }

@@ -11,4 +11,5 @@ public interface ConnectionCallback {
     void onChangeInfoSucceeded(Message msg);
     void onChangeInfoFailed(Message msg);
     void onReceivedMessage(Message msg);
+    void onRequestCall(Message msg);
 }

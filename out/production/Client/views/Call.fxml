@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -9,9 +8,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane prefHeight="397.0" prefWidth="305.0" style="-fx-background-color: #1B242D;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CallController">
+<AnchorPane prefHeight="467.0" prefWidth="310.0" style="-fx-background-color: #1B242D;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CallController">
    <children>
-      <BorderPane fx:id="pane" prefHeight="44.0" prefWidth="305.0" style="-fx-background-color: #212E36;">
+      <BorderPane fx:id="pane" layoutX="-8.0" layoutY="-8.0" prefHeight="51.0" prefWidth="325.0" style="-fx-background-color: #212E36;">
          <right>
             <ImageView fx:id="imgClose" fitHeight="37.0" fitWidth="41.0" onMouseClicked="#imgCloseAction" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
@@ -22,19 +21,25 @@
                </cursor>
             </ImageView>
          </right>
-         <center>
-            <Label fx:id="lblNoti" prefHeight="17.0" prefWidth="83.0" text="Incoming Call" textFill="WHITE" BorderPane.alignment="CENTER" />
-         </center>
       </BorderPane>
-      <Circle fx:id="cirAvatar" fill="DODGERBLUE" layoutX="152.0" layoutY="182.0" radius="105.0" stroke="BLACK" strokeType="INSIDE" />
-      <JFXButton fx:id="btnDecline" layoutX="172.0" layoutY="342.0" prefHeight="44.0" prefWidth="94.0" style="-fx-background-color: #D62130;" text="Decline" textFill="WHITE">
+      <Circle fx:id="cirAvatar" fill="DODGERBLUE" layoutX="163.0" layoutY="207.0" radius="105.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label fx:id="lblNoti" layoutX="142.0" layoutY="72.0" prefHeight="17.0" prefWidth="42.0" text="Calling" textFill="WHITE" wrapText="true" />
+      <ImageView fx:id="imgAccept" fitHeight="47.0" fitWidth="109.0" layoutX="104.0" layoutY="370.0" onMouseClicked="#imgAcceptAction" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/accept.png" />
+         </image>
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor></JFXButton>
-      <JFXButton fx:id="btnAccept" layoutX="55.0" layoutY="342.0" prefHeight="44.0" prefWidth="94.0" style="-fx-background-color: #64BF34;" text="Accept" textFill="WHITE">
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="imgDecline" fitHeight="55.0" fitWidth="109.0" layoutX="104.0" layoutY="413.0" onMouseClicked="#imgDeclineAction" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/decline.png" />
+         </image>
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor></JFXButton>
-      <Label fx:id="lblNickname" layoutX="74.0" layoutY="301.0" prefHeight="17.0" prefWidth="162.0" text="nickname" textFill="WHITE" wrapText="true" />
+         </cursor>
+      </ImageView>
+      <Label fx:id="lblNickname" layoutX="132.0" layoutY="319.0" text="Nickname" textFill="WHITE" />
    </children>
 </AnchorPane>

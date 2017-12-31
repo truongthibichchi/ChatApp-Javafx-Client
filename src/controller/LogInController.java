@@ -166,6 +166,10 @@ public class LogInController extends StageSceneController implements Initializab
 
     }
 
+    @Override
+    public void onRequestCall(Message msg) {
+
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

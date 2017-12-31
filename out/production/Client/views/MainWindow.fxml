@@ -70,7 +70,7 @@
             <Cursor fx:constant="HAND" />
          </cursor></JFXButton>
       <Label fx:id="lblNotiLvUser" layoutX="284.0" layoutY="517.0" textFill="#ff0404" />
-      <ImageView fx:id="imgCall" fitHeight="54.0" fitWidth="55.0" layoutX="427.0" layoutY="539.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgCall" fitHeight="54.0" fitWidth="85.0" layoutX="427.0" layoutY="539.0" onMouseClicked="#imgCallAction" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/call.png" />
          </image>
