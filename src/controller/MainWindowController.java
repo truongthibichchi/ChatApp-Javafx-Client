@@ -20,6 +20,8 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
@@ -33,6 +35,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -293,7 +296,7 @@ public class MainWindowController extends StageSceneController implements Initia
             }
 
 
-            loadCallForm(userMain.getUsername(), selectedUsers);
+            loadCallForm(selectedUsers);
             listener.requestCall(userMain.getUsername(), selectedUsers);
 
         } catch (Exception e) {
@@ -302,7 +305,7 @@ public class MainWindowController extends StageSceneController implements Initia
 
     }
 
-    private void loadCallForm(String username, ArrayList<User> selectedUsers) {
+    private void loadCallForm( ArrayList<User> selectedUsers) {
         Platform.runLater(() -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Call.fxml"));
@@ -319,6 +322,19 @@ public class MainWindowController extends StageSceneController implements Initia
                 callController.setUser(userMain);
                 callController.setListener(listener);
                 callController.drawUser(selectedUsers);
+                try {
+                    Media hit = new Media(getClass().getClassLoader().getResource("sound/ringer.mp3").toString());
+                    MediaPlayer mediaPlayer = new MediaPlayer(hit);
+                    callController.setMediaPlayer(mediaPlayer);
+                    mediaPlayer.setOnEndOfMedia(new Runnable() {
+                        public void run() {
+                            mediaPlayer.seek(javafx.util.Duration.ZERO);
+                        }
+                    });
+                    mediaPlayer.play();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
                 stage.show();
 
@@ -528,6 +544,19 @@ public class MainWindowController extends StageSceneController implements Initia
                 callController.drawUser(msg.getChatUsers());
                 callController.setVisibleForImgAccept(msg.getUserName());
 
+                try {
+                    Media hit = new Media(getClass().getClassLoader().getResource("sound/ringer.mp3").toString());
+                    MediaPlayer media = new MediaPlayer(hit);
+                    callController.setMediaPlayer(media);
+                    media.setOnEndOfMedia(new Runnable() {
+                        public void run() {
+                            media.seek(javafx.util.Duration.ZERO);
+                        }
+                    });
+                    media.play();
+                } catch (Exception e) {
+                    System.err.println(e);
+                }
                 stage.show();
 
             } catch (Exception e) {
@@ -550,6 +579,6 @@ public class MainWindowController extends StageSceneController implements Initia
 
     @Override
     public void onReceivedVoiceCall(Message msg) {
-        callController.playbackAudio(msg.getVoiceMsg());
+        callController.playback(msg.getVoiceMsg());
     }
 }

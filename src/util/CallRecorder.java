@@ -5,6 +5,8 @@ import connection.User;
 
 import javax.sound.sampled.*;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.net.DatagramPacket;
 import java.util.ArrayList;
 
 public class CallRecorder extends CallUtil {
@@ -13,42 +15,42 @@ public class CallRecorder extends CallUtil {
 
     public static void captureAudio() {
         try {
-            final AudioFormat format = getAudioFormat();
-            DataLine.Info info = new DataLine.Info(TargetDataLine.class, format);
-            final TargetDataLine line = (TargetDataLine) AudioSystem.getLine(info);
-            line.open(format);
-            line.start();
-            Runnable runner = new Runnable() {
-                int bufferSize = (int) format.getSampleRate() * format.getFrameSize();
-                byte buffer[] = new byte[bufferSize];
 
+            Runnable runner = new Runnable() {
                 public void run() {
                     out = new ByteArrayOutputStream();
                     isCalling = true;
                     try {
                         while (isCalling) {
+
+                            final AudioFormat format = getAudioFormat();
+                            DataLine.Info info = new DataLine.Info(TargetDataLine.class, format);
+                            final TargetDataLine line = (TargetDataLine) AudioSystem.getLine(info);
+
+                            line.open(format);
+                            line.start();
+                            int bufferSize = (int) format.getSampleRate() * format.getFrameSize();
+                            byte buffer[] = new byte[bufferSize];
                             int count = line.read(buffer, 0, buffer.length);
                             if (count > 0) {
-                                out.write(buffer, 0, count);
+                               // out.write(buffer, 0, count);
+                                DatagramPacket data = new DatagramPacket(buffer, buffer.length);
                                 out.close();
                                 out.flush();
-                                Listener.sendVoiceCall(username, participants, out.toByteArray());
-
+                                line.close();
+                                line.flush();
+                                Listener.sendVoiceCall(username, participants, data.getData());
                             }
                         }
                     } catch (Exception e) {
                         System.err.println(e);
-                    } finally {
-
-                        // line.close();
-                        // line.flush();
                     }
                 }
             };
             Thread captureThread = new Thread(runner);
             captureThread.start();
-        } catch (LineUnavailableException e) {
-            System.err.println("Line unavailable: ");
+        } catch (Exception e) {
+            System.err.println(e);
             e.printStackTrace();
         }
     }

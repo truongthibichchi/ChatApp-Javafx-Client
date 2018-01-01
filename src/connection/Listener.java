@@ -121,18 +121,17 @@ public class Listener implements Runnable {
 
                         case BUSY:
                             connectioncallback.onUserChangeStatus(msg.getUserName(), msg.getNickname(), msg.getStatus());
+                            break;
+
                         case RESPOND_CALL_ACCEPT:
-                            //TODO: Callback BEGIN recoding
                             connectioncallback.onRespondCallAccept(msg);
                             break;
 
                         case RESPOND_CALL_DECLINE:
-                            //TODO: END recording
                             connectioncallback.onRespondCallDecline(msg);
                             break;
 
                         case VOICE_CALL:
-                            //TODO: Playback
                             connectioncallback.onReceivedVoiceCall(msg);
                             break;
                     }

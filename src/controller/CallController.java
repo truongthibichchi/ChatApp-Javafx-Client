@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import util.CallRecorder;
@@ -37,6 +38,10 @@ public class CallController extends StageSceneController implements Initializabl
     private Listener listener;
     private User userMain;
 
+
+
+    MediaPlayer mediaPlayer= null;
+
     public void setUser(User user) {
         this.userMain = user;
     }
@@ -48,8 +53,12 @@ public class CallController extends StageSceneController implements Initializabl
     public void setListener(Listener listener) {
         this.listener = listener;
     }
+    public void setMediaPlayer(MediaPlayer mediaPlayer) {
+        this.mediaPlayer = mediaPlayer;
+    }
 
     public void imgCloseAction(){
+        mediaPlayer.stop();
         try {
             listener.respondCallDecline(userMain.getUsername(), users);
         } catch (IOException e) {
@@ -98,7 +107,11 @@ public class CallController extends StageSceneController implements Initializabl
     }
 
     public void imgAcceptAction() throws IOException {
-            listener.respondCallAccept(userMain.getUsername(), users);
+        mediaPlayer.stop();
+        imgAccept.setVisible(false);
+        showNoti("connected!");
+        listener.respondCallAccept(userMain.getUsername(), users);
+        captureAudio();
     }
 
     public void captureAudio(){
@@ -109,17 +122,23 @@ public class CallController extends StageSceneController implements Initializabl
         imgAccept.setVisible(false);
     }
 
-    public void playbackAudio(byte[] audio){
-        VoicePlayback.playAudio(audio);
-    }
+
     public void imgDeclineAction() throws IOException {
         listener.respondCallDecline(userMain.getUsername(), users);
         declineCall();
     }
 
     public void declineCall(){
+        mediaPlayer.stop();
         CallUtil.setCalling(false);
         showNoti("End call!");
+        imgAccept.setVisible(false);
+    }
+
+    public void playback(byte[] audio){
+        mediaPlayer.stop();
+        VoicePlayback voicePlayback = new VoicePlayback();
+        voicePlayback.playAudio(audio);
     }
 
     @Override
