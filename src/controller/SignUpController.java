@@ -176,7 +176,7 @@ public class SignUpController extends StageSceneController implements Initializa
         showNotification("This username is not available");
     }
     @Override
-    public void onUserDisconnected(String username, String nickname, Status status) {}
+    public void onUserChangeStatus(String username, String nickname, Status status) {}
     @Override
     public void onNewUserConnected(String username, String nickname, Status status) {}
 
@@ -196,9 +196,23 @@ public class SignUpController extends StageSceneController implements Initializa
     }
 
     @Override
-    public void onRequestCall(Message msg) {
+    public void onRequestCall(Message msg) {}
+
+    @Override
+    public void onRespondCallAccept(Message msg) {
 
     }
+
+    @Override
+    public void onRespondCallDecline(Message msg) {
+
+    }
+
+    @Override
+    public void onReceivedVoiceCall(Message msg) {
+
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         String initFilePath = getClass().getResource("/images/avatars/default_avatar.png").getPath().replaceFirst("/", "");

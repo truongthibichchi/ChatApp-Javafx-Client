@@ -34,30 +34,6 @@ public class Listener implements Runnable {
         this.user = user;
     }
 
-    public static void sendVoiceMessage(String username, ArrayList<User> users, byte[] audio) throws IOException {
-        Message msg = new Message();
-        msg.setUserName(username);
-        msg.setVoiceMsg(audio);
-        msg.setChatUsers(users);
-        msg.setType(MessageType.VOICE);
-        outputStream.writeObject(msg);
-    }
-
-    public static void respondCallAccept(String username, ArrayList<User> users) throws IOException {
-        Message msg = new Message();
-        msg.setType(RESPOND_CALL_ACCEPT);
-        msg.setUserName(username);
-        msg.setChatUsers(users);
-        outputStream.writeObject(msg);
-    }
-
-    public static void respondCallDecline(String username, ArrayList<User> users) throws IOException {
-        Message msg = new Message();
-        msg.setType(RESPOND_CALL_DECLINE);
-        msg.setChatUsers(users);
-        msg.setUserName(username);
-        outputStream.writeObject(msg);
-    }
 
     public User getUser() {
         return user;
@@ -120,7 +96,7 @@ public class Listener implements Runnable {
                             break;
 
                         case DISCONNECT:
-                            connectioncallback.onUserDisconnected(msg.getUserName(), msg.getNickname(), msg.getStatus());
+                            connectioncallback.onUserChangeStatus(msg.getUserName(), msg.getNickname(), msg.getStatus());
                             break;
 
                         case CHANGE_INFO_SUCCEEDED:
@@ -143,15 +119,21 @@ public class Listener implements Runnable {
                             connectioncallback.onRequestCall(msg);
                             break;
 
+                        case BUSY:
+                            connectioncallback.onUserChangeStatus(msg.getUserName(), msg.getNickname(), msg.getStatus());
                         case RESPOND_CALL_ACCEPT:
                             //TODO: Callback BEGIN recoding
+                            connectioncallback.onRespondCallAccept(msg);
                             break;
+
                         case RESPOND_CALL_DECLINE:
                             //TODO: END recording
+                            connectioncallback.onRespondCallDecline(msg);
                             break;
 
                         case VOICE_CALL:
                             //TODO: Playback
+                            connectioncallback.onReceivedVoiceCall(msg);
                             break;
                     }
                 }
@@ -223,6 +205,40 @@ public class Listener implements Runnable {
 
     public void closeChatWindow(ArrayList<User> users) {
         mainWindowController.closeChatWindow(users);
+    }
+
+    public static void sendVoiceMessage(String username, ArrayList<User> users, byte[] audio) throws IOException {
+        Message msg = new Message();
+        msg.setUserName(username);
+        msg.setVoiceMsg(audio);
+        msg.setChatUsers(users);
+        msg.setType(MessageType.VOICE);
+        outputStream.writeObject(msg);
+    }
+
+    public static void respondCallAccept(String username, ArrayList<User> users) throws IOException {
+        Message msg = new Message();
+        msg.setType(RESPOND_CALL_ACCEPT);
+        msg.setUserName(username);
+        msg.setChatUsers(users);
+        outputStream.writeObject(msg);
+    }
+
+    public static void respondCallDecline(String username, ArrayList<User> users) throws IOException {
+        Message msg = new Message();
+        msg.setType(RESPOND_CALL_DECLINE);
+        msg.setChatUsers(users);
+        msg.setUserName(username);
+        outputStream.writeObject(msg);
+    }
+
+    public static void sendVoiceCall(String username, ArrayList<User> users, byte[] audio) throws IOException {
+        Message msg = new Message();
+        msg.setUserName(username);
+        msg.setVoiceMsg(audio);
+        msg.setChatUsers(users);
+        msg.setType(MessageType.VOICE_CALL);
+        outputStream.writeObject(msg);
     }
 }
 

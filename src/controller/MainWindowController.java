@@ -191,7 +191,7 @@ public class MainWindowController extends StageSceneController implements Initia
         return false;
     }
 
-    private void updateInfoForChatUsers(String username, String nickname, Status status) {
+    private void updateInfoForChatUsers(String username,String nickname, Status status){
         if (chatControllers != null) {
 
             for (Map.Entry<ArrayList<User>, ChatController> entry : chatControllers.entrySet()) {
@@ -267,6 +267,10 @@ public class MainWindowController extends StageSceneController implements Initia
     public void imgCallAction() {
         try {
             ObservableList<User> oberUsers = lvUserList.getSelectionModel().getSelectedItems();
+            if(oberUsers.size()==0){
+                lblNotiLvUser.setText("Please choose a user!");
+                return;
+            }
             if(oberUsers.size()>1){
                 lblNotiLvUser.setText("Choose only one user!");
                 return;
@@ -282,6 +286,9 @@ public class MainWindowController extends StageSceneController implements Initia
                 if(user.getStatus().equals(Status.DISCONNECT)){
                     lblNotiLvUser.setText(user.getUsername()+" is not online, please try later!");
                     return;
+                }
+                else{
+                    selectedUsers.add(user);
                 }
             }
 
@@ -388,14 +395,14 @@ public class MainWindowController extends StageSceneController implements Initia
     }
 
     @Override
-    public void onUserDisconnected(String username, String nickname, Status status) {
+    public void onUserChangeStatus(String username, String nickname, Status status) {
         for (User user : usersData) {
             if (user.getUsername().equals(username)) {
-                user.setStatus(Status.DISCONNECT);
+                user.setStatus(status);
             }
         }
         drawUserList(usersData);
-        updateInfoForChatUsers(username, nickname, Status.DISCONNECT);
+        updateInfoForChatUsers(username, nickname, status);
     }
 
     @Override
@@ -528,5 +535,21 @@ public class MainWindowController extends StageSceneController implements Initia
             }
         });
 
+    }
+
+    @Override
+    public void onRespondCallAccept(Message msg) {
+        callController.showNoti("Connected!");
+        callController.captureAudio();
+    }
+
+    @Override
+    public void onRespondCallDecline(Message msg) {
+       callController.declineCall();
+    }
+
+    @Override
+    public void onReceivedVoiceCall(Message msg) {
+        callController.playbackAudio(msg.getVoiceMsg());
     }
 }

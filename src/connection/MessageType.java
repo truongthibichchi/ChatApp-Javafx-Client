@@ -17,5 +17,6 @@ public enum MessageType {
     REQUEST_CALL,
     RESPOND_CALL_ACCEPT,
     RESPOND_CALL_DECLINE,
-    VOICE_CALL
+    VOICE_CALL,
+    BUSY
 }

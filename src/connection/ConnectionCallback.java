@@ -6,10 +6,13 @@ public interface ConnectionCallback {
     void onUserAlreadyLogedIn ();
     void onConnectionFailed();
     void onSignUpFailed();
-    void onUserDisconnected(String username, String nickname, Status status);
+    void onUserChangeStatus(String username, String nickname, Status status);
     void onNewUserConnected (String username, String nickname, Status status);
     void onChangeInfoSucceeded(Message msg);
     void onChangeInfoFailed(Message msg);
     void onReceivedMessage(Message msg);
     void onRequestCall(Message msg);
+    void onRespondCallAccept(Message msg);
+    void onRespondCallDecline(Message msg);
+    void onReceivedVoiceCall(Message msg);
 }

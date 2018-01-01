@@ -145,7 +145,7 @@ public class LogInController extends StageSceneController implements Initializab
     @Override
     public void onSignUpFailed() {}
     @Override
-    public void onUserDisconnected(String username, String nickname, Status status) {}
+    public void onUserChangeStatus(String username, String nickname, Status status) {}
     @Override
     public void onConnected(Message msg) {
         LoadMainForm(msg);
@@ -168,6 +168,21 @@ public class LogInController extends StageSceneController implements Initializab
 
     @Override
     public void onRequestCall(Message msg) {
+
+    }
+
+    @Override
+    public void onRespondCallAccept(Message msg) {
+
+    }
+
+    @Override
+    public void onRespondCallDecline(Message msg) {
+
+    }
+
+    @Override
+    public void onReceivedVoiceCall(Message msg) {
 
     }
 

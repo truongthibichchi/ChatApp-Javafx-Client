@@ -13,6 +13,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import util.CallRecorder;
+import util.CallUtil;
+import util.VoicePlayback;
 import util.VoiceUtil;
 
 import java.io.IOException;
@@ -48,6 +50,12 @@ public class CallController extends StageSceneController implements Initializabl
     }
 
     public void imgCloseAction(){
+        try {
+            listener.respondCallDecline(userMain.getUsername(), users);
+        } catch (IOException e) {
+            System.err.println(e);
+        }
+        declineCall();
         this.stage.close();
     }
     public void addDragAndDropHandler() {
@@ -91,18 +99,28 @@ public class CallController extends StageSceneController implements Initializabl
 
     public void imgAcceptAction() throws IOException {
             listener.respondCallAccept(userMain.getUsername(), users);
-            CallRecorder recorder = new CallRecorder();
-            recorder.setUsername(userMain.getUsername());
-            recorder.setParticipants(users);
-            recorder.captureAudio();
     }
 
+    public void captureAudio(){
+        CallRecorder recorder = new CallRecorder();
+        recorder.setUsername(userMain.getUsername());
+        recorder.setParticipants(users);
+        recorder.captureAudio();
+        imgAccept.setVisible(false);
+    }
+
+    public void playbackAudio(byte[] audio){
+        VoicePlayback.playAudio(audio);
+    }
     public void imgDeclineAction() throws IOException {
         listener.respondCallDecline(userMain.getUsername(), users);
-        CallRecorder.setRecording(false);
-        showNoti("End call!");
+        declineCall();
     }
 
+    public void declineCall(){
+        CallUtil.setCalling(false);
+        showNoti("End call!");
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

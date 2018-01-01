@@ -5,10 +5,9 @@ import connection.User;
 
 import javax.sound.sampled.*;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 
-public class CallRecorder extends VoiceUtil {
+public class CallRecorder extends CallUtil {
     private static String username;
     private static ArrayList<User> participants = null;
 
@@ -25,29 +24,24 @@ public class CallRecorder extends VoiceUtil {
 
                 public void run() {
                     out = new ByteArrayOutputStream();
-                    isRecording = true;
+                    isCalling = true;
                     try {
-                        while (isRecording) {
+                        while (isCalling) {
                             int count = line.read(buffer, 0, buffer.length);
                             if (count > 0) {
                                 out.write(buffer, 0, count);
-                                try {
-                                    out.flush();
-                                    Listener.sendVoiceMessage(username, participants, out.toByteArray());
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
+                                out.close();
+                                out.flush();
+                                Listener.sendVoiceCall(username, participants, out.toByteArray());
+
                             }
                         }
+                    } catch (Exception e) {
+                        System.err.println(e);
                     } finally {
-                        try {
-                            out.close();
-                            out.flush();
-                            line.close();
-                            line.flush();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+
+                        // line.close();
+                        // line.flush();
                     }
                 }
             };
