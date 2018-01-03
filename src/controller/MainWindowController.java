@@ -430,6 +430,8 @@ public class MainWindowController extends StageSceneController implements Initia
         saveToFile(imagetoSave, msg.getUserName());
         drawUser();
         drawUserList(msg.getUserListData());
+        Platform.runLater(()->
+        lblNotiUser.setText("Change info succeesed!"));
     }
 
     @Override
